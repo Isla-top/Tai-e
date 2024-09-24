@@ -36,6 +36,7 @@ import pascal.taie.analysis.pta.core.cs.selector.ContextSelector;
 import pascal.taie.analysis.pta.core.heap.HeapModel;
 import pascal.taie.analysis.pta.core.heap.Obj;
 import pascal.taie.analysis.pta.plugin.Plugin;
+import pascal.taie.analysis.pta.plugin.taint.PrimitiveTaintFilter;
 import pascal.taie.analysis.pta.pts.PointsToSet;
 import pascal.taie.config.AnalysisOptions;
 import pascal.taie.ir.exp.Var;
@@ -43,6 +44,7 @@ import pascal.taie.ir.stmt.Stmt;
 import pascal.taie.language.classes.ClassHierarchy;
 import pascal.taie.language.classes.JClass;
 import pascal.taie.language.classes.JMethod;
+import pascal.taie.language.type.PrimitiveType;
 import pascal.taie.language.type.Type;
 import pascal.taie.language.type.TypeSystem;
 
@@ -170,7 +172,9 @@ public interface Solver {
      * can be propagated to {@code edge.target()}.
      */
     default void addPFGEdge(PointerFlowEdge edge, Type type) {
-        addPFGEdge(edge, new TypeFilter(type, this));
+        // todo: temporary modification
+        if(type instanceof PrimitiveType) addPFGEdge(edge, new PrimitiveTaintFilter(type, this));
+        else addPFGEdge(edge, new TypeFilter(type, this));
     }
 
     /**

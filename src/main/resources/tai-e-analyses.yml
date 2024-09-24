@@ -15,7 +15,7 @@
     merge-string-builders: true
     merge-exception-objects: true
     handle-invokedynamic: false
-    propagate-types: [ reference ] # ,null,int,long,...(other primitive types)
+    propagate-types: [ reference,int,byte,char ] # ,null,int,long,...(other primitive types)
     advanced: null # specify advanced analysis:
     # zipper | zipper-e | zipper-e=PV
     # scaler | scaler=TST

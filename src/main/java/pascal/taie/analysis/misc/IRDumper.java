@@ -84,7 +84,7 @@ public class IRDumper extends ClassAnalysis<Void> {
         return null;
     }
 
-    private static class Dumper {
+    public static class Dumper {
 
         private final File dumpDir;
 
@@ -92,12 +92,13 @@ public class IRDumper extends ClassAnalysis<Void> {
 
         private PrintStream out;
 
-        private Dumper(File dumpDir, JClass jclass) {
+        // todo: change public to private
+        public Dumper(File dumpDir, JClass jclass) {
             this.dumpDir = dumpDir;
             this.jclass = jclass;
         }
 
-        private void dump() {
+        public void dump() {
             String fileName = jclass.getName() + SUFFIX;
             try (PrintStream out = new PrintStream(new FileOutputStream(
                     new File(dumpDir, fileName)))) {

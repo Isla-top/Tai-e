@@ -185,10 +185,12 @@ public class DefaultNativeModel implements NativeModel {
             // of pointer analysis, thus we add cast statements to filter
             // out load/store operations on non-array objects.
             List<Stmt> stmts = new ArrayList<>();
-            stmts.add(new Cast(srcArray, new CastExp(src, arrayType)));
-            stmts.add(new Cast(destArray, new CastExp(dest, arrayType)));
-            stmts.add(new LoadArray(temp, new ArrayAccess(srcArray, index)));
-            stmts.add(new StoreArray(new ArrayAccess(destArray, index), temp));
+            // todo: temporary modify
+//            stmts.add(new Cast(srcArray, new CastExp(src, arrayType)));
+//            stmts.add(new Cast(destArray, new CastExp(dest, arrayType)));
+//            stmts.add(new LoadArray(temp, new ArrayAccess(srcArray, index)));
+//            stmts.add(new StoreArray(new ArrayAccess(destArray, index), temp));
+            stmts.add(new Copy(dest, src));
             stmts.add(helper.newReturn());
             return helper.build(stmts);
         });

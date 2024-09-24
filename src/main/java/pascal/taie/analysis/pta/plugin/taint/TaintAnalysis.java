@@ -26,6 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pascal.taie.World;
 import pascal.taie.analysis.graph.callgraph.CallGraph;
+import pascal.taie.analysis.misc.IRDumper;
 import pascal.taie.analysis.pta.core.cs.context.Context;
 import pascal.taie.analysis.pta.core.cs.element.CSCallSite;
 import pascal.taie.analysis.pta.core.cs.element.CSManager;
@@ -204,6 +205,11 @@ public class TaintAnalysis extends CompositePlugin {
 
     @Override
     public void onFinish() {
+        // todo: delete one line below
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.util.Properties")).dump();
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.util.Properties$LineReader")).dump();
+        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.System")).dump();
+        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.String")).dump();
         reportTaintFlows();
     }
 

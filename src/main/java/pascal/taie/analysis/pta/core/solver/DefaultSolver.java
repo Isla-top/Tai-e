@@ -48,6 +48,7 @@ import pascal.taie.analysis.pta.core.heap.HeapModel;
 import pascal.taie.analysis.pta.core.heap.MockObj;
 import pascal.taie.analysis.pta.core.heap.Obj;
 import pascal.taie.analysis.pta.plugin.Plugin;
+import pascal.taie.analysis.pta.plugin.taint.PrimitiveTaintFilter;
 import pascal.taie.analysis.pta.pts.PointsToSet;
 import pascal.taie.analysis.pta.pts.PointsToSetFactory;
 import pascal.taie.config.AnalysisOptions;
@@ -76,10 +77,7 @@ import pascal.taie.language.classes.ClassHierarchy;
 import pascal.taie.language.classes.JClass;
 import pascal.taie.language.classes.JField;
 import pascal.taie.language.classes.JMethod;
-import pascal.taie.language.type.ArrayType;
-import pascal.taie.language.type.ClassType;
-import pascal.taie.language.type.Type;
-import pascal.taie.language.type.TypeSystem;
+import pascal.taie.language.type.*;
 import pascal.taie.util.collection.Maps;
 import pascal.taie.util.collection.Sets;
 
@@ -401,7 +399,10 @@ public class DefaultSolver implements Solver {
                 pts.forEach(baseObj -> {
                     if (baseObj.getObject().isFunctional()) {
                         InstanceField instField = csManager.getInstanceField(baseObj, field);
-                        addPFGEdge(instField, to, FlowKind.INSTANCE_LOAD);
+                        // todo: temporary modification
+                        if(to.getType() instanceof PrimitiveType)
+                            addPFGEdge(new PointerFlowEdge(FlowKind.INSTANCE_LOAD, instField, to), to.getType());
+                        else addPFGEdge(instField, to, FlowKind.INSTANCE_LOAD);
                     }
                 });
             }
@@ -451,7 +452,10 @@ public class DefaultSolver implements Solver {
                 pts.forEach(array -> {
                     if (array.getObject().isFunctional()) {
                         ArrayIndex arrayIndex = csManager.getArrayIndex(array);
-                        addPFGEdge(arrayIndex, to, FlowKind.ARRAY_LOAD);
+                        // todo: temporary modification
+                        if(to.getType() instanceof PrimitiveType)
+                            addPFGEdge(new PointerFlowEdge(FlowKind.ARRAY_LOAD, arrayIndex, to), to.getType());
+                        else addPFGEdge(arrayIndex, to, FlowKind.ARRAY_LOAD);
                     }
                 });
             }
@@ -677,7 +681,11 @@ public class DefaultSolver implements Solver {
                 if (propTypes.isAllowed(rvalue)) {
                     CSVar from = csManager.getCSVar(context, rvalue);
                     CSVar to = csManager.getCSVar(context, stmt.getLValue());
-                    addPFGEdge(from, to, FlowKind.LOCAL_ASSIGN);
+                    // todo: temporary modification
+                    if(to.getType() instanceof PrimitiveType)
+                        addPFGEdge(new PointerFlowEdge(FlowKind.LOCAL_ASSIGN, from, to), to.getType());
+                    else
+                        addPFGEdge(from, to, FlowKind.LOCAL_ASSIGN);
                 }
                 return null;
             }
@@ -688,7 +696,12 @@ public class DefaultSolver implements Solver {
                 if (propTypes.isAllowed(cast.getValue())) {
                     CSVar from = csManager.getCSVar(context, cast.getValue());
                     CSVar to = csManager.getCSVar(context, stmt.getLValue());
-                    addPFGEdge(new PointerFlowEdge(
+
+                    // todo: temporary modification
+                    if(to.getType() instanceof PrimitiveType)
+                        addPFGEdge(new PointerFlowEdge(FlowKind.CAST, from, to), to.getType());
+                    else
+                        addPFGEdge(new PointerFlowEdge(
                             FlowKind.CAST, from, to),
                             cast.getType());
                 }
@@ -704,7 +717,11 @@ public class DefaultSolver implements Solver {
                     JField field = stmt.getFieldRef().resolve();
                     StaticField sfield = csManager.getStaticField(field);
                     CSVar to = csManager.getCSVar(context, stmt.getLValue());
-                    addPFGEdge(sfield, to, FlowKind.STATIC_LOAD);
+
+                    // todo: temporary modification
+                    if(to.getType() instanceof PrimitiveType)
+                        addPFGEdge(new PointerFlowEdge(FlowKind.STATIC_LOAD, sfield, to), to.getType());
+                    else addPFGEdge(sfield, to, FlowKind.STATIC_LOAD);
                 }
                 return null;
             }
