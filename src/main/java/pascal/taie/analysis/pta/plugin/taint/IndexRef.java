@@ -31,7 +31,7 @@ record IndexRef(Kind kind, int index, JField field)
     static final String ARRAY_SUFFIX = "[*]";
 
     enum Kind {
-        VAR, ARRAY, FIELD
+        VAR, ARRAY, FIELD, ARRAY_FIELD
     }
 
     @Override
@@ -52,6 +52,7 @@ record IndexRef(Kind kind, int index, JField field)
             case VAR -> base;
             case ARRAY -> base + ARRAY_SUFFIX;
             case FIELD -> base + "." + field.getName();
+            case ARRAY_FIELD -> base + "." + field.getName() + ARRAY_SUFFIX;
         };
     }
 }

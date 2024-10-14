@@ -27,10 +27,7 @@ import org.apache.logging.log4j.Logger;
 import pascal.taie.analysis.graph.callgraph.CallKind;
 import pascal.taie.analysis.graph.callgraph.Edge;
 import pascal.taie.analysis.pta.core.cs.context.Context;
-import pascal.taie.analysis.pta.core.cs.element.CSCallSite;
-import pascal.taie.analysis.pta.core.cs.element.CSMethod;
-import pascal.taie.analysis.pta.core.cs.element.CSObj;
-import pascal.taie.analysis.pta.core.cs.element.CSVar;
+import pascal.taie.analysis.pta.core.cs.element.*;
 import pascal.taie.analysis.pta.core.solver.Transfer;
 import pascal.taie.analysis.pta.plugin.util.InvokeUtils;
 import pascal.taie.analysis.pta.pts.PointsToSet;
@@ -74,7 +71,7 @@ class TransferHandler extends OnFlyHandler {
     private final Map<Type, Transfer> transferFunctions = Maps.newHybridMap();
 
     private enum Kind {
-        VAR_TO_ARRAY, VAR_TO_FIELD, ARRAY_TO_VAR, FIELD_TO_VAR
+        VAR_TO_ARRAY, VAR_TO_FIELD, ARRAY_TO_VAR, VAR_TO_ARRAY_FIELD, ARRAY_FIELD_TO_VAR, FIELD_TO_VAR
     }
 
     private record TransferInfo(Kind kind, Var var, TaintTransfer transfer) {
@@ -133,6 +130,7 @@ class TransferHandler extends OnFlyHandler {
                 }
                 case ARRAY -> Kind.VAR_TO_ARRAY;
                 case FIELD -> Kind.VAR_TO_FIELD;
+                case ARRAY_FIELD -> Kind.VAR_TO_ARRAY_FIELD;
             };
             if (kind != null) {
                 TransferInfo info = new TransferInfo(kind, fromVar, transfer);
@@ -143,6 +141,7 @@ class TransferHandler extends OnFlyHandler {
             Kind kind = switch (from.kind()) {
                 case ARRAY -> Kind.ARRAY_TO_VAR;
                 case FIELD -> Kind.FIELD_TO_VAR;
+                case ARRAY_FIELD -> Kind.ARRAY_FIELD_TO_VAR;
                 default -> throw new AnalysisException(); // unreachable
             };
             TransferInfo info = new TransferInfo(kind, toVar, transfer);
@@ -190,6 +189,17 @@ class TransferHandler extends OnFlyHandler {
                                         new TaintTransferEdge(csVar, oDotF, info.transfer()),
                                         tf));
             }
+            case VAR_TO_ARRAY_FIELD -> {
+                JField f = info.transfer().to().field();
+                baseObjs.objects()
+                        .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(csManager::getArrayIndex)
+                        .forEach(arrayIndex ->
+                                solver.addPFGEdge(
+                                        new TaintTransferEdge(csVar, arrayIndex, info.transfer()),
+                                        tf));
+            }
             case ARRAY_TO_VAR -> {
                 baseObjs.objects()
                         .map(csManager::getArrayIndex)
@@ -205,6 +215,17 @@ class TransferHandler extends OnFlyHandler {
                         .forEach(oDotF ->
                                 solver.addPFGEdge(
                                         new TaintTransferEdge(oDotF, csVar, info.transfer()),
+                                        tf));
+            }
+            case ARRAY_FIELD_TO_VAR -> {
+                JField f = info.transfer().from().field();
+                baseObjs.objects()
+                        .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(csManager::getArrayIndex)
+                        .forEach(arrayIndex ->
+                                solver.addPFGEdge(
+                                        new TaintTransferEdge(arrayIndex, csVar, info.transfer()),
                                         tf));
             }
         }

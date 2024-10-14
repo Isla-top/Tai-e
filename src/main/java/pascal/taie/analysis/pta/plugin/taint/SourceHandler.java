@@ -28,6 +28,7 @@ import pascal.taie.analysis.pta.core.cs.context.Context;
 import pascal.taie.analysis.pta.core.cs.element.CSCallSite;
 import pascal.taie.analysis.pta.core.cs.element.CSMethod;
 import pascal.taie.analysis.pta.core.cs.element.CSVar;
+import pascal.taie.analysis.pta.core.cs.element.InstanceField;
 import pascal.taie.analysis.pta.core.heap.Obj;
 import pascal.taie.analysis.pta.plugin.util.InvokeUtils;
 import pascal.taie.analysis.pta.pts.PointsToSet;
@@ -132,7 +133,7 @@ class SourceHandler extends OnFlyHandler {
         Obj taint = manager.makeTaint(sourcePoint, source.type());
         switch (indexRef.kind()) {
             case VAR -> solver.addVarPointsTo(context, var, taint);
-            case ARRAY, FIELD -> {
+            case ARRAY, FIELD, ARRAY_FIELD -> {
                 SourceInfo info = new SourceInfo(indexRef, taint);
                 sourceInfos.put(var, info);
                 CSVar csVar = csManager.getCSVar(context, var);
@@ -154,6 +155,14 @@ class SourceHandler extends OnFlyHandler {
                         .map(o -> csManager.getInstanceField(o, f))
                         .forEach(oDotF ->
                                 solver.addPointsTo(oDotF, taint));
+            }
+            case ARRAY_FIELD -> {
+                JField f = indexRef.field();
+                baseObjs.objects()
+                        .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(csManager::getArrayIndex)
+                        .forEach(arrayIndex -> solver.addPointsTo(arrayIndex, taint));
             }
         }
     }

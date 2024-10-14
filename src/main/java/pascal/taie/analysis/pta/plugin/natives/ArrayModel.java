@@ -45,9 +45,13 @@ import java.util.List;
 
 public class ArrayModel extends IRModelPlugin {
 
-    private final PrimitiveType objType;
+    private final ClassType objType;
+    private final PrimitiveType charType;
+    private final PrimitiveType byteType;
 
     private final ArrayType objArrayType;
+    private final ArrayType charArrayType;
+    private final ArrayType byteArrayType;
 
     /**
      * Counter for naming temporary variables.
@@ -56,9 +60,12 @@ public class ArrayModel extends IRModelPlugin {
 
     ArrayModel(Solver solver) {
         super(solver);
-//        objType = typeSystem.getClassType(ClassNames.OBJECT);
-        objType = typeSystem.getPrimitiveType("char");
+        objType = typeSystem.getClassType(ClassNames.OBJECT);
+        charType = typeSystem.getPrimitiveType("char");
+        byteType = typeSystem.getPrimitiveType("byte");
         objArrayType = typeSystem.getArrayType(objType, 1);
+        charArrayType = typeSystem.getArrayType(charType, 1);
+        byteArrayType = typeSystem.getArrayType(byteType, 1);
     }
 
     @InvokeHandler(signature = "<java.util.Arrays: java.lang.Object[] copyOf(java.lang.Object[],int)>")
@@ -75,12 +82,30 @@ public class ArrayModel extends IRModelPlugin {
         Var src = getTempVar(container, "src", objArrayType);
         Var dest = getTempVar(container, "dest", objArrayType);
         Var temp = getTempVar(container, "temp", objType);
+
+        Var srcChar = getTempVar(container, "srcChar", charArrayType);
+        Var destChar = getTempVar(container, "destChar", charArrayType);
+        Var tempChar = getTempVar(container, "tempChar", charType);
+
+        Var srcByte = getTempVar(container, "srcByte", byteArrayType);
+        Var destByte = getTempVar(container, "destByte", byteArrayType);
+        Var tempByte = getTempVar(container, "tempByte", byteType);
         List<Var> args = invoke.getInvokeExp().getArgs();
         return List.of(
                 new Cast(src, new CastExp(args.get(0), objArrayType)),
                 new Cast(dest, new CastExp(args.get(2), objArrayType)),
                 new LoadArray(temp, new ArrayAccess(src, args.get(1))),
-                new StoreArray(new ArrayAccess(dest, args.get(3)), temp));
+                new StoreArray(new ArrayAccess(dest, args.get(3)), temp),
+
+                new Cast(srcChar, new CastExp(args.get(0), charArrayType)),
+                new Cast(destChar, new CastExp(args.get(2), charArrayType)),
+                new LoadArray(tempChar, new ArrayAccess(srcChar, args.get(1))),
+                new StoreArray(new ArrayAccess(destChar, args.get(3)), tempChar),
+
+                new Cast(srcByte, new CastExp(args.get(0), byteArrayType)),
+                new Cast(destByte, new CastExp(args.get(2), byteArrayType)),
+                new LoadArray(tempByte, new ArrayAccess(srcByte, args.get(1))),
+                new StoreArray(new ArrayAccess(destByte, args.get(3)), tempByte));
     }
 
     private Var getTempVar(JMethod container, String name, Type type) {

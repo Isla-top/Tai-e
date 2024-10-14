@@ -111,6 +111,15 @@ class SinkHandler extends Handler {
                     .flatMap(InstanceField::objects)
                     .map(CSObj::getObject)
                     .collect(Collectors.toUnmodifiableSet());
+            case ARRAY_FIELD -> csManager.getCSVarsOf(arg)
+                    .stream()
+                    .flatMap(Pointer::objects)
+                    .map(o -> csManager.getInstanceField(o, indexRef.field()))
+                    .flatMap(InstanceField::objects)
+                    .map(csManager::getArrayIndex)
+                    .flatMap(ArrayIndex::objects)
+                    .map(CSObj::getObject)
+                    .collect(Collectors.toUnmodifiableSet());
         };
         return objs.stream()
                 .filter(manager::isTaint)

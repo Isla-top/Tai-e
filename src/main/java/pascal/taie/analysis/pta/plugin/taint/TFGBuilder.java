@@ -32,6 +32,7 @@ import pascal.taie.analysis.graph.flowgraph.Node;
 import pascal.taie.analysis.graph.flowgraph.ObjectFlowGraph;
 import pascal.taie.analysis.graph.flowgraph.VarNode;
 import pascal.taie.analysis.pta.PointerAnalysisResult;
+import pascal.taie.analysis.pta.core.cs.element.InstanceField;
 import pascal.taie.analysis.pta.core.heap.Obj;
 import pascal.taie.analysis.pta.plugin.util.InvokeUtils;
 import pascal.taie.ir.exp.Var;
@@ -170,7 +171,7 @@ class TFGBuilder {
                     .stream()
                     .map(ofg::getArrayIndexNode)
                     .filter(Objects::nonNull);
-            case FIELD -> {
+            case FIELD, ARRAY_FIELD -> {
                 JField field = indexRef.field();
                 yield pta.getPointsToSet(baseVar)
                         .stream()

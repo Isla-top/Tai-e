@@ -127,7 +127,9 @@ public class TaintAnalysis extends CompositePlugin {
                 solver.getHeapModel()), config);
         addPlugin(new SourceHandler(context),
                 new TransferHandler(context),
-                new SanitizerHandler(context));
+                new SanitizerHandler(context)
+//                new ObjectAddHandler(context)
+        );
         // trigger the creation of taint objects
         CallGraph<CSCallSite, CSMethod> cg = solver.getCallGraph();
         if (cg != null) {
@@ -208,8 +210,9 @@ public class TaintAnalysis extends CompositePlugin {
         // todo: delete one line below
 //        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.util.Properties")).dump();
 //        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.util.Properties$LineReader")).dump();
-        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.System")).dump();
-        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.String")).dump();
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.System")).dump();
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.String")).dump();
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("javax.script.ScriptEngineManager")).dump();
         reportTaintFlows();
     }
 
