@@ -22,16 +22,28 @@
 
 package pascal.taie.analysis.pta.plugin.taint;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pascal.taie.World;
 import pascal.taie.analysis.pta.plugin.util.InvokeUtils;
+import pascal.taie.language.annotation.AnnotationHolder;
 import pascal.taie.language.classes.JField;
+
+import java.util.Objects;
+import java.util.Set;
 
 record IndexRef(Kind kind, int index, JField field)
         implements Comparable<IndexRef> {
 
     static final String ARRAY_SUFFIX = "[*]";
 
+    private static final Logger logger = LogManager.getLogger(IndexRef.class);
+
+    static final JField value = Objects.requireNonNull(World.get().getClassHierarchy().getClass("java.lang.String")).getDeclaredField("value");
+
+
     enum Kind {
-        VAR, ARRAY, FIELD, ARRAY_FIELD
+        VAR, ARRAY, FIELD, ARRAY_FIELD, ARRAY_FIELD_FIELD
     }
 
     @Override
@@ -53,6 +65,11 @@ record IndexRef(Kind kind, int index, JField field)
             case ARRAY -> base + ARRAY_SUFFIX;
             case FIELD -> base + "." + field.getName();
             case ARRAY_FIELD -> base + "." + field.getName() + ARRAY_SUFFIX;
+            case ARRAY_FIELD_FIELD -> base + "." + field.getName() + "." + value.getName() + ARRAY_SUFFIX;
         };
+    }
+
+    public JField value(){
+        return value;
     }
 }

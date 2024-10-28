@@ -99,6 +99,7 @@ public class IRDumper extends ClassAnalysis<Void> {
         }
 
         public void dump() {
+            if(this.jclass == null) return;
             String fileName = jclass.getName() + SUFFIX;
             try (PrintStream out = new PrintStream(new FileOutputStream(
                     new File(dumpDir, fileName)))) {

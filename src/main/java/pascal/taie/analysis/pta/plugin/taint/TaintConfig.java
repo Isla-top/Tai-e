@@ -364,6 +364,7 @@ record TaintConfig(List<Source> sources,
                                 case ARRAY -> ((ArrayType) varType).elementType();
                                 case FIELD -> to.field().getType();
                                 case ARRAY_FIELD -> ((ArrayType) to.field().getType()).elementType();
+                                case ARRAY_FIELD_FIELD -> ((ArrayType) to.value().getType()).elementType();
                             };
                         }
                         return new TaintTransfer(method, from, to, type, rawEntry);
@@ -386,7 +387,10 @@ record TaintConfig(List<Source> sources,
             IndexRef.Kind kind;
             String indexStr;
             if (text.endsWith(ARRAY_SUFFIX) && text.contains(".")){
-                kind = IndexRef.Kind.ARRAY_FIELD;
+                if(text.split("\\.").length == 3)
+                    kind = IndexRef.Kind.ARRAY_FIELD_FIELD;
+                else
+                    kind = IndexRef.Kind.ARRAY_FIELD;
                 indexStr = text.substring(0, text.indexOf('.'));
             } else if (text.endsWith(ARRAY_SUFFIX)) {
                 kind = IndexRef.Kind.ARRAY;
@@ -444,6 +448,23 @@ record TaintConfig(List<Source> sources,
                     if (!(field.getType() instanceof ArrayType)) {
                         throw new ConfigException(
                                 "Expected: array type, given: " + varType);
+                    }
+                }
+                case ARRAY_FIELD_FIELD -> {
+                    String fieldName = text.substring(text.indexOf('.') + 1, text.lastIndexOf('.'));
+                    if (varType instanceof ClassType classType) {
+                        JClass clazz = classType.getJClass();
+                        while (clazz != null) {
+                            field = clazz.getDeclaredField(fieldName);
+                            if (field != null) {
+                                break;
+                            }
+                            clazz = clazz.getSuperClass();
+                        }
+                    }
+                    if (field == null) {
+                        throw new ConfigException("Cannot find field '"
+                                + fieldName + "' in type " + varType);
                     }
                 }
             }

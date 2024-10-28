@@ -213,6 +213,9 @@ public class TaintAnalysis extends CompositePlugin {
 //        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.System")).dump();
 //        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.lang.String")).dump();
 //        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("javax.script.ScriptEngineManager")).dump();
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.util.ServiceLoader")).dump();
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.util.ServiceLoader$1")).dump();
+//        new IRDumper.Dumper(new File(World.get().getOptions().getOutputDir(), "tir"), World.get().getClassHierarchy().getClass("java.util.ServiceLoader$LazyIterator")).dump();
         reportTaintFlows();
     }
 

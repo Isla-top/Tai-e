@@ -71,7 +71,7 @@ class TransferHandler extends OnFlyHandler {
     private final Map<Type, Transfer> transferFunctions = Maps.newHybridMap();
 
     private enum Kind {
-        VAR_TO_ARRAY, VAR_TO_FIELD, ARRAY_TO_VAR, VAR_TO_ARRAY_FIELD, ARRAY_FIELD_TO_VAR, FIELD_TO_VAR
+        VAR_TO_ARRAY, VAR_TO_FIELD, ARRAY_TO_VAR, VAR_TO_ARRAY_FIELD, ARRAY_FIELD_TO_VAR, FIELD_TO_VAR, VAR_TO_ARRAY_FIELD_FIELD, ARRAY_FIELD_FIELD_TO_VAR
     }
 
     private record TransferInfo(Kind kind, Var var, TaintTransfer transfer) {
@@ -131,6 +131,7 @@ class TransferHandler extends OnFlyHandler {
                 case ARRAY -> Kind.VAR_TO_ARRAY;
                 case FIELD -> Kind.VAR_TO_FIELD;
                 case ARRAY_FIELD -> Kind.VAR_TO_ARRAY_FIELD;
+                case ARRAY_FIELD_FIELD -> Kind.VAR_TO_ARRAY_FIELD_FIELD;
             };
             if (kind != null) {
                 TransferInfo info = new TransferInfo(kind, fromVar, transfer);
@@ -142,6 +143,7 @@ class TransferHandler extends OnFlyHandler {
                 case ARRAY -> Kind.ARRAY_TO_VAR;
                 case FIELD -> Kind.FIELD_TO_VAR;
                 case ARRAY_FIELD -> Kind.ARRAY_FIELD_TO_VAR;
+                case ARRAY_FIELD_FIELD -> Kind.ARRAY_FIELD_FIELD_TO_VAR;
                 default -> throw new AnalysisException(); // unreachable
             };
             TransferInfo info = new TransferInfo(kind, toVar, transfer);
@@ -221,6 +223,34 @@ class TransferHandler extends OnFlyHandler {
                 JField f = info.transfer().from().field();
                 baseObjs.objects()
                         .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(csManager::getArrayIndex)
+                        .forEach(arrayIndex ->
+                                solver.addPFGEdge(
+                                        new TaintTransferEdge(arrayIndex, csVar, info.transfer()),
+                                        tf));
+            }
+            case VAR_TO_ARRAY_FIELD_FIELD -> {
+                JField f = info.transfer().to().field();
+                JField v = info.transfer().to().value();
+                baseObjs.objects()
+                        .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(o -> csManager.getInstanceField(o, v))
+                        .flatMap(InstanceField::objects)
+                        .map(csManager::getArrayIndex)
+                        .forEach(arrayIndex ->
+                                solver.addPFGEdge(
+                                        new TaintTransferEdge(csVar, arrayIndex, info.transfer()),
+                                        tf));
+            }
+            case ARRAY_FIELD_FIELD_TO_VAR -> {
+                JField f = info.transfer().from().field();
+                JField v = info.transfer().from().value();
+                baseObjs.objects()
+                        .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(o -> csManager.getInstanceField(o, v))
                         .flatMap(InstanceField::objects)
                         .map(csManager::getArrayIndex)
                         .forEach(arrayIndex ->

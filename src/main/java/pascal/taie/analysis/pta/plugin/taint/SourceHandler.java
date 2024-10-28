@@ -22,6 +22,8 @@
 
 package pascal.taie.analysis.pta.plugin.taint;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pascal.taie.analysis.graph.callgraph.CallKind;
 import pascal.taie.analysis.graph.callgraph.Edge;
 import pascal.taie.analysis.pta.core.cs.context.Context;
@@ -30,6 +32,7 @@ import pascal.taie.analysis.pta.core.cs.element.CSMethod;
 import pascal.taie.analysis.pta.core.cs.element.CSVar;
 import pascal.taie.analysis.pta.core.cs.element.InstanceField;
 import pascal.taie.analysis.pta.core.heap.Obj;
+import pascal.taie.analysis.pta.core.solver.DefaultSolver;
 import pascal.taie.analysis.pta.plugin.util.InvokeUtils;
 import pascal.taie.analysis.pta.pts.PointsToSet;
 import pascal.taie.ir.IR;
@@ -44,11 +47,15 @@ import pascal.taie.util.collection.MultiMap;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Handles sources in taint analysis.
  */
 class SourceHandler extends OnFlyHandler {
+
+    private static final Logger logger = LogManager.getLogger(SourceHandler.class);
+
 
     /**
      * Map from a source method to its result sources.
@@ -133,7 +140,7 @@ class SourceHandler extends OnFlyHandler {
         Obj taint = manager.makeTaint(sourcePoint, source.type());
         switch (indexRef.kind()) {
             case VAR -> solver.addVarPointsTo(context, var, taint);
-            case ARRAY, FIELD, ARRAY_FIELD -> {
+            case ARRAY, FIELD, ARRAY_FIELD, ARRAY_FIELD_FIELD -> {
                 SourceInfo info = new SourceInfo(indexRef, taint);
                 sourceInfos.put(var, info);
                 CSVar csVar = csManager.getCSVar(context, var);
@@ -160,6 +167,17 @@ class SourceHandler extends OnFlyHandler {
                 JField f = indexRef.field();
                 baseObjs.objects()
                         .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(csManager::getArrayIndex)
+                        .forEach(arrayIndex -> solver.addPointsTo(arrayIndex, taint));
+            }
+            case ARRAY_FIELD_FIELD -> {
+                JField f = indexRef.field();
+
+                baseObjs.objects()
+                        .map(o -> csManager.getInstanceField(o, f))
+                        .flatMap(InstanceField::objects)
+                        .map(o -> csManager.getInstanceField(o, indexRef.value()))
                         .flatMap(InstanceField::objects)
                         .map(csManager::getArrayIndex)
                         .forEach(arrayIndex -> solver.addPointsTo(arrayIndex, taint));

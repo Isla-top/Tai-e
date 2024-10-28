@@ -171,7 +171,7 @@ class TFGBuilder {
                     .stream()
                     .map(ofg::getArrayIndexNode)
                     .filter(Objects::nonNull);
-            case FIELD, ARRAY_FIELD -> {
+            case FIELD, ARRAY_FIELD, ARRAY_FIELD_FIELD -> {
                 JField field = indexRef.field();
                 yield pta.getPointsToSet(baseVar)
                         .stream()

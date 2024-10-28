@@ -46,6 +46,7 @@ import pascal.taie.analysis.pta.plugin.invokedynamic.Java9StringConcatHandler;
 import pascal.taie.analysis.pta.plugin.invokedynamic.LambdaAnalysis;
 import pascal.taie.analysis.pta.plugin.natives.NativeModeller;
 import pascal.taie.analysis.pta.plugin.reflection.ReflectionAnalysis;
+import pascal.taie.analysis.pta.plugin.taint.ObjectAddHandler;
 import pascal.taie.analysis.pta.plugin.taint.TaintAnalysis;
 import pascal.taie.analysis.pta.toolkit.CollectionMethods;
 import pascal.taie.analysis.pta.toolkit.mahjong.Mahjong;
