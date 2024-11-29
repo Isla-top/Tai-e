@@ -77,7 +77,7 @@ public class SolarModel extends InferenceModel {
     /**
      * Only use type information in application code to infer reflective calls.
      */
-    private static final boolean ONLY_APP = true;
+    private static final boolean ONLY_APP = false;
 
     private final TypeMatcher typeMatcher;
 
@@ -288,6 +288,7 @@ public class SolarModel extends InferenceModel {
                     CSCallSite csCallSite = (CSCallSite) mockObj.getAllocation();
                     Context context = csCallSite.getContext();
                     Var base = InvokeUtils.getVar(csCallSite.getCallSite(), BASE);
+
                     types.stream()
                             .map(ClassType::getJClass)
                             .map(hierarchy::getAllSubclassesOf)

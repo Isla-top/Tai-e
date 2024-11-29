@@ -502,4 +502,10 @@ public class ClassHierarchyImpl implements ClassHierarchy {
     public Collection<JClass> getDirectInnerClassesOf(JClass jclass) {
         return directInnerClasses.get(jclass);
     }
+
+    @Override
+    public void addSubClass(JClass parent, JClass subclass){
+        allSubclasses.computeIfAbsent(parent, c -> new HybridBitSet<>(this, true))
+                .add(subclass);
+    }
 }

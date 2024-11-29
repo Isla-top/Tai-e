@@ -186,4 +186,6 @@ public interface ClassHierarchy extends Indexer<JClass> {
      * does not have inner classes, an empty collection is returned.
      */
     Collection<JClass> getDirectInnerClassesOf(JClass jclass);
+
+    void addSubClass(JClass parent, JClass subclass);
 }
