@@ -1,0 +1,2 @@
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <org.yaml.snakeyaml.introspector.MethodProperty: void set(java.lang.Object,java.lang.Object)>[19@L77] $r2 = invokevirtual $r1.getWriteMethod()/base.writeMethodName.value[*]}

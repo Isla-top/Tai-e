@@ -1,0 +1,2 @@
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L21] temp$4 = invokestatic Server.taint()/result -> <org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)>[9@L201] $r5 = invokeinterface $r3.getValue($r4, input, %classconst1)/base.expression.value[*]}

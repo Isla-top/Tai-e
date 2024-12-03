@@ -1,0 +1,435 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3651pt" height="996pt" viewBox="0.00 0.00 3650.88 996">
+<g id="graph0" class="graph" transform="translate(4,992) scale(1)" data-name="G">
+
+<polygon fill="white" stroke="none" points="-4,4 -4,-992 3646.88,-992 3646.88,4 -4,4"/>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2} -->
+<g id="node23" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2}">
+
+<polygon fill="floralwhite" stroke="black" points="2142.86,-108 1621.06,-108 1621.06,-72 2142.86,-72 2142.86,-108"/>
+<text text-anchor="middle" x="1881.96" y="-85.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r0} -->
+<g id="node19" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r0}">
+
+<polygon fill="floralwhite" stroke="black" points="2512.86,-36 1991.06,-36 1991.06,0 2512.86,0 2512.86,-36"/>
+<text text-anchor="middle" x="2251.96" y="-13.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r0}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r0} -->
+<g id="edge37" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r0}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M1974.37,-71.52C2027.34,-61.5 2093.94,-48.89 2148.64,-38.55"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="2149.1,-42.02 2158.27,-36.72 2147.8,-35.14 2149.1,-42.02"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4} -->
+<g id="node16" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}">
+
+<polygon fill="floralwhite" stroke="black" points="1484.06,-252 681.86,-252 681.86,-216 1484.06,-216 1484.06,-252"/>
+<text text-anchor="middle" x="1082.96" y="-229.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}</text>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="node3" class="node" pointer-events="visible" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="aliceblue" stroke="black" d="M1471.87,-180C1471.87,-180 12.04,-180 12.04,-180 6.04,-180 0.04,-174 0.04,-168 0.04,-168 0.04,-156 0.04,-156 0.04,-150 6.04,-144 12.04,-144 12.04,-144 1471.87,-144 1471.87,-144 1477.87,-144 1483.87,-150 1483.87,-156 1483.87,-156 1483.87,-168 1483.87,-168 1483.87,-174 1477.87,-180 1471.87,-180"/>
+<text text-anchor="middle" x="741.96" y="-157.8" font-family="Times,serif" font-size="14.00">InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}&#45;&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="edge28" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}-&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="none" stroke="red" d="M991.85,-215.52C942.33,-205.56 881.34,-193.05 831.98,-182.74"/>
+<polygon fill="red" stroke="red" points="832.98,-179.38 822.48,-180.75 831.55,-186.23 832.98,-179.38"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="node11" class="node" pointer-events="visible" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="aliceblue" stroke="black" d="M2208.4,-324C2208.4,-324 855.51,-324 855.51,-324 849.51,-324 843.51,-318 843.51,-312 843.51,-312 843.51,-300 843.51,-300 843.51,-294 849.51,-288 855.51,-288 855.51,-288 2208.4,-288 2208.4,-288 2214.4,-288 2220.4,-294 2220.4,-300 2220.4,-300 2220.4,-312 2220.4,-312 2220.4,-318 2214.4,-324 2208.4,-324"/>
+<text text-anchor="middle" x="1531.96" y="-301.8" font-family="Times,serif" font-size="14.00">InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}&#45;&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="edge27" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}-&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="none" stroke="red" d="M1200.77,-252.44C1266.7,-262.56 1348.6,-275.32 1414.48,-285.73"/>
+<polygon fill="red" stroke="red" points="1413.83,-289.17 1424.25,-287.28 1414.92,-282.26 1413.83,-289.17"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="node12" class="node" pointer-events="visible" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="aliceblue" stroke="black" d="M3399.94,-180C3399.94,-180 1551.98,-180 1551.98,-180 1545.98,-180 1539.98,-174 1539.98,-168 1539.98,-168 1539.98,-156 1539.98,-156 1539.98,-150 1545.98,-144 1551.98,-144 1551.98,-144 3399.94,-144 3399.94,-144 3405.94,-144 3411.94,-150 3411.94,-156 3411.94,-156 3411.94,-168 3411.94,-168 3411.94,-174 3405.94,-180 3399.94,-180"/>
+<text text-anchor="middle" x="2475.96" y="-157.8" font-family="Times,serif" font-size="14.00">InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}&#45;&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="edge29" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}-&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="none" stroke="red" d="M1424.94,-215.52C1632.98,-205.01 1898.54,-191.66 2110.68,-181.05"/>
+<polygon fill="red" stroke="red" points="2110.69,-184.56 2120.5,-180.56 2110.34,-177.57 2110.69,-184.56"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18} -->
+<g id="node15" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}">
+
+<polygon fill="floralwhite" stroke="black" points="3450.13,-764 2369.78,-764 2369.78,-728 3450.13,-728 3450.13,-764"/>
+<text text-anchor="middle" x="2909.96" y="-741.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r20} -->
+<g id="node2" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r20}">
+
+<polygon fill="floralwhite" stroke="black" points="2351.13,-692 1270.78,-692 1270.78,-656 2351.13,-656 2351.13,-692"/>
+<text text-anchor="middle" x="1810.96" y="-669.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r20}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r20} -->
+<g id="edge26" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r20}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M2635.47,-727.52C2471.24,-717.06 2262.85,-703.78 2096.67,-693.2"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="2096.99,-689.71 2086.79,-692.57 2096.55,-696.7 2096.99,-689.71"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r19} -->
+<g id="node22" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r19}">
+
+<polygon fill="floralwhite" stroke="black" points="3450.13,-692 2369.78,-692 2369.78,-656 3450.13,-656 3450.13,-692"/>
+<text text-anchor="middle" x="2909.96" y="-669.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r19}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r19} -->
+<g id="edge25" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r19}">
+
+<path fill="none" stroke="black" d="M2909.96,-727.7C2909.96,-720.41 2909.96,-711.73 2909.96,-703.54"/>
+<polygon fill="black" stroke="black" points="2913.46,-703.62 2909.96,-693.62 2906.46,-703.62 2913.46,-703.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r0}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18} -->
+<g id="edge33" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r0}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}">
+
+<path fill="none" stroke="blue" stroke-dasharray="5,2" d="M2513.17,-22.42C2857.31,-28.1 3423.44,-41.95 3458.96,-72 3489.84,-98.12 3477.96,-120.55 3477.96,-161 3477.96,-603 3477.96,-603 3477.96,-603 3477.96,-643.45 3489.14,-665.08 3458.96,-692 3441.9,-707.21 3361.21,-718.45 3266.73,-726.56"/>
+<polygon fill="blue" stroke="blue" points="3266.62,-723.06 3256.95,-727.38 3267.21,-730.03 3266.62,-723.06"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r3} -->
+<g id="node18" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r3}">
+
+<polygon fill="floralwhite" stroke="black" points="3642.81,-36 3077.11,-36 3077.11,0 3642.81,0 3642.81,-36"/>
+<text text-anchor="middle" x="3359.96" y="-13.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r3}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6} -->
+<g id="node26" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}">
+
+<polygon fill="floralwhite" stroke="black" points="3450.13,-836 2369.78,-836 2369.78,-800 3450.13,-800 3450.13,-836"/>
+<text text-anchor="middle" x="2909.96" y="-813.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r3}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6} -->
+<g id="edge32" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r3}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}">
+
+<path fill="none" stroke="blue" stroke-dasharray="5,2" d="M3433.47,-36.38C3452.3,-44.26 3470.67,-55.64 3482.96,-72 3564.84,-181.02 3515.96,-240.65 3515.96,-377 3515.96,-675 3515.96,-675 3515.96,-675 3515.96,-721.97 3499.03,-739.5 3458.96,-764 3434.26,-779.1 3390.62,-790.02 3338.35,-797.89"/>
+<polygon fill="blue" stroke="blue" points="3337.97,-794.41 3328.57,-799.31 3338.97,-801.34 3337.97,-794.41"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2} -->
+<g id="edge3" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M1026.69,-143.52C1205.05,-132.56 1433.62,-118.53 1609.59,-107.72"/>
+<polygon fill="red" stroke="red" points="1609.56,-111.23 1619.32,-107.13 1609.13,-104.25 1609.56,-111.23"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4} -->
+<g id="edge4" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M832.86,-180.44C882.35,-190.39 943.34,-202.9 992.73,-213.22"/>
+<polygon fill="red" stroke="red" points="991.74,-216.58 1002.24,-215.21 993.17,-209.73 991.74,-216.58"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.StringBuilder,int,int)&gt;/$r4} -->
+<g id="node6" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.StringBuilder,int,int)&gt;/$r4}">
+
+<polygon fill="floralwhite" stroke="black" points="1164.05,-108 319.87,-108 319.87,-72 1164.05,-72 1164.05,-108"/>
+<text text-anchor="middle" x="741.96" y="-85.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.StringBuilder,int,int)&gt;/$r4}</text>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.StringBuilder,int,int)&gt;/$r4} -->
+<g id="edge5" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.StringBuilder,int,int)&gt;/$r4}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M736.04,-143.7C735.29,-136.41 735.05,-127.73 735.31,-119.54"/>
+<polygon fill="red" stroke="red" points="738.8,-119.82 735.96,-109.61 731.81,-119.36 738.8,-119.82"/>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/input} -->
+<g id="node5" class="node" pointer-events="visible" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/input}">
+
+<polygon fill="floralwhite" stroke="black" points="1036.27,-908 699.64,-908 699.64,-872 1036.27,-872 1036.27,-908"/>
+<text text-anchor="middle" x="867.96" y="-885.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;Server: void main(java.lang.String[])&gt;/input}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;/source} -->
+<g id="node14" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;/source}">
+
+<polygon fill="floralwhite" stroke="black" points="1176.48,-836 559.44,-836 559.44,-800 1176.48,-800 1176.48,-836"/>
+<text text-anchor="middle" x="867.96" y="-813.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;/source}</text>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/input}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;/source} -->
+<g id="edge7" class="edge" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/input}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;/source}">
+
+<path fill="none" stroke="blue" d="M867.96,-871.7C867.96,-864.41 867.96,-855.73 867.96,-847.54"/>
+<polygon fill="blue" stroke="blue" points="871.46,-847.62 867.96,-837.62 864.46,-847.62 871.46,-847.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/insertStr} -->
+<g id="node24" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/insertStr}">
+
+<polygon fill="floralwhite" stroke="black" points="2146.38,-472 1475.54,-472 1475.54,-436 2146.38,-436 2146.38,-472"/>
+<text text-anchor="middle" x="1810.96" y="-449.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/insertStr}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2} -->
+<g id="node7" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}">
+
+<polygon fill="floralwhite" stroke="black" points="2131.6,-396 1490.32,-396 1490.32,-360 2131.6,-360 2131.6,-396"/>
+<text text-anchor="middle" x="1810.96" y="-373.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/insertStr}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2} -->
+<g id="edge38" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/insertStr}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M1810.96,-435.84C1810.96,-427.49 1810.96,-417.23 1810.96,-407.74"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="1814.46,-407.84 1810.96,-397.84 1807.46,-407.84 1814.46,-407.84"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r21} -->
+<g id="node25" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r21}">
+
+<polygon fill="floralwhite" stroke="black" points="2351.13,-620 1270.78,-620 1270.78,-584 2351.13,-584 2351.13,-620"/>
+<text text-anchor="middle" x="1810.96" y="-597.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r21}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r20}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r21} -->
+<g id="edge2" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r20}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r21}">
+
+<path fill="none" stroke="black" d="M1810.96,-655.7C1810.96,-648.41 1810.96,-639.73 1810.96,-631.54"/>
+<polygon fill="black" stroke="black" points="1814.46,-631.62 1810.96,-621.62 1807.46,-631.62 1814.46,-631.62"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2} -->
+<g id="edge14" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M1525.41,-287.98C1514.21,-255.64 1495.77,-184.9 1530.96,-144 1544.08,-128.75 1573.35,-117.83 1609.67,-110.02"/>
+<polygon fill="red" stroke="red" points="1610.04,-113.52 1619.14,-108.1 1608.65,-106.66 1610.04,-113.52"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4} -->
+<g id="edge13" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M1413.88,-287.52C1347.9,-277.39 1266,-264.63 1200.17,-254.22"/>
+<polygon fill="red" stroke="red" points="1200.83,-250.79 1190.4,-252.68 1199.73,-257.7 1200.83,-250.79"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4} -->
+<g id="node28" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4}">
+
+<polygon fill="floralwhite" stroke="black" points="3449.81,-108 2884.11,-108 2884.11,-72 3449.81,-72 3449.81,-108"/>
+<text text-anchor="middle" x="3166.96" y="-85.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4}</text>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4} -->
+<g id="edge16" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M2063.55,-287.5C2605.92,-266.98 3374.71,-229.41 3420.96,-180 3453.59,-145.13 3419.68,-123.92 3367.16,-111.02"/>
+<polygon fill="red" stroke="red" points="3368.06,-107.63 3357.53,-108.81 3366.49,-114.46 3368.06,-107.63"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2} -->
+<g id="edge17" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M1607.16,-324.38C1647.19,-334.17 1696.23,-346.45 1736.19,-356.69"/>
+<polygon fill="red" stroke="red" points="1735.19,-360.04 1745.74,-359.14 1736.93,-353.26 1735.19,-360.04"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2} -->
+<g id="node1" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2}">
+
+<polygon fill="floralwhite" stroke="black" points="3192.81,-984 2627.11,-984 2627.11,-948 3192.81,-948 3192.81,-984"/>
+<text text-anchor="middle" x="2909.96" y="-961.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2}</text>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2} -->
+<g id="edge15" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M1393.81,-324.45C1319.5,-342.44 1242.96,-378.94 1242.96,-453 1242.96,-819 1242.96,-819 1242.96,-819 1242.96,-887.08 2136.84,-933.74 2615.47,-953.85"/>
+<polygon fill="red" stroke="red" points="2615.05,-957.33 2625.19,-954.25 2615.34,-950.34 2615.05,-957.33"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r1} -->
+<g id="node21" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r1}">
+
+<polygon fill="floralwhite" stroke="black" points="3192.81,-908 2627.11,-908 2627.11,-872 3192.81,-872 3192.81,-908"/>
+<text text-anchor="middle" x="2909.96" y="-885.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r1}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r1}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6} -->
+<g id="edge35" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r1}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}">
+
+<path fill="none" stroke="blue" stroke-dasharray="5,2" d="M2909.96,-871.7C2909.96,-864.41 2909.96,-855.73 2909.96,-847.54"/>
+<polygon fill="blue" stroke="blue" points="2913.46,-847.62 2909.96,-837.62 2906.46,-847.62 2913.46,-847.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder replace(int,int,java.lang.String)&gt;/replaceStr} -->
+<g id="node4" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder replace(int,int,java.lang.String)&gt;/replaceStr}">
+
+<polygon fill="floralwhite" stroke="black" points="2231.12,-548 1390.8,-548 1390.8,-512 2231.12,-512 2231.12,-548"/>
+<text text-anchor="middle" x="1810.96" y="-525.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder replace(int,int,java.lang.String)&gt;/replaceStr}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r21}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder replace(int,int,java.lang.String)&gt;/replaceStr} -->
+<g id="edge39" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r21}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder replace(int,int,java.lang.String)&gt;/replaceStr}">
+
+<path fill="none" stroke="blue" d="M1810.96,-583.7C1810.96,-576.41 1810.96,-567.73 1810.96,-559.54"/>
+<polygon fill="blue" stroke="blue" points="1814.46,-559.62 1810.96,-549.62 1807.46,-559.62 1814.46,-559.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str} -->
+<g id="node20" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str}">
+
+<polygon fill="floralwhite" stroke="black" points="1133.93,-764 601.99,-764 601.99,-728 1133.93,-728 1133.93,-764"/>
+<text text-anchor="middle" x="867.96" y="-741.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;/source}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str} -->
+<g id="edge24" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;/source}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str}">
+
+<path fill="none" stroke="blue" d="M867.96,-799.7C867.96,-792.41 867.96,-783.73 867.96,-775.54"/>
+<polygon fill="blue" stroke="blue" points="871.46,-775.62 867.96,-765.62 864.46,-775.62 871.46,-775.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r3} -->
+<g id="edge43" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r3}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M3215.16,-71.52C3241.28,-62.04 3273.76,-50.26 3301.34,-40.26"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="3302.4,-43.6 3310.61,-36.9 3300.02,-37.02 3302.4,-43.6"/>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1} -->
+<g id="node27" class="node" pointer-events="visible" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}">
+
+<polygon fill="gold" stroke="black" points="1129.14,-958.54 1129.14,-973.46 976.14,-984 759.77,-984 606.78,-973.46 606.78,-958.54 759.77,-948 976.14,-948 1129.14,-958.54"/>
+<polygon fill="none" stroke="black" points="1133.13,-954.81 1133.13,-977.19 976.28,-988 759.64,-988 602.78,-977.19 602.78,-954.81 759.64,-944 976.28,-944 1133.13,-954.81"/>
+<text text-anchor="middle" x="867.96" y="-961.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}</text>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}&#45;&gt;VarNode{&lt;Server: void main(java.lang.String[])&gt;/input} -->
+<g id="edge42" class="edge" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}-&gt;VarNode{&lt;Server: void main(java.lang.String[])&gt;/input}">
+
+<path fill="none" stroke="black" d="M867.96,-943.6C867.96,-936.11 867.96,-927.59 867.96,-919.61"/>
+<polygon fill="black" stroke="black" points="871.46,-919.65 867.96,-909.65 864.46,-919.65 871.46,-919.65"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2} -->
+<g id="edge21" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String toString()&gt;/$r2}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M2327.6,-143.52C2240.52,-133.25 2130.47,-120.29 2041.52,-109.8"/>
+<polygon fill="red" stroke="red" points="2042.07,-106.34 2031.73,-108.65 2041.25,-113.3 2042.07,-106.34"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4} -->
+<g id="edge19" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M2133.88,-180.49C1925.83,-191 1660.27,-204.34 1448.15,-214.95"/>
+<polygon fill="red" stroke="red" points="1448.14,-211.45 1438.32,-215.44 1448.49,-218.44 1448.14,-211.45"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4} -->
+<g id="edge22" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r4}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M2648.54,-143.52C2750.46,-133.19 2879.43,-120.13 2983.23,-109.61"/>
+<polygon fill="red" stroke="red" points="2983.37,-113.12 2992.97,-108.63 2982.67,-106.15 2983.37,-113.12"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2} -->
+<g id="edge18" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M2461.28,-180.47C2425.44,-214.58 2331.42,-289.68 2237.96,-324 2197.44,-338.88 2153.4,-349.71 2109.5,-357.57"/>
+<polygon fill="red" stroke="red" points="2109.09,-354.09 2099.83,-359.25 2110.29,-360.99 2109.09,-354.09"/>
+</g>
+<!-- InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2} -->
+<g id="edge20" class="edge" data-name="InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2}">
+
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M2656.09,-180.49C2962.88,-212.73 3553.96,-286.58 3553.96,-377 3553.96,-819 3553.96,-819 3553.96,-819 3553.96,-896.58 3373.98,-932.93 3204.31,-949.97"/>
+<polygon fill="red" stroke="red" points="3204.01,-946.49 3194.4,-950.94 3204.69,-953.45 3204.01,-946.49"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/$r6} -->
+<g id="node10" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/$r6}">
+
+<polygon fill="deepskyblue" stroke="black" points="3424.34,-446.54 3424.34,-461.46 3123.02,-472 2696.89,-472 2395.58,-461.46 2395.58,-446.54 2696.89,-436 3123.02,-436 3424.34,-446.54"/>
+<polygon fill="none" stroke="black" points="3428.34,-442.68 3428.34,-465.32 3123.09,-476 2696.82,-476 2391.57,-465.32 2391.57,-442.68 2696.82,-432 3123.09,-432 3428.34,-442.68"/>
+<text text-anchor="middle" x="2909.96" y="-449.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/$r6}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}&#45;&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="edge9" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}-&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String replace(java.lang.String)&gt;[2@L815] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="none" stroke="red" d="M1735.34,-359.52C1695.25,-349.71 1646.21,-337.43 1606.31,-327.21"/>
+<polygon fill="red" stroke="red" points="1607.33,-323.86 1596.78,-324.76 1605.59,-330.64 1607.33,-323.86"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}&#45;&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="edge10" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/$r2}-&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;[67@L1391] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="none" stroke="red" d="M2080.62,-359.51C2127.91,-351.52 2176.01,-340.14 2219.96,-324 2307.39,-291.9 2395.32,-224.09 2442.1,-187.55"/>
+<polygon fill="red" stroke="red" points="2444.25,-190.32 2449.98,-181.4 2439.94,-184.8 2444.25,-190.32"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.StringBuilder,int,int)&gt;/$r4}&#45;&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;} -->
+<g id="edge8" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.StringBuilder,int,int)&gt;/$r4}-&gt;InstanceFieldNode{NewObj{&lt;org.apache.commons.text.StringSubstitutor: void checkCyclicSubstitution(java.lang.String,java.util.List)&gt;[4@L587] new org.apache.commons.text.TextStringBuilder}.&lt;org.apache.commons.text.TextStringBuilder: char[] buffer&gt;}">
+
+<path fill="none" stroke="red" d="M747.85,-108.1C748.61,-115.37 748.87,-124.04 748.61,-132.24"/>
+<polygon fill="red" stroke="red" points="745.12,-131.98 747.97,-142.19 752.11,-132.43 745.12,-131.98"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18} -->
+<g id="edge40" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r18}">
+
+<path fill="none" stroke="black" d="M2909.96,-799.7C2909.96,-792.41 2909.96,-783.73 2909.96,-775.54"/>
+<polygon fill="black" stroke="black" points="2913.46,-775.62 2909.96,-765.62 2906.46,-775.62 2913.46,-775.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str} -->
+<g id="edge41" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/$r6}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str}">
+
+<path fill="none" stroke="blue" d="M2399.61,-799.51C2002.67,-785.9 1467.05,-767.54 1145.74,-756.52"/>
+<polygon fill="blue" stroke="blue" points="1146.03,-753.03 1135.91,-756.19 1145.79,-760.03 1146.03,-753.03"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/str} -->
+<g id="node13" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/str}">
+
+<polygon fill="floralwhite" stroke="black" points="1214.89,-396 417.02,-396 417.02,-360 1214.89,-360 1214.89,-396"/>
+<text text-anchor="middle" x="815.96" y="-373.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/str}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/str}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4} -->
+<g id="edge23" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/str}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/$r4}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M814.51,-359.69C813.85,-339.62 816.08,-306.88 834.96,-288 849.36,-273.6 885.74,-262.68 926.34,-254.62"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="926.94,-258.06 936.11,-252.75 925.63,-251.19 926.94,-258.06"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder replace(int,int,java.lang.String)&gt;/replaceStr}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/insertStr} -->
+<g id="edge6" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder replace(int,int,java.lang.String)&gt;/replaceStr}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: void replaceImpl(int,int,int,java.lang.String,int)&gt;/insertStr}">
+
+<path fill="none" stroke="blue" d="M1810.96,-511.84C1810.96,-503.49 1810.96,-493.23 1810.96,-483.74"/>
+<polygon fill="blue" stroke="blue" points="1814.46,-483.84 1810.96,-473.84 1807.46,-483.84 1814.46,-483.84"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String)&gt;/str} -->
+<g id="node8" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String)&gt;/str}">
+
+<polygon fill="floralwhite" stroke="black" points="1210.83,-692 449.08,-692 449.08,-656 1210.83,-656 1210.83,-692"/>
+<text text-anchor="middle" x="829.96" y="-669.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String)&gt;/str}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String)&gt;/str}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/str} -->
+<g id="edge11" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String)&gt;/str}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String,int,int)&gt;/str}">
+
+<path fill="none" stroke="blue" d="M829.14,-655.92C826.83,-607.42 820.22,-468.46 817.33,-407.85"/>
+<polygon fill="blue" stroke="blue" points="820.83,-407.83 816.86,-398.01 813.84,-408.16 820.83,-407.83"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String resolveVariable(java.lang.String,org.apache.commons.text.TextStringBuilder,int,int)&gt;/variableName} -->
+<g id="node9" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String resolveVariable(java.lang.String,org.apache.commons.text.TextStringBuilder,int,int)&gt;/variableName}">
+
+<polygon fill="floralwhite" stroke="black" points="3408.05,-620 2411.86,-620 2411.86,-584 3408.05,-584 3408.05,-620"/>
+<text text-anchor="middle" x="2909.96" y="-597.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String resolveVariable(java.lang.String,org.apache.commons.text.TextStringBuilder,int,int)&gt;/variableName}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var} -->
+<g id="node17" class="node" pointer-events="visible" data-name="VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}">
+
+<polygon fill="floralwhite" stroke="black" points="3253.87,-548 2566.05,-548 2566.05,-512 3253.87,-512 3253.87,-548"/>
+<text text-anchor="middle" x="2909.96" y="-525.8" font-family="Times,serif" font-size="14.00">VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}</text>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String resolveVariable(java.lang.String,org.apache.commons.text.TextStringBuilder,int,int)&gt;/variableName}&#45;&gt;VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var} -->
+<g id="edge12" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String resolveVariable(java.lang.String,org.apache.commons.text.TextStringBuilder,int,int)&gt;/variableName}-&gt;VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}">
+
+<path fill="none" stroke="blue" d="M2909.96,-583.7C2909.96,-576.41 2909.96,-567.73 2909.96,-559.54"/>
+<polygon fill="blue" stroke="blue" points="2913.46,-559.62 2909.96,-549.62 2906.46,-559.62 2913.46,-559.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}&#45;&gt;VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/$r6} -->
+<g id="edge30" class="edge" data-name="VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}-&gt;VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/$r6}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M2909.96,-511.84C2909.96,-504.64 2909.96,-496.02 2909.96,-487.7"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="2913.46,-487.82 2909.96,-477.82 2906.46,-487.82 2913.46,-487.82"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}&#45;&gt;VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var} -->
+<g id="edge31" class="edge" data-name="VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}-&gt;VarNode{&lt;org.apache.commons.text.lookup.InterpolatorStringLookup: java.lang.String lookup(java.lang.String)&gt;/var}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M3254.03,-537.41C3265.42,-535.42 3271.91,-532.95 3271.91,-530 3271.91,-528.2 3269.5,-526.58 3265.04,-525.14"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="3266.03,-521.78 3255.5,-522.94 3264.46,-528.6 3266.03,-521.78"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r19}&#45;&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String resolveVariable(java.lang.String,org.apache.commons.text.TextStringBuilder,int,int)&gt;/variableName} -->
+<g id="edge36" class="edge" data-name="VarNode{&lt;org.apache.commons.text.StringSubstitutor: org.apache.commons.text.StringSubstitutor$Result substitute(org.apache.commons.text.TextStringBuilder,int,int,java.util.List)&gt;/r19}-&gt;VarNode{&lt;org.apache.commons.text.StringSubstitutor: java.lang.String resolveVariable(java.lang.String,org.apache.commons.text.TextStringBuilder,int,int)&gt;/variableName}">
+
+<path fill="none" stroke="blue" d="M2909.96,-655.7C2909.96,-648.41 2909.96,-639.73 2909.96,-631.54"/>
+<polygon fill="blue" stroke="blue" points="2913.46,-631.62 2909.96,-621.62 2906.46,-631.62 2913.46,-631.62"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String)&gt;/str} -->
+<g id="edge34" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: void &lt;init&gt;(java.lang.String)&gt;/str}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: org.apache.commons.text.TextStringBuilder append(java.lang.String)&gt;/str}">
+
+<path fill="none" stroke="blue" d="M858.56,-727.7C854.38,-719.98 849.34,-710.71 844.68,-702.11"/>
+<polygon fill="blue" stroke="blue" points="847.81,-700.55 839.96,-693.43 841.66,-703.89 847.81,-700.55"/>
+</g>
+<!-- VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2}&#45;&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r1} -->
+<g id="edge1" class="edge" data-name="VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r2}-&gt;VarNode{&lt;org.apache.commons.text.TextStringBuilder: java.lang.String midString(int,int)&gt;/$r1}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M2909.96,-947.84C2909.96,-939.49 2909.96,-929.23 2909.96,-919.74"/>
+<polygon fill="#00cd00" stroke="#00cd00" points="2913.46,-919.84 2909.96,-909.84 2906.46,-919.84 2913.46,-919.84"/>
+</g>
+</g>
+</svg>

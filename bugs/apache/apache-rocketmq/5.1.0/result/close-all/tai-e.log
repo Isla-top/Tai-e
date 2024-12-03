@@ -1,0 +1,47 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+10800 classes with 101911 methods in the world
+WorldBuilder finishes, elapsed time: 19.59s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\apache-rocketmq\5.1.0\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: byte getTaint()>/result(byte)}
+
+sinks:
+  <org.apache.rocketmq.common.utils.IOTinyUtils: void writeStringToFile(java.io.File,java.lang.String,java.lang.String)>/1.value[*]
+
+[Pointer analysis] elapsed time: 17.01s
+Detected 1 taint flow(s):
+TaintFlow{<Server: byte[] getSource()>[2@L25] temp$2 = invokestatic Server.getTaint()/result -> <org.apache.rocketmq.common.MixAll: void string2FileNotSafe(java.lang.String,java.lang.String)>[6@L201] invokestatic org.apache.rocketmq.common.utils.IOTinyUtils.writeStringToFile($r0, r3, %stringconst0)/1.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: byte[] getSource()>/temp$2}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.99s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,3268 (insens) / 46,9974 (sens)
+#objects:                     6444 (insens) / 1,0899 (sens)
+#var points-to:               31,0379 (insens) / 317,2139 (sens)
+#static field points-to:      3116 (sens)
+#instance field points-to:    29,1230 (sens)
+#array points-to:             5,4844 (sens)
+#reachable methods:           9365 (insens) / 5,6789 (sens)
+#call graph edges:            4,5233 (insens) / 36,4822 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 28.78s
+Tai-e finishes, elapsed time: 48.61s

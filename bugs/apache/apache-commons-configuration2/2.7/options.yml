@@ -1,0 +1,24 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+  - java-benchmarks/bugs/apache/apache-commons-configuration2/2.7
+  - java-benchmarks/bugs/apache/apache-commons-configuration2/2.7/commons-configuration2-2.7.jar
+  - java-benchmarks/bugs/apache/apache-commons-configuration2/2.7/commons-text-1.9.jar
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:2-type;implicit-entries:false;distinguish-string-constants:null;taint-config:java-benchmarks/bugs/apache/apache-commons-configuration2/2.7/taint-config.yml;
+onlyGenPlan: false
+keepResult:
+  - $KEEP-ALL

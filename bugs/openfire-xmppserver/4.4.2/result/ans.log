@@ -1,0 +1,2 @@
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.client.utils.URIUtils: org.apache.http.HttpHost extractHost(java.net.URI)>[50@L463] invokespecial $r2.<init>(r8, i9, $r9)/0.value[*]}

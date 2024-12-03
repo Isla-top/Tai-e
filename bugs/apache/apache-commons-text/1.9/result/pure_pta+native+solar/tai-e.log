@@ -1,0 +1,73 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 5548fa1af3fdfc08a14bdee793bd4a735b4f843a
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+Failed to load reflection log from java-benchmarks/bugs/apache/apache-commons-text/1.9/rlog.log
+10021 classes with 99651 methods in the world
+WorldBuilder finishes, elapsed time: 10.92s
+pta starts ...
+Using reflection log from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\apache-commons-text\1.9\rlog.log
+Failed to load reflection log from java-benchmarks/bugs/apache/apache-commons-text/1.9/rlog.log
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\apache-commons-text\1.9\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <javax.script.ScriptEngine: java.lang.Object eval(java.lang.String)>/0.value[*]
+  <javax.script.AbstractScriptEngine: java.lang.Object eval(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 85.47s
+Unsound reflective calls:
+[Array.newInstance]<java.lang.Class: java.lang.Class toClass(java.lang.reflect.Type)>[6@L1126] $r5 = invokestatic java.lang.reflect.Array.newInstance($r4, %intconst0)
+[Method.invoke]<java.lang.Class: java.lang.Object[] getEnumConstantsShared()>[13@L3320] $r7 = invokevirtual $r4.invoke(%nullconst, $r6)
+[Array.newInstance]<java.lang.invoke.Invokers: java.lang.Class impliedRestargType(java.lang.invoke.MethodType,int)>[22@L180] $r2 = invokestatic java.lang.reflect.Array.newInstance($r1, %intconst0)
+[Array.newInstance]<jdk.nashorn.internal.codegen.MethodEmitter: jdk.nashorn.internal.codegen.types.Type fieldType(java.lang.String)>[81@L2376] $r8 = invokestatic java.lang.reflect.Array.newInstance($r7, %intconst1)
+[Array.newInstance]<sun.reflect.annotation.AnnotationParser: java.lang.Class toClass(java.lang.reflect.Type)>[6@L445] $r5 = invokestatic java.lang.reflect.Array.newInstance($r4, %intconst0)
+[Array.newInstance]<sun.reflect.generics.factory.CoreReflectionFactory: java.lang.reflect.Type makeArrayType(java.lang.reflect.Type)>[4@L123] $r3 = invokestatic java.lang.reflect.Array.newInstance($r2, %intconst0)
+Imprecise reflective calls:
+[Array.newInstance]<java.lang.Class: java.lang.Class toClass(java.lang.reflect.Type)>[6@L1126] $r5 = invokestatic java.lang.reflect.Array.newInstance($r4, %intconst0), #targets: 2627
+[Array.newInstance]<java.lang.invoke.Invokers: java.lang.Class impliedRestargType(java.lang.invoke.MethodType,int)>[22@L180] $r2 = invokestatic java.lang.reflect.Array.newInstance($r1, %intconst0), #targets: 2627
+[Array.newInstance]<jdk.nashorn.internal.codegen.MethodEmitter: jdk.nashorn.internal.codegen.types.Type fieldType(java.lang.String)>[81@L2376] $r8 = invokestatic java.lang.reflect.Array.newInstance($r7, %intconst1), #targets: 2627
+[Constructor.newInstance]<java.io.ObjectStreamClass: java.lang.Object newInstance()>[11@L1102] $r6 = invokevirtual $r5.newInstance($r4), #targets: 800
+[Constructor.newInstance]<java.io.ObjectStreamClass: java.lang.Object lambda$newInstance$0()>[3@L1107] $r3 = invokevirtual $r2.newInstance($r1), #targets: 800
+[Class.newInstance]<java.util.ServiceLoader$LazyIterator: java.lang.Object nextService()>[36@L380] $r5 = invokevirtual r31.newInstance(), #targets: 686
+[Class.newInstance]<javax.xml.parsers.FactoryFinder: java.lang.Object newInstance(java.lang.Class,java.lang.String,java.lang.ClassLoader,boolean,boolean)>[29@L192] $r3 = invokevirtual $r35.newInstance(), #targets: 686
+[Class.newInstance]<jdk.nashorn.internal.objects.Global: jdk.nashorn.internal.runtime.ScriptObject initConstructor(java.lang.String,java.lang.Class)>[10@L2567] $r5 = invokevirtual $r3.newInstance(), #targets: 686
+[Constructor.newInstance]<java.security.Provider$Service: java.lang.Object newInstance(java.lang.Object)>[50@L1595] $r26 = invokevirtual $r24.newInstance($r25), #targets: 490
+[Constructor.newInstance]<java.security.Provider$Service: java.lang.Object newInstanceGeneric(java.lang.Object)>[6@L1666] $r21 = invokevirtual $r19.newInstance($r20), #targets: 490
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L23] temp$4 = invokestatic Server.taint()/result -> <org.apache.commons.text.lookup.ScriptStringLookup: java.lang.String lookup(java.lang.String)>[29@L86] $r7 = invokeinterface $r6.eval(r4)/0.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+InstanceFieldNode{ReflectiveObj{alloc=<javax.xml.parsers.FactoryFinder: java.lang.Object newInstance(java.lang.Class,java.lang.String,java.lang.ClassLoader,boolean,boolean)>[29@L192] $r3 = invokevirtual $r35.newInstance(),type=java.lang.String in <javax.xml.parsers.FactoryFinder: java.lang.Object newInstance(java.lang.Class,java.lang.String,java.lang.ClassLoader,boolean,boolean)>}.value}
+InstanceFieldNode{ReflectiveObj{alloc=<jdk.nashorn.internal.objects.Global: jdk.nashorn.internal.runtime.ScriptObject initConstructor(java.lang.String,java.lang.Class)>[10@L2567] $r5 = invokevirtual $r3.newInstance(),type=java.lang.String in <jdk.nashorn.internal.objects.Global: jdk.nashorn.internal.runtime.ScriptObject initConstructor(java.lang.String,java.lang.Class)>}.value}
+InstanceFieldNode{ReflectiveObj{alloc=<java.util.ServiceLoader$LazyIterator: java.lang.Object nextService()>[36@L380] $r5 = invokevirtual r31.newInstance(),type=java.lang.String in <java.util.ServiceLoader$LazyIterator: java.lang.Object nextService()>}.value}
+InstanceFieldNode{ReflectiveObj{alloc=<java.io.ObjectStreamClass: java.lang.Object lambda$newInstance$0()>[3@L1107] $r3 = invokevirtual $r2.newInstance($r1),type=java.lang.String in <java.io.ObjectStreamClass: java.lang.Object lambda$newInstance$0()>}.value}
+InstanceFieldNode{ReflectiveObj{alloc=<java.io.ObjectStreamClass: java.lang.Object newInstance()>[11@L1102] $r6 = invokevirtual $r5.newInstance($r4),type=java.lang.String in <java.io.ObjectStreamClass: java.lang.Object newInstance()>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 1.65s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                28,1811 (insens) / 28,1811 (sens)
+#objects:                     4,8932 (insens) / 4,8932 (sens)
+#var points-to:               6286,0489 (insens) / 6286,0920 (sens)
+#static field points-to:      21,1984 (sens)
+#instance field points-to:    890,1425 (sens)
+#array points-to:             303,2224 (sens)
+#reachable methods:           2,9207 (insens) / 2,9207 (sens)
+#call graph edges:            19,1830 (insens) / 19,1831 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt

@@ -1,0 +1,26 @@
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getInput()>", index: result }
+  - { kind: call, method: "<Server: char taint()>", index: result }
+
+sinks:
+#  - { method: "<io.netty.channel.AbstractChannelHandlerContext: io.netty.channel.ChannelFuture write(java.lang.Object)>", index: 0 }
+  - { method: "<java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>", index: "0.path.value[*]" }
+
+transfers:
+#  - { method: "<io.netty.handler.codec.http.DefaultHttpRequest: java.lang.String getUri()>", from: base, to: result }
+#  - { method: "<java.io.File: void <init>(java.lang.String)>", from: 0, to: base }
+#  - { method: "<java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>", from: 0, to: base }
+#  - { method: "<java.io.RandomAccessFile: java.nio.channels.FileChannel getChannel()>", from: base, to: result }
+#  - { method: "<io.netty.handler.stream.ChunkedNioFile: void <init>(java.nio.channels.FileChannel)>", from: 0, to: base }
+
+#  - { method: "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", from: 0, to: base }
+#  - { method: "<java.lang.StringBuilder: java.lang.String toString()>", from: base, to: result }
+
+#  - { method: "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", from: 0, to: base, type: java.lang.StringBuilder }
+#  - { method: "<java.lang.StringBuilder: java.lang.String toString()>", from: base, to: result, type: java.lang.String }
+#  - { method: "<java.io.File: void <init>(java.lang.String)>", from: 0, to: base, type: java.io.File }
+#  - { method: "<java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>", from: 0, to: base, type: java.io.RandomAccessFile }
+#  - { method: "<java.io.RandomAccessFile: java.nio.channels.FileChannel getChannel()>", from: base, to: result, type: sun.nio.ch.FileChannelImpl }
+#  - { method: "<io.netty.channel.DefaultFileRegion: void <init>(java.nio.channels.FileChannel,long,long)>", from: 0, to: base, type: io.netty.channel.DefaultFileRegion }
+
+

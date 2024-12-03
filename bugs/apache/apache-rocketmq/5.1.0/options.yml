@@ -1,0 +1,27 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+  - java-benchmarks\bugs\apache\apache-rocketmq\5.1.0\lib\netty-all-4.1.65.Final.jar
+  - java-benchmarks\bugs\apache\apache-rocketmq\5.1.0\rocketmq-common-5.1.0.jar
+  - java-benchmarks\bugs\apache\apache-rocketmq\5.1.0\rocketmq-namesrv-5.1.0.jar
+  - java-benchmarks\bugs\apache\apache-rocketmq\5.1.0\rocketmq-remoting-5.1.0.jar
+  - java-benchmarks\bugs\apache\apache-rocketmq\5.1.0
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:2-type;implicit-entries:false;reflection-inference:solar;handle-invokedynamic:true;distinguish-string-constants:null;only-app:false;dump-ci:true;taint-config:java-benchmarks\bugs\apache\apache-rocketmq\5.1.0\taint-config.yml;dump-ci:true
+#  ir-dumper: ""
+onlyGenPlan: false
+keepResult:
+  - $KEEP-ALL

@@ -1,0 +1,63 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+34069 classes with 323020 methods in the world
+WorldBuilder finishes, elapsed time: 120.64s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\openfire-xmppserver\4.4.2\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+  CallSource{<Server: java.lang.String getTaintHost()>/result(java.lang.String)}
+
+sinks:
+  <org.apache.http.HttpHost: void <init>(java.lang.String,int,java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 20.59s
+Detected 9 taint flow(s):
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.HttpHost: void <init>(java.lang.String,int)>[0@L99] invokespecial %this.<init>(hostname, port, %nullconst)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.client.protocol.RequestAuthCache: void process(org.apache.http.HttpRequest,org.apache.http.protocol.HttpContext)>[38@L100] invokespecial $r15.<init>($r16, $i1, $r18)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.client.utils.URIUtils: org.apache.http.HttpHost extractHost(java.net.URI)>[50@L463] invokespecial $r2.<init>(r8, i9, $r9)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.conn.routing.HttpRoute: org.apache.http.HttpHost normalize(org.apache.http.HttpHost)>[14@L109] invokespecial $r4.<init>($r3, $i1, $r2)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.impl.client.BasicAuthCache: org.apache.http.HttpHost getKey(org.apache.http.HttpHost)>[11@L92] invokespecial $r3.<init>($r4, $i1, $r5)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.impl.conn.DefaultRoutePlanner: org.apache.http.conn.routing.HttpRoute determineRoute(org.apache.http.HttpHost,org.apache.http.HttpRequest,org.apache.http.protocol.HttpContext)>[22@L84] invokespecial $r8.<init>($r9, $i1, $r12)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.impl.execchain.MainClientExec: boolean needAuthentication(org.apache.http.auth.AuthState,org.apache.http.auth.AuthState,org.apache.http.conn.routing.HttpRoute,org.apache.http.HttpResponse,org.apache.http.client.protocol.HttpClientContext)>[15@L571] invokespecial $r17.<init>($r18, $i1, $r20)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.impl.execchain.ProtocolExec: org.apache.http.client.methods.CloseableHttpResponse execute(org.apache.http.conn.routing.HttpRoute,org.apache.http.client.methods.HttpRequestWrapper,org.apache.http.client.protocol.HttpClientContext,org.apache.http.client.methods.HttpExecutionAware)>[55@L141] invokespecial $r53.<init>($r25, $i2, $r26)/0.value[*]}
+TaintFlow{<Server: java.lang.String getTaintHost()>[11@L24] $c0 = invokestatic Server.taint()/result -> <org.apache.http.impl.execchain.ProtocolExec: org.apache.http.client.methods.CloseableHttpResponse execute(org.apache.http.conn.routing.HttpRoute,org.apache.http.client.methods.HttpRequestWrapper,org.apache.http.client.protocol.HttpClientContext,org.apache.http.client.methods.HttpExecutionAware)>[81@L154] invokespecial $r55.<init>($r15, $i0, $r16)/0.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: void main(java.lang.String[])>/$r3}
+VarNode{<Server: java.lang.String getTaintHost()>/$c0}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+InstanceFieldNode{TaintObj{alloc=<Server: void main(java.lang.String[])>[7@L15] $r3 = invokestatic Server.getTaintHost()/result,type=java.lang.String}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.62s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                18,1061 (insens) / 18,1061 (sens)
+#objects:                     1,0628 (insens) / 1,0628 (sens)
+#var points-to:               917,4626 (insens) / 917,5034 (sens)
+#static field points-to:      3715 (sens)
+#instance field points-to:    80,0605 (sens)
+#array points-to:             13,6470 (sens)
+#reachable methods:           1,7264 (insens) / 1,7264 (sens)
+#call graph edges:            10,5605 (insens) / 10,5610 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 225.11s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+22913 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 61.57s
+Tai-e finishes, elapsed time: 407.66s

@@ -1,0 +1,24 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+- java-benchmarks/bugs/apache/tomcat/8.5.46/Tomcat8.0.jar
+- java-benchmarks/bugs/apache/tomcat/8.5.46
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:2-type;implicit-entries:false;handle-invokedynamic:true;reflection-inference:solar;distinguish-string-constants:null;only-app:false;taint-config:java-benchmarks/bugs/apache/tomcat/8.5.46/taint-config.yml;dump-ci:true
+  ir-dumper: ""
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL

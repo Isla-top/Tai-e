@@ -1,0 +1,2 @@
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L24] temp$4 = invokestatic Server.taint()/result -> <org.springframework.cloud.config.server.resource.GenericResourceRepository: org.springframework.core.io.Resource findOne(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>[18@L59] $r19 = invokeinterface $r18.getResource(r13)/0.value[*]}

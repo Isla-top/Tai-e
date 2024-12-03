@@ -1,0 +1,57 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+14679 classes with 129121 methods in the world
+WorldBuilder finishes, elapsed time: 32.90s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\struts2\taint-config.yaml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <com.opensymphony.xwork2.util.OgnlTextParser: java.lang.Object evaluate(char[],java.lang.String,com.opensymphony.xwork2.util.TextParseUtil$ParsedValueEvaluator,int)>/1.value[*]
+
+[Pointer analysis] elapsed time: 34.92s
+Imprecise reflective calls:
+[Array.newInstance]<com.sun.beans.TypeResolver: java.lang.reflect.Type resolve(java.lang.reflect.Type,java.lang.reflect.Type)>[12@L164] $r31 = invokestatic java.lang.reflect.Array.newInstance($r30, %intconst0), #targets: 102
+[Array.newInstance]<com.sun.beans.TypeResolver: java.lang.Class erase(java.lang.reflect.Type)>[38@L256] $r9 = invokestatic java.lang.reflect.Array.newInstance($r8, %intconst0), #targets: 102
+[Array.newInstance]<com.sun.beans.TypeResolver: java.lang.reflect.Type fixGenericArray(java.lang.reflect.Type)>[9@L347] $r5 = invokestatic java.lang.reflect.Array.newInstance($r4, %intconst0), #targets: 102
+[Constructor.newInstance]<com.opensymphony.xwork2.inject.ContainerImpl$ConstructorInjector: java.lang.Object construct(com.opensymphony.xwork2.inject.InternalContext,java.lang.Class)>[14@L410] $r8 = invokevirtual $r7.newInstance($r6), #targets: 58
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L77] temp$4 = invokestatic Server.taint()/result -> <com.opensymphony.xwork2.util.TextParseUtil: java.lang.Object translateVariables(char[],java.lang.String,com.opensymphony.xwork2.util.ValueStack,java.lang.Class,com.opensymphony.xwork2.util.TextParseUtil$ParsedValueEvaluator,int)>[9@L166] $r11 = invokeinterface r8.evaluate(r9, expression, $r0, maxLoopCount)/1.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 1.41s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                11,3905 (insens) / 63,7189 (sens)
+#objects:                     8261 (insens) / 1,5079 (sens)
+#var points-to:               83,5244 (insens) / 923,9132 (sens)
+#static field points-to:      2850 (sens)
+#instance field points-to:    72,2923 (sens)
+#array points-to:             10,4628 (sens)
+#reachable methods:           1,1696 (insens) / 7,7511 (sens)
+#call graph edges:            5,6673 (insens) / 72,4109 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 61.06s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+4974 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 9.27s
+Tai-e finishes, elapsed time: 103.52s

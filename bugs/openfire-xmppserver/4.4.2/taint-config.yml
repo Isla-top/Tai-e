@@ -1,0 +1,18 @@
+sources:
+  # - { kind: call, method: "<org.springframework.mock.web.MockHttpServletRequest: java.lang.String getParameter(java.lang.String)>", index: result}
+#  - { kind: param, method: "<org.jivesoftware.util.FaviconServlet: void doGet(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)>", index: 0, type: "org.eclipse.jetty.server.Request" }
+  - { kind: call, method: "<Server: char taint()>", index: result, type: "char" }
+  - { kind: call, method: "<Server: java.lang.String getTaintHost()>", index: result, type: "java.lang.String" }
+  # - { kind: call, method: "<org.jivesoftware.util.FaviconServlet: org.eclipse.jetty.server.Request getRequest()>", index: result}
+
+sinks:
+  #  - { method: "<javax.script.ScriptEngine: java.lang.Object eval(java.lang.String)>", index: 0 }
+  # - { method: "<org.jivesoftware.util.FaviconServlet: void writeBytesToStream(byte[],javax.servlet.http.HttpServletResponse)>", index: 0 }
+#  - { method: "<org.apache.http.impl.client.CloseableHttpClient: org.apache.http.client.methods.CloseableHttpResponse execute(org.apache.http.client.methods.HttpUriRequest)>", index: 0 }
+  - { method: "<org.apache.http.HttpHost: void <init>(java.lang.String,int,java.lang.String)>", index: "0.value[*]" }
+
+transfers:
+#- { method: "<org.apache.http.client.methods.RequestBuilder: void <init>(java.lang.String,java.lang.String)>", from: 1, to: base, type: "org.apache.http.client.methods.RequestBuilder"}
+#- { method: "<org.apache.http.client.methods.RequestBuilder: org.apache.http.client.methods.HttpUriRequest build()>", from: base, to: result, type: "org.apache.http.client.methods.RequestBuilder$InternalRequest"} // InternalEntityEclosingRequest or HttpGet
+
+

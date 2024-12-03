@@ -1,0 +1,24 @@
+
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getPath()>", index: "result" }
+  - { kind: call, method: "<Server: char taint()>", index: "result", type: "char" }
+  - { kind: call, method: "<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>", index: "result.name", type: "java.lang.String" }
+
+sinks:
+#  - { method: "<org.apache.commons.jxpath.functions.MethodFunction: java.lang.Object invoke(org.apache.commons.jxpath.ExpressionContext,java.lang.Object[])>", index: base }
+  - { method: "<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>", index: "0.value[*]" }
+  - { method: "<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>", index: "base.name" }
+
+transfers:
+
+#  - { method: "<java.io.StringReader: void <init>(java.lang.String)>", from: 0, to: base, type: "java.io.StringReader" }
+#  - { method: "<org.apache.commons.jxpath.ri.parser.SimpleCharStream: void ReInit(java.io.Reader,int,int)>", from: 0, to: base, type: org.apache.commons.jxpath.ri.parser.SimpleCharStream }
+#  - { method: "<org.apache.commons.jxpath.ri.parser.SimpleCharStream: java.lang.String GetImage()>", from: base, to: result, type: java.lang.String }
+#  - { method: "<org.apache.commons.jxpath.ri.JXPathContextReferenceImpl: org.apache.commons.jxpath.Function getFunction(org.apache.commons.jxpath.ri.QName,java.lang.Object[])>", from: 0, to: result, type: org.apache.commons.jxpath.functions.MethodFunction }
+##    #functionName
+#  - { method: "<org.apache.commons.jxpath.ri.compiler.TreeCompiler: java.lang.Object qname(java.lang.String,java.lang.String)>", from: 1, to: result, type: "org.apache.commons.jxpath.ri.QName" }
+#  - { method: "<org.apache.commons.jxpath.ri.QName: void <init>(java.lang.String,java.lang.String)>", from: 1, to: base }
+  #function
+#  - { method: "<org.apache.commons.jxpath.ri.compiler.TreeCompiler: java.lang.Object function(java.lang.Object,java.lang.Object[])>", from: 0, to: result, type: "org.apache.commons.jxpath.ri.compiler.ExtensionFunction" }
+#  - { method: "<org.apache.commons.jxpath.ri.compiler.ExtensionFunction: void <init>(org.apache.commons.jxpath.ri.QName,org.apache.commons.jxpath.ri.compiler.Expression[])>", from: 0, to: base }
+

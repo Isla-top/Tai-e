@@ -1,0 +1,2 @@
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L21] temp$4 = invokestatic Server.taint()/result -> <org.fengfei.lanproxy.server.config.web.HttpRequestHandler: void outputPages(io.netty.channel.ChannelHandlerContext,io.netty.handler.codec.http.FullHttpRequest)>[58@L106] invokespecial $r51.<init>(r40, %stringconst5)/0.path.value[*]}

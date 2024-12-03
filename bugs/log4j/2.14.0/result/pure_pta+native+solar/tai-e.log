@@ -1,0 +1,65 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+10580 classes with 97840 methods in the world
+WorldBuilder finishes, elapsed time: 11.27s
+pta starts ...
+Using reflection log from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\log4j\2.14.0\refl.log
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\log4j\2.14.0\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <javax.naming.InitialContext: java.lang.Object lookup(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 100.36s
+Unsound reflective calls:
+[Method.invoke]<org.apache.logging.log4j.core.config.plugins.util.PluginBuilder: org.apache.logging.log4j.core.util.Builder createBuilder(java.lang.Class)>[18@L157] $r5 = invokevirtual r2.invoke(%nullconst, $r4)
+[Method.invoke]<org.apache.logging.log4j.core.net.MulticastDnsAdvertiser: java.lang.Object createJmDnsVersion3()>[6@L148] $r4 = invokevirtual $r2.invoke(%nullconst, $r3)
+[Method.invoke]<org.apache.logging.log4j.core.net.MulticastDnsAdvertiser: java.lang.Object buildServiceInfoVersion3(java.lang.String,int,java.lang.String,java.util.Map)>[32@L179] $r13 = invokevirtual $r5.invoke(%nullconst, $r6)
+[Method.invoke]<org.apache.logging.log4j.util.Base64Util: void <clinit>()>[11@L38] $r5 = invokevirtual $r3.invoke(%nullconst, $r4)
+[Method.invoke]<org.apache.logging.log4j.util.StackLocator: void <clinit>()>[14@L66] $r6 = invokevirtual $r3.invoke(%nullconst, $r4)
+[Method.invoke]<org.apache.logging.log4j.util.StackLocator: void <clinit>()>[18@L67] invokevirtual $r3.invoke(%nullconst, $r7)
+[Method.invoke]<org.apache.logging.log4j.util.StackLocator: void <clinit>()>[27@L72] $r12 = invokevirtual $r3.invoke(%nullconst, $r10)
+[Method.invoke]<org.apache.logging.log4j.util.StackLocator: java.lang.Class getCallerClass(int)>[17@L113] $r4 = invokevirtual $r2.invoke(%nullconst, $r1)
+Imprecise reflective calls:
+[Constructor.newInstance]<org.apache.logging.log4j.core.util.ReflectionUtil: java.lang.Object instantiate(java.lang.Class)>[5@L188] $r3 = invokevirtual $r1.newInstance($r2), #targets: 169
+[Class.newInstance]<org.apache.logging.log4j.util.LoaderUtil: java.lang.Object newInstanceOf(java.lang.Class)>[7@L190] $r6 = invokevirtual r0.newInstance(), #targets: 79
+[Constructor.newInstance]<org.apache.logging.log4j.util.LoaderUtil: java.lang.Object newInstanceOf(java.lang.Class)>[4@L187] $r4 = invokevirtual $r2.newInstance($r3), #targets: 57
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L14] temp$4 = invokestatic Server.taint()/result -> <org.apache.logging.log4j.core.net.JndiManager: java.lang.Object lookup(java.lang.String)>[1@L172] $r3 = invokeinterface $r2.lookup(name)/0.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 3.91s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                20,5217 (insens) / 143,5057 (sens)
+#objects:                     1,4764 (insens) / 3,4658 (sens)
+#var points-to:               295,2688 (insens) / 1,0231,6633 (sens)
+#static field points-to:      6377 (sens)
+#instance field points-to:    314,6206 (sens)
+#array points-to:             91,7245 (sens)
+#reachable methods:           2,0831 (insens) / 17,8600 (sens)
+#call graph edges:            10,5768 (insens) / 388,9047 (sens)
+----------------------------------------
+pta finishes, elapsed time: 114.83s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+1295 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 2.26s
+Tai-e finishes, elapsed time: 128.65s

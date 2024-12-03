@@ -1,0 +1,2 @@
+Detected 1 taint flow(s):
+TaintFlow{<Server: void main(java.lang.String[])>[12@L8] temp$4 = invokestatic Server.getInput()/result -> <org.apache.logging.log4j.core.net.JndiManager: java.lang.Object lookup(java.lang.String)>[1@L172] $r3 = invokeinterface $r2.lookup(name)/0}

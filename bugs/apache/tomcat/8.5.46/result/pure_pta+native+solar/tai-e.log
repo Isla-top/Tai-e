@@ -1,0 +1,63 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+10658 classes with 100705 methods in the world
+WorldBuilder finishes, elapsed time: 24.12s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\tomcat\8.5.46\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+  FieldSource{<org.apache.catalina.webresources.CachedResource: byte[] cachedContent>(byte[])}
+
+sinks:
+  <org.apache.catalina.connector.CoyoteOutputStream: void write(byte[])>/0
+  <org.apache.catalina.webresources.StandardRoot: org.apache.catalina.WebResource getResource(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 17.30s
+Detected 9 taint flow(s):
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: void doPut(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)>[7@L623] $r4 = invokeinterface $r3.getResource($r2)/0.value[*]}
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: java.io.File executePartialPut(javax.servlet.http.HttpServletRequest,org.apache.catalina.servlets.DefaultServlet$Range,java.lang.String)>[17@L697] $r9 = invokeinterface $r8.getResource(path)/0.value[*]}
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: void doDelete(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)>[7@L752] $r4 = invokeinterface $r3.getResource($r2)/0.value[*]}
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: void serveResource(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,boolean,java.lang.String)>[30@L841] $r4 = invokeinterface $r3.getResource($r2)/0.value[*]}
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: java.util.List getAvailablePrecompressedResources(java.lang.String)>[16@L1315] $r12 = invokeinterface $r6.getResource($r11)/0.value[*]}
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: java.io.InputStream renderXml(javax.servlet.http.HttpServletRequest,java.lang.String,org.apache.catalina.WebResource,javax.xml.transform.Source,java.lang.String)>[66@L1735] $r48 = invokeinterface $r44.getResource($r47)/0.value[*]}
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: java.lang.String getReadme(org.apache.catalina.WebResource,java.lang.String)>[10@L2082] $r10 = invokeinterface $r3.getResource($r9)/0.value[*]}
+TaintFlow{<Server: char[] taintWarp()>[49@L60] temp$3 = invokestatic Server.taint()/result -> <org.apache.catalina.servlets.DefaultServlet: javax.xml.transform.Source findXsltSource(org.apache.catalina.WebResource)>[10@L2127] $r31 = invokeinterface $r24.getResource($r30)/0.value[*]}
+TaintFlow{<org.apache.catalina.webresources.CachedResource: byte[] getContent()> [0@L299] r3 = %this.<org.apache.catalina.webresources.CachedResource: byte[] cachedContent> -> <org.apache.catalina.servlets.DefaultServlet: void serveResource(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,boolean,java.lang.String)>[355@L1144] invokevirtual r107.write(r113)/0}
+TFGDumper starts ...
+Source nodes:
+VarNode{<org.apache.catalina.webresources.CachedResource: byte[] getContent()>/r3}
+VarNode{<Server: char[] taintWarp()>/temp$3}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+VarNode{<org.apache.catalina.servlets.DefaultServlet: void serveResource(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,boolean,java.lang.String)>/r113}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 1.04s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,0969 (insens) / 48,4980 (sens)
+#objects:                     5835 (insens) / 1,0300 (sens)
+#var points-to:               26,4813 (insens) / 307,8611 (sens)
+#static field points-to:      2363 (sens)
+#instance field points-to:    30,1829 (sens)
+#array points-to:             3,2006 (sens)
+#reachable methods:           8887 (insens) / 5,6599 (sens)
+#call graph edges:            4,3177 (insens) / 38,1411 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 29.46s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+2639 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 6.61s
+Tai-e finishes, elapsed time: 60.43s

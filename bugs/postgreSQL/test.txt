@@ -1,0 +1,74 @@
+十月 16, 2024 11:08:57 上午 org.postgresql.Driver connect
+详细: Connecting with URL: jdbc:postgresql://127.0.0.1:5432/test/?loggerLevel=debug&loggerFile=./test.txt&test
+十月 16, 2024 11:08:57 上午 org.postgresql.jdbc.PgConnection <init>
+详细: PostgreSQL JDBC Driver 42.3.1
+十月 16, 2024 11:08:57 上午 org.postgresql.jdbc.PgConnection setDefaultFetchSize
+详细:   setDefaultFetchSize = 0
+十月 16, 2024 11:08:57 上午 org.postgresql.jdbc.PgConnection setPrepareThreshold
+详细:   setPrepareThreshold = 5
+十月 16, 2024 11:08:57 上午 org.postgresql.core.v3.ConnectionFactoryImpl openConnectionImpl
+详细: Trying to establish a protocol version 3 connection to 127.0.0.1:5432
+十月 16, 2024 11:08:59 上午 org.postgresql.Driver connect
+详细: Connection error: 
+org.postgresql.util.PSQLException: Connection to 127.0.0.1:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:301)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:225)
+	at org.postgresql.Driver.makeConnection(Driver.java:466)
+	at org.postgresql.Driver.connect(Driver.java:265)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at Server.main(Server.java:10)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:606)
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:238)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:100)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:215)
+	... 7 more
+
+十月 16, 2024 11:08:59 上午 org.postgresql.Driver loadDefaultProperties
+详细: Loading driver configuration via classloader sun.misc.Launcher$AppClassLoader@18b4aac2
+十月 16, 2024 11:08:59 上午 org.postgresql.Driver connect
+详细: Connecting with URL: jdbc:postgresql://127.0.0.1:5432/test/?loggerLevel=debug&loggerFile=./test.txt&test
+十月 16, 2024 11:08:59 上午 org.postgresql.jdbc.PgConnection <init>
+详细: PostgreSQL JDBC Driver 42.3.1
+十月 16, 2024 11:08:59 上午 org.postgresql.jdbc.PgConnection setDefaultFetchSize
+详细:   setDefaultFetchSize = 0
+十月 16, 2024 11:08:59 上午 org.postgresql.jdbc.PgConnection setPrepareThreshold
+详细:   setPrepareThreshold = 5
+十月 16, 2024 11:08:59 上午 org.postgresql.core.v3.ConnectionFactoryImpl openConnectionImpl
+详细: Trying to establish a protocol version 3 connection to 127.0.0.1:5432
+十月 16, 2024 11:09:02 上午 org.postgresql.Driver connect
+详细: Connection error: 
+org.postgresql.util.PSQLException: Connection to 127.0.0.1:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:301)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:225)
+	at org.postgresql.Driver.makeConnection(Driver.java:466)
+	at org.postgresql.Driver.connect(Driver.java:265)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:270)
+	at Server.main(Server.java:10)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:606)
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:238)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:98)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:100)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:215)
+	... 7 more
+

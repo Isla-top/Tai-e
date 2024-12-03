@@ -1,0 +1,26 @@
+sources:
+#  - { kind: param, method: "<org.apache.catalina.core.ApplicationFilterChain: void doFilter(javax.servlet.ServletRequest,javax.servlet.ServletResponse)>", index: 0, type: "org.apache.catalina.connector.Request" }
+#  - { kind: call, method: "<Server: java.lang.String getSource()>", index: result, type: "java.lang.String" }
+  - { kind: call, method: "<Server: char taint()>", index: result, type: "char" }
+#  - { kind: call, method: "<Server: char[] taintWarp()>", index: result, type: "char[]" }
+  - { kind: field, field: "<org.apache.catalina.webresources.CachedResource: byte[] cachedContent>" }
+#  - { kind: field, field: "<org.apache.coyote.AbstractProcessor: org.apache.coyote.Request request>" }
+
+sinks:
+  - { method: "<org.apache.catalina.connector.CoyoteOutputStream: void write(byte[])>", index: "0" }
+  - { method: "<org.apache.catalina.webresources.StandardRoot: org.apache.catalina.WebResource getResource(java.lang.String)>", index: "0.value[*]" }
+#  - { method: "<Server: void sink(java.lang.String)>", index: "0.value[*]" }
+#  - { method: "<org.apache.catalina.servlets.DefaultServlet: void service(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)>", index: 0 }
+#  - { method: "<javax.servlet.http.HttpServlet: void service(javax.servlet.ServletRequest,javax.servlet.ServletResponse)>", index: 0 }
+#  - { method: "<org.apache.catalina.core.ApplicationFilterChain: void internalDoFilter(javax.servlet.ServletRequest,javax.servlet.ServletResponse)>", index: 0 }
+#  - { method: "<org.apache.catalina.webresources.StandardRoot: org.apache.catalina.WebResource getResource(java.lang.String)>", index: 0 }
+
+transfers:
+#  - { method: "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", from: 0, to: base, type: "java.lang.StringBuilder" }
+#  - { method: "<java.lang.StringBuilder: java.lang.String toString()>", from: base, to: result, type: "java.lang.String" }
+#  - { method: "<java.lang.StringBuilder: java.lang.String toString()>", from: base, to: result, type: "java.lang.String" }
+
+#  - { method: "<org.apache.catalina.webresources.CachedResource: byte[] getContent()>", from: base, to: result, type: "byte[]" }
+#  - { method: "<org.apache.catalina.servlets.DefaultServlet: java.lang.String getRelativePath(javax.servlet.http.HttpServletRequest,boolean)>", from: 0, to: result, type: java.lang.String }
+#  - { method: "<org.apache.catalina.webresources.StandardRoot: org.apache.catalina.WebResource getResource(java.lang.String)>", from: "0.value[*]", to: 0, type: java.lang.String }
+#  - { method: "<org.apache.catalina.webresources.StandardRoot: org.apache.catalina.WebResource getResource(java.lang.String)>", from: 0, to: "result.cachedContent", type: byte }

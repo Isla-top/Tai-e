@@ -1,0 +1,15 @@
+transfer-inference:
+  confidence: DISABLE # ,DISABLE,HIGH
+  scope: APP      # ,APP_LIB,ALL
+  appPackages: [ org.apache.struts2 ]
+
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getInput()>", index: result }
+  - { kind: call, method: "<Server: char taint()>", index: result }
+
+sinks:
+  - { method: "<com.opensymphony.xwork2.util.OgnlTextParser: java.lang.Object evaluate(char[],java.lang.String,com.opensymphony.xwork2.util.TextParseUtil$ParsedValueEvaluator,int)>", index: "1.value[*]" }
+
+transfers:
+#  - {method: "<org.eclipse.jetty.server.Request: void setContentType(java.lang.String)>", from: 0, to: base }
+#  - {method: "<org.eclipse.jetty.server.Request: java.lang.String getContentType()>", from: base, to: result }

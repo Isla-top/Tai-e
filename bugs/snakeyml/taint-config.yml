@@ -1,0 +1,29 @@
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getPoc()>", index: result }
+  - { kind: call, method: "<Server: char taint()>", index: result }
+
+sinks:
+#  - { method: "<org.yaml.snakeyaml.introspector.MethodProperty: void set(java.lang.Object,java.lang.Object)>", index: 1 }
+  - { method: "<java.beans.PropertyDescriptor: java.lang.reflect.Method getWriteMethod()>", index: "base.writeMethodName.value[*]" }
+#  - { method: "<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>", index: "base.name.value[*]" }
+  #- { method: "<com.sun.rowset.JdbcRowSetImpl: void setDataSourceName(java.lang.String)>", index: 0 }
+  #- { method: "<com.sun.rowset.JdbcRowSetImpl: void setDataSourceName(java.lang.String)>", index: base }
+  #- { method: "<com.sun.rowset.JdbcRowSetImpl: void setAutoCommit(boolean)>", index: 0 }
+  #- { method: "<javax.naming.InitialContext: java.lang.Object lookup(java.lang.String)>", index: 0 }
+
+transfers:
+  #- { method: "<org.yaml.snakeyaml.reader.StreamReader: void <init>(java.lang.String)>", from: 0, to: base, type: org.yaml.snakeyaml.reader.StreamReader }
+  #- { method: "<org.yaml.snakeyaml.parser.ParserImpl: void <init>(org.yaml.snakeyaml.reader.StreamReader)>", from: 0, to: base, type: org.yaml.snakeyaml.parser.ParserImpl }
+  #- { method: "<org.yaml.snakeyaml.composer.Composer: void <init>(org.yaml.snakeyaml.parser.Parser,org.yaml.snakeyaml.resolver.Resolver,org.yaml.snakeyaml.LoaderOptions)>", from: 0, to: base, type: org.yaml.snakeyaml.composer.Composer }
+  #- { method: "<org.yaml.snakeyaml.composer.Composer: org.yaml.snakeyaml.nodes.Node getSingleNode()>", from: base, to: result, type: org.yaml.snakeyaml.nodes.Node}
+  #- { method: "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", from: 0, to: base, type: java.lang.StringBuilder }
+#  - { method: "<org.yaml.snakeyaml.reader.StreamReader: void <init>(java.lang.String)>", from: 0, to: base, type: org.yaml.snakeyaml.reader.StreamReader }
+#  - { method: "<org.yaml.snakeyaml.reader.StreamReader: java.lang.String prefixForward(int)>", from: base, to: result, type: java.lang.String }
+#  - { method: "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", from: 0, to: base, type: java.lang.StringBuilder }
+#  - { method: "<java.lang.StringBuilder: java.lang.String toString()>", from: base, to: result, type: java.lang.String }
+
+
+
+
+
+

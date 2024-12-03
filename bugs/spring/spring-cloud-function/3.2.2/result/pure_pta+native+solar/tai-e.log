@@ -1,0 +1,60 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+7677 classes with 68865 methods in the world
+WorldBuilder finishes, elapsed time: 6.25s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\spring\spring-cloud-function\3.2.2\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <org.springframework.expression.spel.standard.SpelExpression: java.lang.Object getValue(org.springframework.expression.EvaluationContext,java.lang.Object,java.lang.Class)>/base.expression.value[*]
+
+[Pointer analysis] elapsed time: 26.93s
+Imprecise reflective calls:
+[Method.invoke]<org.springframework.expression.spel.support.ReflectivePropertyAccessor: org.springframework.expression.TypedValue read(org.springframework.expression.EvaluationContext,java.lang.Object,java.lang.String)>[67@L194] $r26 = invokevirtual r60.invoke(target, $r25), #targets: 286
+[Array.newInstance]<org.springframework.expression.spel.ast.Projection: org.springframework.expression.spel.ast.ValueRef getValueRef(org.springframework.expression.spel.ExpressionState)>[81@L116] $r9 = invokestatic java.lang.reflect.Array.newInstance(r46, $i0), #targets: 268
+[Method.invoke]<org.springframework.expression.spel.support.ReflectivePropertyAccessor: void write(org.springframework.expression.EvaluationContext,java.lang.Object,java.lang.String,java.lang.Object)>[67@L302] invokevirtual r54.invoke(target, $r19), #targets: 87
+Detected 2 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L21] temp$4 = invokestatic Server.taint()/result -> <org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)>[9@L201] $r5 = invokeinterface $r3.getValue($r4, input, %classconst1)/base.expression.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L21] temp$4 = invokestatic Server.taint()/result -> <org.springframework.expression.common.CompositeStringExpression: java.lang.String getValue(org.springframework.expression.EvaluationContext,java.lang.Object)>[8@L129] $r7 = invokeinterface r4.getValue(context, rootObject, %classconst0)/base.expression.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{NewObj{<org.springframework.expression.common.TemplateAwareExpressionParser: org.springframework.expression.Expression[] parseExpressions(java.lang.String,org.springframework.expression.ParserContext)>[10@L100] new org.springframework.expression.common.LiteralExpression}.expression}
+InstanceFieldNode{NewObj{<org.springframework.expression.common.TemplateAwareExpressionParser: org.springframework.expression.Expression parseTemplate(java.lang.String,org.springframework.expression.ParserContext)>[3@L59] new org.springframework.expression.common.LiteralExpression}.expression}
+InstanceFieldNode{NewObj{<org.springframework.expression.common.TemplateAwareExpressionParser: org.springframework.expression.Expression[] parseExpressions(java.lang.String,org.springframework.expression.ParserContext)>[73@L126] new org.springframework.expression.common.LiteralExpression}.expression}
+InstanceFieldNode{NewObj{<org.springframework.expression.common.TemplateAwareExpressionParser: org.springframework.expression.Expression parseTemplate(java.lang.String,org.springframework.expression.ParserContext)>[13@L67] new org.springframework.expression.common.CompositeStringExpression}.expression}
+InstanceFieldNode{NewObj{<org.springframework.expression.spel.standard.InternalSpelExpressionParser: org.springframework.expression.spel.standard.SpelExpression doParseExpression(java.lang.String,org.springframework.expression.ParserContext)>[35@L138] new org.springframework.expression.spel.standard.SpelExpression}.expression}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.94s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,2374 (insens) / 46,6542 (sens)
+#objects:                     7281 (insens) / 1,1492 (sens)
+#var points-to:               229,5547 (insens) / 1557,6714 (sens)
+#static field points-to:      2120 (sens)
+#instance field points-to:    156,9452 (sens)
+#array points-to:             13,6391 (sens)
+#reachable methods:           8895 (insens) / 5,5985 (sens)
+#call graph edges:            5,4661 (insens) / 71,4442 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 83.10s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+562 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 0.99s
+Tai-e finishes, elapsed time: 90.61s

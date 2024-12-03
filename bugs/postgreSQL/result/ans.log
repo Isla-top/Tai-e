@@ -1,0 +1,3 @@
+Detected 2 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[4@L16] temp$4 = invokestatic Server.taint()/result -> <org.postgresql.Driver: void setupLoggerFromProperties(java.util.Properties)>[55@L332] invokespecial $r17.<init>($r34)/0.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[4@L16] temp$4 = invokestatic Server.taint()/result -> <org.postgresql.core.SocketFactoryFactory: javax.net.SocketFactory getSocketFactory(java.util.Properties)>[8@L39] $r5 = invokestatic org.postgresql.util.ObjectFactory.instantiate($r2, r0, %intconst0, $r4)/0.value[*]}

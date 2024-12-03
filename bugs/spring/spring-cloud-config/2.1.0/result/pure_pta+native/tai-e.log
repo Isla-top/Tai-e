@@ -1,0 +1,52 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+12775 classes with 114464 methods in the world
+WorldBuilder finishes, elapsed time: 14.67s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\spring\spring-cloud-config\2.1.0\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <org.springframework.core.io.DefaultResourceLoader: org.springframework.core.io.Resource getResource(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 12.74s
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L24] temp$4 = invokestatic Server.taint()/result -> <org.springframework.cloud.config.server.resource.GenericResourceRepository: org.springframework.core.io.Resource findOne(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>[18@L59] $r19 = invokeinterface $r18.getResource(r13)/0.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.72s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,1012 (insens) / 48,2255 (sens)
+#objects:                     5878 (insens) / 1,0306 (sens)
+#var points-to:               37,7333 (insens) / 355,2246 (sens)
+#static field points-to:      2162 (sens)
+#instance field points-to:    27,3842 (sens)
+#array points-to:             3,4922 (sens)
+#reachable methods:           9259 (insens) / 5,7462 (sens)
+#call graph edges:            4,4741 (insens) / 41,0635 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 23.64s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+2960 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 5.68s
+Tai-e finishes, elapsed time: 44.20s

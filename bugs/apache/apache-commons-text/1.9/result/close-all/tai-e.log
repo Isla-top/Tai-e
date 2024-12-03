@@ -1,0 +1,49 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 5548fa1af3fdfc08a14bdee793bd4a735b4f843a
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+Failed to load reflection log from java-benchmarks/bugs/apache/apache-commons-text/1.9/rlog.log
+10021 classes with 99651 methods in the world
+WorldBuilder finishes, elapsed time: 11.15s
+pta starts ...
+Using reflection log from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\apache-commons-text\1.9\rlog.log
+Failed to load reflection log from java-benchmarks/bugs/apache/apache-commons-text/1.9/rlog.log
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\apache-commons-text\1.9\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <javax.script.ScriptEngine: java.lang.Object eval(java.lang.String)>/0.value[*]
+  <javax.script.AbstractScriptEngine: java.lang.Object eval(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 11.20s
+Detected 0 taint flow(s):
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.42s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                14,6960 (insens) / 14,6960 (sens)
+#objects:                     9314 (insens) / 9314 (sens)
+#var points-to:               388,0034 (insens) / 388,0283 (sens)
+#static field points-to:      2319 (sens)
+#instance field points-to:    26,8738 (sens)
+#array points-to:             5,1805 (sens)
+#reachable methods:           1,3801 (insens) / 1,3801 (sens)
+#call graph edges:            7,6405 (insens) / 7,6406 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 95.31s
+Tai-e finishes, elapsed time: 106.69s

@@ -1,0 +1,25 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+- java-benchmarks/bugs/apache/apache-commons-text/1.9
+- java-benchmarks/bugs/apache/apache-commons-text/1.9/commons-text-1.9.jar
+- java-benchmarks/bugs/apache/apache-commons-text/1.9/commons-lang3-3.12.0.jar
+- java-benchmarks/bugs/apache/apache-commons-text/1.9/nashorn.jar
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:ci;implicit-entries:false;reflection-inference:solar;handle-invokedynamic:true;distinguish-string-constants:null;taint-config:java-benchmarks/bugs/apache/apache-commons-text/1.9/taint-config.yml;reflection-log:java-benchmarks/bugs/apache/apache-commons-text/1.9/rlog.log;dump-ci:true
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL

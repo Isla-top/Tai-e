@@ -1,0 +1,123 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2175pt" height="708pt" viewBox="0.00 0.00 2175.32 708.00">
+<g id="graph0" class="graph" transform="translate(4,704) scale(1)" data-name="G">
+
+<polygon fill="white" stroke="none" points="-4,4 -4,-704 2171.32,-704 2171.32,4 -4,4" style=""/>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/routingExpression} -->
+<g id="node1" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/routingExpression}">
+
+<polygon fill="floralwhite" stroke="black" points="1848.72,-116 318.59,-116 318.59,-80 1848.72,-80 1848.72,-116" style=""/>
+<text text-anchor="middle" x="1083.66" y="-93.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/routingExpression}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/$r3} -->
+<g id="node9" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/$r3}">
+
+<polygon fill="deepskyblue" stroke="black" points="2163.47,-14.54 2163.47,-29.46 1530.93,-40 636.38,-40 3.84,-29.46 3.84,-14.54 636.38,-4 1530.93,-4 2163.47,-14.54" style=""/>
+<polygon fill="none" stroke="black" points="2167.47,-10.61 2167.47,-33.39 1530.96,-44 636.35,-44 -0.16,-33.39 -0.16,-10.61 636.35,0 1530.96,0 2167.47,-10.61" style=""/>
+<text text-anchor="middle" x="1083.66" y="-17.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/$r3}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/routingExpression}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/$r3} -->
+<g id="edge1" class="edge" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/routingExpression}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/$r3}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M1083.66,-79.84C1083.66,-72.64 1083.66,-64.02 1083.66,-55.7" style=""/>
+<polygon fill="#00cd00" stroke="#00cd00" points="1087.16,-55.82 1083.66,-45.82 1080.16,-55.82 1087.16,-55.82" style=""/>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r45} -->
+<g id="node2" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r45}">
+
+<polygon fill="floralwhite" stroke="black" points="1479.73,-332 687.59,-332 687.59,-296 1479.73,-296 1479.73,-332" style=""/>
+<text text-anchor="middle" x="1083.66" y="-309.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r45}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r46} -->
+<g id="node5" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r46}">
+
+<polygon fill="floralwhite" stroke="black" points="1479.73,-260 687.59,-260 687.59,-224 1479.73,-224 1479.73,-260" style=""/>
+<text text-anchor="middle" x="1083.66" y="-237.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r46}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r45}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r46} -->
+<g id="edge2" class="edge" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r45}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r46}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M1083.66,-295.7C1083.66,-288.41 1083.66,-279.73 1083.66,-271.54" style=""/>
+<polygon fill="#00cd00" stroke="#00cd00" points="1087.16,-271.62 1083.66,-261.62 1080.16,-271.62 1087.16,-271.62" style=""/>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/message} -->
+<g id="node3" class="node" pointer-events="visible" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/message}">
+
+<polygon fill="floralwhite" stroke="black" points="1261.62,-620 905.69,-620 905.69,-584 1261.62,-584 1261.62,-620" style=""/>
+<text text-anchor="middle" x="1083.66" y="-597.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;Server: void main(java.lang.String[])&gt;/message}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object apply(java.lang.Object)&gt;/input} -->
+<g id="node4" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object apply(java.lang.Object)&gt;/input}">
+
+<polygon fill="floralwhite" stroke="black" points="1458.37,-548 708.95,-548 708.95,-512 1458.37,-512 1458.37,-548" style=""/>
+<text text-anchor="middle" x="1083.66" y="-525.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object apply(java.lang.Object)&gt;/input}</text>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/message}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object apply(java.lang.Object)&gt;/input} -->
+<g id="edge3" class="edge" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/message}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object apply(java.lang.Object)&gt;/input}">
+
+<path fill="none" stroke="blue" d="M1083.66,-583.7C1083.66,-576.41 1083.66,-567.73 1083.66,-559.54" style=""/>
+<polygon fill="blue" stroke="blue" points="1087.16,-559.62 1083.66,-549.62 1080.16,-559.62 1087.16,-559.62" style=""/>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/input} -->
+<g id="node7" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/input}">
+
+<polygon fill="floralwhite" stroke="black" points="1481.35,-476 685.97,-476 685.97,-440 1481.35,-440 1481.35,-476" style=""/>
+<text text-anchor="middle" x="1083.66" y="-453.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/input}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object apply(java.lang.Object)&gt;/input}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/input} -->
+<g id="edge4" class="edge" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object apply(java.lang.Object)&gt;/input}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/input}">
+
+<path fill="none" stroke="blue" d="M1083.66,-511.7C1083.66,-504.41 1083.66,-495.73 1083.66,-487.54" style=""/>
+<polygon fill="blue" stroke="blue" points="1087.16,-487.62 1083.66,-477.62 1080.16,-487.62 1087.16,-487.62" style=""/>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r47} -->
+<g id="node6" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r47}">
+
+<polygon fill="floralwhite" stroke="black" points="1479.73,-188 687.59,-188 687.59,-152 1479.73,-152 1479.73,-188" style=""/>
+<text text-anchor="middle" x="1083.66" y="-165.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r47}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r46}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r47} -->
+<g id="edge5" class="edge" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r46}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r47}">
+
+<path fill="none" stroke="black" d="M1083.66,-223.7C1083.66,-216.41 1083.66,-207.73 1083.66,-199.54" style=""/>
+<polygon fill="black" stroke="black" points="1087.16,-199.62 1083.66,-189.62 1080.16,-199.62 1087.16,-199.62" style=""/>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r47}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/routingExpression} -->
+<g id="edge6" class="edge" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r47}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: org.springframework.cloud.function.context.catalog.SimpleFunctionRegistry$FunctionInvocationWrapper functionFromExpression(java.lang.String,java.lang.Object)&gt;/routingExpression}">
+
+<path fill="none" stroke="blue" d="M1083.66,-151.7C1083.66,-144.41 1083.66,-135.73 1083.66,-127.54" style=""/>
+<polygon fill="blue" stroke="blue" points="1087.16,-127.62 1083.66,-117.62 1080.16,-127.62 1087.16,-127.62" style=""/>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/r59} -->
+<g id="node8" class="node" pointer-events="visible" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/r59}">
+
+<polygon fill="floralwhite" stroke="black" points="1476.23,-404 691.09,-404 691.09,-368 1476.23,-368 1476.23,-404" style=""/>
+<text text-anchor="middle" x="1083.66" y="-381.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/r59}</text>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/input}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/r59} -->
+<g id="edge7" class="edge" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/input}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/r59}">
+
+<path fill="none" stroke="black" d="M1083.66,-439.7C1083.66,-432.41 1083.66,-423.73 1083.66,-415.54" style=""/>
+<polygon fill="black" stroke="black" points="1087.16,-415.62 1083.66,-405.62 1080.16,-415.62 1087.16,-415.62" style=""/>
+</g>
+<!-- VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/r59}&#45;&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r45} -->
+<g id="edge8" class="edge" data-name="VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/r59}-&gt;VarNode{&lt;org.springframework.cloud.function.context.config.RoutingFunction: java.lang.Object route(java.lang.Object,boolean)&gt;/$r45}">
+
+<path fill="none" stroke="#00cd00" stroke-dasharray="5,2" d="M1083.66,-367.7C1083.66,-360.41 1083.66,-351.73 1083.66,-343.54" style=""/>
+<polygon fill="#00cd00" stroke="#00cd00" points="1087.16,-343.62 1083.66,-333.62 1080.16,-343.62 1087.16,-343.62" style=""/>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1} -->
+<g id="node10" class="node" pointer-events="visible" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}">
+
+<polygon fill="gold" stroke="black" points="1344.84,-670.54 1344.84,-685.46 1191.84,-696 975.47,-696 822.48,-685.46 822.48,-670.54 975.47,-660 1191.84,-660 1344.84,-670.54" style=""/>
+<polygon fill="none" stroke="black" points="1348.83,-666.81 1348.83,-689.19 1191.98,-700 975.34,-700 818.48,-689.19 818.48,-666.81 975.34,-656 1191.98,-656 1348.83,-666.81" style=""/>
+<text text-anchor="middle" x="1083.66" y="-673.8" font-family="Times,serif" font-size="14.00" style="">VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}</text>
+</g>
+<!-- VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}&#45;&gt;VarNode{&lt;Server: void main(java.lang.String[])&gt;/message} -->
+<g id="edge9" class="edge" data-name="VarNode{&lt;Server: void main(java.lang.String[])&gt;/temp$1}-&gt;VarNode{&lt;Server: void main(java.lang.String[])&gt;/message}">
+
+<path fill="none" stroke="black" d="M1083.66,-655.6C1083.66,-648.11 1083.66,-639.59 1083.66,-631.61" style=""/>
+<polygon fill="black" stroke="black" points="1087.16,-631.65 1083.66,-621.65 1080.16,-631.65 1087.16,-631.65" style=""/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,3 @@
+Detected 2 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>[42@L132] invokespecial $r27.<init>($r20, $r1)/1.value[*]}
+TaintFlow{<org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>[42@L132] invokespecial $r27.<init>($r20, $r1)/base -> <org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>[47@L138] invokestatic org.springframework.integration.zip.transformer.SpringZipUtils.copy(zipEntryInputStream, $r27)/1}

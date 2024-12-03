@@ -1,0 +1,39 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+- java-benchmarks/bugs/spring/spring-zip
+- java-benchmarks/bugs/spring/spring-zip/lib/commons-io-2.4.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/commons-logging-1.2.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/slf4j-api-1.7.30.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/slf4j-simple-1.7.30.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-aop-4.3.9.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-beans-4.3.9.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-context-4.3.9.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-core-4.3.9.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-expression-4.3.9.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-integration-core-4.3.10.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-integration-file-4.3.10.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-integration-zip-1.0.0.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-messaging-4.3.9.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-retry-1.1.3.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/spring-tx-4.3.9.RELEASE.jar
+- java-benchmarks/bugs/spring/spring-zip/lib/zt-zip-1.11.jar
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:2-type;implicit-entries:false;handle-invokedynamic:true;reflection-inference:solar;distinguish-string-constants:null;taint-config:java-benchmarks/bugs/spring/spring-zip/taint-config.yml;dump-ci:true;
+  ir-dumper: ""
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL

@@ -1,0 +1,24 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+  - java-benchmarks\bugs\openfire-xmppserver\4.4.2\out\production\4.4.2
+  - java-benchmarks/bugs/openfire-xmppserver/4.4.2/xmppserver-4.4.2-jar-with-dependencies.jar
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:ci;implicit-entries:false;handle-invokedynamic:true;reflection-inference:solar;distinguish-string-constants:null;only-app:false;taint-config:java-benchmarks\bugs/openfire-xmppserver/4.4.2/taint-config.yml;dump-ci:true
+#  ir-dumper: ""
+onlyGenPlan: false
+keepResult:
+  - $KEEP-ALL

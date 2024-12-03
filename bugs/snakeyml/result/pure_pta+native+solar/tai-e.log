@@ -1,0 +1,91 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+7066 classes with 67876 methods in the world
+WorldBuilder finishes, elapsed time: 4.28s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\snakeyml\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <java.beans.PropertyDescriptor: java.lang.reflect.Method getWriteMethod()>/base.writeMethodName.value[*]
+
+[Pointer analysis] elapsed time: 19.84s
+Detected 14 taint flow(s):
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.Introspector: void addPropertyDescriptor(java.beans.PropertyDescriptor)>[14@L588] $r7 = invokevirtual r23.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.Introspector: void processPropertyDescriptors()>[83@L703] $r27 = invokevirtual r53.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.PropertyDescriptor)>[21@L867] $r28 = invokevirtual r2.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.PropertyDescriptor)>[42@L882] $r7 = invokevirtual r0.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.PropertyDescriptor: java.lang.Class getPropertyType()>[4@L181] $r3 = invokevirtual %this.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.PropertyDescriptor: boolean equals(java.lang.Object)>[9@L470] $r4 = invokevirtual r2.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.PropertyDescriptor: boolean equals(java.lang.Object)>[14@L476] $r6 = invokevirtual %this.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.PropertyDescriptor: void <init>(java.beans.PropertyDescriptor,java.beans.PropertyDescriptor)>[69@L577] $r35 = invokevirtual r1.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.PropertyDescriptor: void <init>(java.beans.PropertyDescriptor,java.beans.PropertyDescriptor)>[70@L578] $r36 = invokevirtual r2.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.PropertyDescriptor: int hashCode()>[18@L686] $r5 = invokevirtual %this.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <java.beans.PropertyDescriptor: int hashCode()>[22@L687] $r6 = invokevirtual %this.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <org.yaml.snakeyaml.introspector.MethodProperty: java.lang.reflect.Type discoverGenericType(java.beans.PropertyDescriptor)>[4@L48] $r2 = invokevirtual r0.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <org.yaml.snakeyaml.introspector.MethodProperty: void <init>(java.beans.PropertyDescriptor)>[11@L68] $r6 = invokevirtual property.getWriteMethod()/base.writeMethodName.value[*]}
+TaintFlow{<Server: java.lang.String getPoc()>[3@L13] temp$4 = invokestatic Server.taint()/result -> <org.yaml.snakeyaml.introspector.MethodProperty: void set(java.lang.Object,java.lang.Object)>[19@L77] $r2 = invokevirtual $r1.getWriteMethod()/base.writeMethodName.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getPoc()>/temp$4}
+Sink nodes:
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.PropertyDescriptor,java.beans.PropertyDescriptor)>[5@L917] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor[] getTargetPropertyInfo()>[54@L512] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[146@L754] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[28@L657] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[70@L689] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.IndexedPropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.IndexedPropertyDescriptor)>[8@L929] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[77@L696] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.IndexedPropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.IndexedPropertyDescriptor)>[5@L927] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[214@L817] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyWithIndexedProperty(java.beans.PropertyDescriptor,java.beans.IndexedPropertyDescriptor)>[11@L841] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor[] getTargetPropertyInfo()>[90@L522] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyWithIndexedProperty(java.beans.PropertyDescriptor,java.beans.IndexedPropertyDescriptor)>[14@L841] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor[] getTargetPropertyInfo()>[110@L529] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void addPropertyDescriptor(java.beans.PropertyDescriptor)>[69@L604] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[46@L670] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor[] getTargetPropertyInfo()>[64@L515] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.PropertyDescriptor)>[15@L865] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor[] getTargetPropertyInfo()>[78@L519] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.PropertyDescriptor,java.beans.PropertyDescriptor)>[8@L919] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[161@L758] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[98@L714] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[158@L758] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[91@L707] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void addPropertyDescriptor(java.beans.PropertyDescriptor)>[62@L599] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: void processPropertyDescriptors()>[143@L754] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.PropertyDescriptor)>[11@L863] new java.beans.IndexedPropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.PropertyDescriptor)>[27@L869] new java.beans.PropertyDescriptor}.writeMethodName}
+InstanceFieldNode{NewObj{<java.beans.Introspector: java.beans.PropertyDescriptor mergePropertyDescriptor(java.beans.IndexedPropertyDescriptor,java.beans.PropertyDescriptor)>[31@L871] new java.beans.PropertyDescriptor}.writeMethodName}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.85s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,3645 (insens) / 48,6883 (sens)
+#objects:                     7031 (insens) / 1,1547 (sens)
+#var points-to:               87,6368 (insens) / 509,6074 (sens)
+#static field points-to:      2539 (sens)
+#instance field points-to:    51,6909 (sens)
+#array points-to:             4,8138 (sens)
+#reachable methods:           9330 (insens) / 5,7439 (sens)
+#call graph edges:            4,6282 (insens) / 38,5459 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 42.71s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+218 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 0.28s
+Tai-e finishes, elapsed time: 47.54s

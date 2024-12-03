@@ -1,0 +1,51 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+34069 classes with 323020 methods in the world
+WorldBuilder finishes, elapsed time: 119.42s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\openfire-xmppserver\4.4.2\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+  CallSource{<Server: java.lang.String getTaintHost()>/result(java.lang.String)}
+
+sinks:
+  <org.apache.http.HttpHost: void <init>(java.lang.String,int,java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 20.27s
+Detected 0 taint flow(s):
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getTaintHost()>/$c0}
+VarNode{<Server: void main(java.lang.String[])>/$r3}
+Sink nodes:
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.70s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                17,9454 (insens) / 17,9454 (sens)
+#objects:                     1,0629 (insens) / 1,0629 (sens)
+#var points-to:               1021,5500 (insens) / 1021,5501 (sens)
+#static field points-to:      3737 (sens)
+#instance field points-to:    76,1530 (sens)
+#array points-to:             17,7348 (sens)
+#reachable methods:           1,7282 (insens) / 1,7282 (sens)
+#call graph edges:            10,6760 (insens) / 10,6765 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 261.31s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+22913 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 63.39s
+Tai-e finishes, elapsed time: 444.45s

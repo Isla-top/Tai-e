@@ -1,0 +1,54 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+10658 classes with 100705 methods in the world
+WorldBuilder finishes, elapsed time: 25.06s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\apache\tomcat\8.5.46\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+  FieldSource{<org.apache.catalina.webresources.CachedResource: byte[] cachedContent>(byte[])}
+
+sinks:
+  <org.apache.catalina.connector.CoyoteOutputStream: void write(byte[])>/0
+  <org.apache.catalina.webresources.StandardRoot: org.apache.catalina.WebResource getResource(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 20.73s
+Detected 1 taint flow(s):
+TaintFlow{<org.apache.catalina.webresources.CachedResource: byte[] getContent()> [0@L299] r3 = %this.<org.apache.catalina.webresources.CachedResource: byte[] cachedContent> -> <org.apache.catalina.servlets.DefaultServlet: void serveResource(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,boolean,java.lang.String)>[355@L1144] invokevirtual r107.write(r113)/0}
+TFGDumper starts ...
+Source nodes:
+VarNode{<org.apache.catalina.webresources.CachedResource: byte[] getContent()>/r3}
+VarNode{<Server: char[] taintWarp()>/temp$3}
+Sink nodes:
+VarNode{<org.apache.catalina.servlets.DefaultServlet: void serveResource(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,boolean,java.lang.String)>/r113}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 1.41s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                8,9973 (insens) / 48,4537 (sens)
+#objects:                     5834 (insens) / 1,0365 (sens)
+#var points-to:               27,0996 (insens) / 308,7802 (sens)
+#static field points-to:      2368 (sens)
+#instance field points-to:    30,2233 (sens)
+#array points-to:             4,0280 (sens)
+#reachable methods:           8907 (insens) / 5,7229 (sens)
+#call graph edges:            4,3250 (insens) / 38,2752 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 33.44s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+2639 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 6.45s
+Tai-e finishes, elapsed time: 65.24s

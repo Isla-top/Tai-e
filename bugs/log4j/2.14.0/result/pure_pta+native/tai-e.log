@@ -1,0 +1,49 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+10580 classes with 97840 methods in the world
+WorldBuilder finishes, elapsed time: 10.48s
+pta starts ...
+Using reflection log from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\log4j\2.14.0\refl.log
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\log4j\2.14.0\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <javax.naming.InitialContext: java.lang.Object lookup(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 13.23s
+Detected 0 taint flow(s):
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.74s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                8,3903 (insens) / 45,0044 (sens)
+#objects:                     5486 (insens) / 9686 (sens)
+#var points-to:               24,3114 (insens) / 275,7037 (sens)
+#static field points-to:      2080 (sens)
+#instance field points-to:    27,3558 (sens)
+#array points-to:             2,9210 (sens)
+#reachable methods:           8261 (insens) / 5,2210 (sens)
+#call graph edges:            3,9603 (insens) / 35,4512 (sens)
+----------------------------------------
+pta finishes, elapsed time: 15.57s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+1295 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 2.12s
+Tai-e finishes, elapsed time: 28.43s

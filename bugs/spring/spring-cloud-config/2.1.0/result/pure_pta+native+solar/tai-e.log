@@ -1,0 +1,58 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+12775 classes with 114464 methods in the world
+WorldBuilder finishes, elapsed time: 17.84s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\spring\spring-cloud-config\2.1.0\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <org.springframework.core.io.DefaultResourceLoader: org.springframework.core.io.Resource getResource(java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 13.31s
+Imprecise reflective calls:
+[Array.newInstance]<org.springframework.core.ResolvableType: java.lang.Class resolveClass()>[17@L808] $r9 = invokestatic java.lang.reflect.Array.newInstance($r8, %intconst0), #targets: 79
+[Array.newInstance]<org.springframework.core.convert.support.CollectionToArrayConverter: java.lang.Object convert(java.lang.Object,org.springframework.core.convert.TypeDescriptor,org.springframework.core.convert.TypeDescriptor)>[12@L72] $r5 = invokestatic java.lang.reflect.Array.newInstance($r4, $i0), #targets: 79
+[Array.newInstance]<org.springframework.core.convert.support.GenericConversionService$Converters: void addToClassHierarchy(int,java.lang.Class,boolean,java.util.List,java.util.Set)>[2@L626] $r2 = invokestatic java.lang.reflect.Array.newInstance(type, %intconst0), #targets: 79
+[Array.newInstance]<org.springframework.core.convert.support.ObjectToArrayConverter: java.lang.Object convert(java.lang.Object,org.springframework.core.convert.TypeDescriptor,org.springframework.core.convert.TypeDescriptor)>[11@L66] $r4 = invokestatic java.lang.reflect.Array.newInstance($r3, %intconst1), #targets: 79
+[Array.newInstance]<org.springframework.core.convert.support.StringToArrayConverter: java.lang.Object convert(java.lang.Object,org.springframework.core.convert.TypeDescriptor,org.springframework.core.convert.TypeDescriptor)>[13@L69] $r6 = invokestatic java.lang.reflect.Array.newInstance($r5, $i0), #targets: 79
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L24] temp$4 = invokestatic Server.taint()/result -> <org.springframework.cloud.config.server.resource.GenericResourceRepository: org.springframework.core.io.Resource findOne(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>[18@L59] $r19 = invokeinterface $r18.getResource(r13)/0.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.73s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,1469 (insens) / 48,6684 (sens)
+#objects:                     6838 (insens) / 1,1617 (sens)
+#var points-to:               58,5745 (insens) / 464,4540 (sens)
+#static field points-to:      2164 (sens)
+#instance field points-to:    31,0153 (sens)
+#array points-to:             4,7823 (sens)
+#reachable methods:           9329 (insens) / 5,8184 (sens)
+#call graph edges:            4,5099 (insens) / 41,7546 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 27.95s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+2960 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 5.52s
+Tai-e finishes, elapsed time: 51.52s

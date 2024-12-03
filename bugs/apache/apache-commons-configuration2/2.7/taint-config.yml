@@ -1,0 +1,21 @@
+call-site-mode: true
+
+transfer-inference:
+  confidence: DISABLE # ,DISABLE,HIGH
+  scope: APP      # ,APP_LIB,ALL
+  appPackages: [ org.apache.commons ]
+
+sources:
+  - { kind: call, method: "<Server: java.lang.String getInput()>", index: result }
+
+sinks:
+  - { method: "<javax.script.ScriptEngine: java.lang.Object eval(java.lang.String)>", index: 0 }
+#  - { method: "<org.apache.commons.text.lookup.ScriptStringLookup: java.lang.String lookup(java.lang.String)>", index: 0 }
+
+#transfer:
+  #- { method: "<java.lang.String: java.lang.String substring(int,int)>", from: base, to: result, type: java.lang.String }
+
+transfers:
+  - { method: "<java.lang.String: java.lang.String substring(int,int)>", from: base, to: result, type: java.lang.String }
+#  - { method: "<java.lang.String: void getChars(int,int,char[],int)>", from: base, to: 2, type: "char[]" }
+#  - { method: "<java.lang.String: void <init>(char[],int,int)>", from: 0, to: base, type: "java.lang.String" }

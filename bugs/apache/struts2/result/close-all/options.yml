@@ -1,0 +1,38 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+- java-benchmarks/bugs/apache/struts2
+- java-benchmarks/bugs/apache/struts2/lib/commons-fileupload-1.3.2.jar
+- java-benchmarks/bugs/apache/struts2/lib/commons-io-2.4.jar
+- java-benchmarks/bugs/apache/struts2/lib/commons-lang3-3.4.jar
+- java-benchmarks/bugs/apache/struts2/lib/freemarker-2.3.23.jar
+- java-benchmarks/bugs/apache/struts2/lib/javassist-3.20.0-GA.jar
+- java-benchmarks/bugs/apache/struts2/lib/log4j-api-2.7.jar
+- java-benchmarks/bugs/apache/struts2/lib/ognl-3.1.12.jar
+- java-benchmarks/bugs/apache/struts2/lib/servlet-api-2.5.jar
+- java-benchmarks/bugs/apache/struts2/lib/spring-core-3.2.0.RELEASE.jar
+- java-benchmarks/bugs/apache/struts2/lib/spring-test-5.3.20.jar
+- java-benchmarks/bugs/apache/struts2/lib/struts2-core-2.5.10.jar
+- java-benchmarks/bugs/apache/struts2/lib/jetty-http-9.4.18.v20190429.jar
+- java-benchmarks/bugs/apache/struts2/lib/jetty-io-9.4.18.v20190429.jar
+- java-benchmarks/bugs/apache/struts2/lib/jetty-server-9.4.18.v20190429.jar
+- java-benchmarks/bugs/apache/struts2/lib/jetty-util-9.4.18.v20190429.jar
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:2-type;dump-ci:true;implicit-entries:false;distinguish-string-constants:null;taint-config:java-benchmarks/bugs/apache/struts2/taint-config.yaml;dump-ci:true
+  ir-dumper: ""
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL

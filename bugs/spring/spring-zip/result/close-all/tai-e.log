@@ -1,0 +1,85 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+13254 classes with 109183 methods in the world
+WorldBuilder finishes, elapsed time: 14.95s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\spring\spring-zip\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+  CallSource{<java.io.File: void <init>(java.io.File,java.lang.String)>/base(java.io.File)}
+
+sinks:
+  <org.springframework.integration.zip.transformer.SpringZipUtils: void copy(java.io.InputStream,java.io.File)>/1
+  <java.io.File: void <init>(java.io.File,java.lang.String)>/1.value[*]
+
+[Pointer analysis] elapsed time: 15.45s
+Detected 16 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <javax.crypto.JceSecurity: void setupJurisdictionPolicies()>[58@L296] invokespecial $r5.<init>($r6, %stringconst12)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <javax.crypto.JceSecurity: void setupJurisdictionPolicies()>[63@L297] invokespecial $r7.<init>($r8, %stringconst13)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <javax.crypto.JceSecurity: void setupJurisdictionPolicies()>[79@L307] invokespecial $r18.<init>($r19, %stringconst12)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <javax.crypto.JceSecurity: void setupJurisdictionPolicies()>[83@L308] invokespecial $r20.<init>($r21, %stringconst13)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>[39@L130] invokespecial $r20.<init>($r23, $r26)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>[42@L132] invokespecial $r27.<init>($r20, $r1)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.ExtensionDependency: java.io.File[] getExtFiles(java.io.File[])>[24@L470] invokespecial $r13.<init>($r15, $r14)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.ExtensionDependency$2: java.io.File run()>[18@L407] invokespecial $r21.<init>($r23, $r22)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.ExtensionDependency$2: java.io.File run()>[31@L409] invokespecial $r7.<init>($r9, $r15)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.Launcher$ExtClassLoader: java.net.URL[] getExtURLs(java.io.File[])>[19@L204] invokespecial $r5.<init>($r7, $r6)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.MetaIndex: void registerDirectory(java.io.File)>[2@L162] invokespecial $r15.<init>(r12, %stringconst0)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.MetaIndex: void registerDirectory(java.io.File)>[35@L190] invokespecial $r19.<init>($r5, r13)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.MetaIndex: void registerDirectory(java.io.File)>[64@L215] invokespecial $r21.<init>($r5, r13)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.URLClassPath$FileLoader: sun.misc.Resource getResource(java.lang.String,boolean)>[26@L1381] invokespecial $r24.<init>($r14, $r15)/1.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[3@L32] temp$4 = invokestatic Server.taint()/result -> <sun.misc.URLClassPath$FileLoader: sun.misc.Resource getResource(java.lang.String,boolean)>[39@L1388] invokespecial $r25.<init>($r10, $r11)/1.value[*]}
+TaintFlow{<org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>[42@L132] invokespecial $r27.<init>($r20, $r1)/base -> <org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>[47@L138] invokestatic org.springframework.integration.zip.transformer.SpringZipUtils.copy(zipEntryInputStream, $r27)/1}
+TFGDumper starts ...
+Source nodes:
+VarNode{<sun.misc.ExtensionDependency$2: java.io.File run()>/$r7}
+VarNode{<javax.crypto.JceSecurity: void setupJurisdictionPolicies()>/$r20}
+VarNode{<org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>/$r20}
+VarNode{<javax.crypto.JceSecurity: void setupJurisdictionPolicies()>/$r5}
+VarNode{<org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>/$r27}
+VarNode{<javax.crypto.JceSecurity: void setupJurisdictionPolicies()>/$r7}
+VarNode{<sun.misc.MetaIndex: void registerDirectory(java.io.File)>/$r21}
+VarNode{<sun.misc.MetaIndex: void registerDirectory(java.io.File)>/$r19}
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+VarNode{<sun.misc.URLClassPath$FileLoader: sun.misc.Resource getResource(java.lang.String,boolean)>/$r25}
+VarNode{<sun.misc.Launcher$ExtClassLoader: java.net.URL[] getExtURLs(java.io.File[])>/$r5}
+VarNode{<sun.misc.ExtensionDependency: java.io.File[] getExtFiles(java.io.File[])>/$r13}
+VarNode{<sun.misc.URLClassPath$FileLoader: sun.misc.Resource getResource(java.lang.String,boolean)>/$r24}
+VarNode{<sun.misc.MetaIndex: void registerDirectory(java.io.File)>/$r15}
+VarNode{<sun.misc.ExtensionDependency$2: java.io.File run()>/$r21}
+VarNode{<javax.crypto.JceSecurity: void setupJurisdictionPolicies()>/$r18}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+VarNode{<org.springframework.integration.zip.transformer.UnZipTransformer$1: void process(java.io.InputStream,java.util.zip.ZipEntry)>/$r27}
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.89s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,0670 (insens) / 48,3861 (sens)
+#objects:                     5883 (insens) / 1,0476 (sens)
+#var points-to:               29,9292 (insens) / 307,6299 (sens)
+#static field points-to:      2194 (sens)
+#instance field points-to:    28,1882 (sens)
+#array points-to:             4,0588 (sens)
+#reachable methods:           9166 (insens) / 5,8317 (sens)
+#call graph edges:            4,4317 (insens) / 38,4926 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 26.00s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+4370 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 5.51s
+Tai-e finishes, elapsed time: 46.66s

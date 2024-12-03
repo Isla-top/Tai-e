@@ -1,0 +1,13 @@
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getInput()>", index: result }
+#  - { kind: call, method: "<Server: javax.servlet.http.HttpServletRequest getHttpRequest()>", index: result, type: org.springframework.mock.web.MockHttpServletRequest }
+  - { kind: call, method: "<Server: char taint()>", index: result }
+
+sinks:
+  - { method: "<org.springframework.core.io.DefaultResourceLoader: org.springframework.core.io.Resource getResource(java.lang.String)>", index: "0.value[*]" }
+#  - { method: "<org.springframework.cloud.config.server.resource.GenericResourceRepository: org.springframework.core.io.Resource findOne(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>", index: 3 }
+#  - { method: "<java.net.URL: void <init>(java.net.URL,java.lang.String)>", index: 1 }
+
+transfers:
+#  - { method: "<org.springframework.web.util.UrlPathHelper: java.lang.String getPathWithinApplication(javax.servlet.http.HttpServletRequest)>", from: 0, to: result, type: java.lang.String }
+#  - { method: "<java.lang.String: java.lang.String substring(int)>", from: base, to: result, type: java.lang.String }

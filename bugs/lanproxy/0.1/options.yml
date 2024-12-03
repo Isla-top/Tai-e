@@ -1,0 +1,27 @@
+optionsFile: null
+printHelp: false
+classPath:
+  - java-benchmarks/bugs/lanproxy/0.1
+  - java-benchmarks/bugs/lanproxy/0.1/proxy-server-0.1.jar
+  - java-benchmarks/bugs/lanproxy/0.1/lib/netty-all-4.0.36.Final.jar
+  - java-benchmarks/bugs/lanproxy/0.1/lib/proxy-common-0.1.jar
+  - java-benchmarks/bugs/lanproxy/0.1/lib/proxy-protocol-0.1.jar
+appClassPath: []
+mainClass: Server
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: cs:2-type;implicit-entries:false;reflection-inference:solar;distinguish-string-constants:null;taint-config:java-benchmarks/bugs/lanproxy/0.1/taint-config.yml;dump-ci:true
+  ir-dumper: ""
+onlyGenPlan: false
+keepResult:
+  - $KEEP-ALL

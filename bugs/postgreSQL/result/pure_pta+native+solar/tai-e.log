@@ -1,0 +1,57 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+12086 classes with 98468 methods in the world
+WorldBuilder finishes, elapsed time: 19.06s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\postgreSQL\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <java.util.logging.FileHandler: void <init>(java.lang.String)>/0.value[*]
+  <org.postgresql.util.ObjectFactory: java.lang.Object instantiate(java.lang.String,java.util.Properties,boolean,java.lang.String)>/0.value[*]
+
+[Pointer analysis] elapsed time: 18.17s
+Detected 5 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[4@L16] temp$4 = invokestatic Server.taint()/result -> <org.postgresql.Driver: void setupLoggerFromProperties(java.util.Properties)>[55@L332] invokespecial $r17.<init>($r34)/0.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[4@L16] temp$4 = invokestatic Server.taint()/result -> <org.postgresql.core.SocketFactoryFactory: javax.net.SocketFactory getSocketFactory(java.util.Properties)>[8@L39] $r5 = invokestatic org.postgresql.util.ObjectFactory.instantiate($r2, r0, %intconst0, $r4)/0.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[4@L16] temp$4 = invokestatic Server.taint()/result -> <org.postgresql.core.SocketFactoryFactory: javax.net.ssl.SSLSocketFactory getSslSocketFactory(java.util.Properties)>[16@L64] $r7 = invokestatic org.postgresql.util.ObjectFactory.instantiate($r2, r0, %intconst1, $r6)/0.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[4@L16] temp$4 = invokestatic Server.taint()/result -> <org.postgresql.ssl.LibPQFactory: javax.security.auth.callback.CallbackHandler getCallbackHandler(java.util.Properties)>[4@L59] $r6 = invokestatic org.postgresql.util.ObjectFactory.instantiate($r2, info, %intconst0, %nullconst)/0.value[*]}
+TaintFlow{<Server: java.lang.String getInput()>[4@L16] temp$4 = invokestatic Server.taint()/result -> <org.postgresql.ssl.MakeSSL: void verifyPeerName(org.postgresql.core.PGStream,java.util.Properties,javax.net.ssl.SSLSocket)>[8@L67] $r3 = invokestatic org.postgresql.ssl.MakeSSL.instantiate($r2, info, %intconst0, %nullconst)/0.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{MergedObj{<Merged java.lang.String>}.value}
+InstanceFieldNode{MergedObj{<Merged string constants>}.value}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.97s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                10,7479 (insens) / 58,4235 (sens)
+#objects:                     6961 (insens) / 1,2384 (sens)
+#var points-to:               32,5291 (insens) / 345,5497 (sens)
+#static field points-to:      2774 (sens)
+#instance field points-to:    29,8293 (sens)
+#array points-to:             3,1590 (sens)
+#reachable methods:           1,0584 (insens) / 6,8944 (sens)
+#call graph edges:            5,0459 (insens) / 47,8468 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 30.76s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+3608 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 5.37s
+Tai-e finishes, elapsed time: 55.43s

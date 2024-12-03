@@ -1,0 +1,52 @@
+Writing log to D:\A_work\Tai-e-private\Tai-e\output\tai-e.log
+java.version: 17.0.3
+java.version.date: 2022-04-19
+java.runtime.version: 17.0.3+6-LTS
+java.vendor: Amazon.com Inc.
+java.vendor.version: Corretto-17.0.3.6.1
+os.name: Windows 10
+os.version: 10.0
+os.arch: amd64
+Tai-e Version: 0.5.1-SNAPSHOT
+Tai-e Commit: 77cb60866bebe2b4bcb219ea9cf035f5a0e6c6aa
+Writing analysis plan to D:\A_work\Tai-e-private\Tai-e\output\tai-e-plan.yml
+WorldBuilder starts ...
+7298 classes with 71209 methods in the world
+WorldBuilder finishes, elapsed time: 8.65s
+pta starts ...
+Loading taint config from D:\A_work\Tai-e-private\Tai-e\java-benchmarks\bugs\lanproxy\0.1\taint-config.yml
+TaintConfig:
+sources:
+  CallSource{<Server: char taint()>/result(char)}
+
+sinks:
+  <java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>/0.path.value[*]
+
+[Pointer analysis] elapsed time: 17.25s
+Detected 1 taint flow(s):
+TaintFlow{<Server: java.lang.String getInput()>[3@L21] temp$4 = invokestatic Server.taint()/result -> <org.fengfei.lanproxy.server.config.web.HttpRequestHandler: void outputPages(io.netty.channel.ChannelHandlerContext,io.netty.handler.codec.http.FullHttpRequest)>[58@L106] invokespecial $r51.<init>(r40, %stringconst5)/0.path.value[*]}
+TFGDumper starts ...
+Source nodes:
+VarNode{<Server: java.lang.String getInput()>/temp$4}
+Sink nodes:
+InstanceFieldNode{NewObj{<org.fengfei.lanproxy.server.config.web.HttpRequestHandler: void outputPages(io.netty.channel.ChannelHandlerContext,io.netty.handler.codec.http.FullHttpRequest)>[28@L86] new java.io.File}.path}
+InstanceFieldNode{NewObj{<org.fengfei.lanproxy.server.config.web.HttpRequestHandler: void outputPages(io.netty.channel.ChannelHandlerContext,io.netty.handler.codec.http.FullHttpRequest)>[40@L89] new java.io.File}.path}
+Dumping D:\A_work\Tai-e-private\Tai-e\output\taint-flow-graph.dot
+TFGDumper finishes, elapsed time: 0.90s
+-------------- Pointer analysis statistics: --------------
+#var pointers:                9,1040 (insens) / 46,8189 (sens)
+#objects:                     5818 (insens) / 1,0134 (sens)
+#var points-to:               25,8852 (insens) / 262,4113 (sens)
+#static field points-to:      2306 (sens)
+#instance field points-to:    24,4502 (sens)
+#array points-to:             2,4616 (sens)
+#reachable methods:           9386 (insens) / 5,6039 (sens)
+#call graph edges:            4,3632 (insens) / 35,9030 (sens)
+----------------------------------------
+Dumping points-to set (without contexts) to D:\A_work\Tai-e-private\Tai-e\output\pta-ci-results.txt
+pta finishes, elapsed time: 27.84s
+ir-dumper starts ...
+Dumping IR in D:\A_work\Tai-e-private\Tai-e\output\tir
+532 classes in scope (APP) of class analyses
+ir-dumper finishes, elapsed time: 1.10s
+Tai-e finishes, elapsed time: 37.88s

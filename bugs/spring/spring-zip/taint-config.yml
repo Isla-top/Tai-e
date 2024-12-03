@@ -1,0 +1,37 @@
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getInput()>", index: result }
+  - { kind: call, method: "<Server: char taint()>", index: result }
+  - { kind: call, method: "<java.io.File: void <init>(java.io.File,java.lang.String)>", index: "base" }
+
+sinks:
+  - { method: "<org.springframework.integration.zip.transformer.SpringZipUtils: void copy(java.io.InputStream,java.io.File)>", index: 1 }
+#  - { method: "<java.io.File: void <init>(java.io.File,java.lang.String)>", index: "0" }
+  - { method: "<java.io.File: void <init>(java.io.File,java.lang.String)>", index: "1.value[*]" }
+
+transfers:
+#  - { method: "<java.io.BufferedInputStream: void <init>(java.io.InputStream)>", from: 0, to: base, type: java.io.BufferedInputStream }
+#  - { method: "<java.util.zip.ZipInputStream: void <init>(java.io.InputStream)>", from: 0, to: base, type: java.util.zip.ZipInputStream }
+#  - { method: "<java.io.FileInputStream: void <init>(java.lang.String)>", from: 0, to: base, type: java.io.FileInputStream }
+#  - { method: "<java.util.zip.ZipInputStream: java.util.zip.ZipEntry getNextEntry()>", from: base, to: result, type: java.util.zip.ZipEntry }
+#  - { method: "<java.util.zip.ZipEntry: java.lang.String getName()>", from: base, to: result, type: java.lang.String }
+#  - { method: "<java.io.File: void <init>(java.io.File,java.lang.String)>", from: 1, to: base, type: java.io.File }
+
+#  - { method: "<java.lang.String: void <init>(char[],int,int)>", from: 0, to: base }
+#  - { method: "<java.lang.String: void getChars(int,int,char[],int)>", from: base, to: 2 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

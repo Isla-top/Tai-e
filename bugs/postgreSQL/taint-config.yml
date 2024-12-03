@@ -1,0 +1,30 @@
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getInput()>", index: result }
+  - { kind: call, method: "<Server: char taint()>", index: result }
+
+sinks:
+#  - { method: "<java.util.logging.Logger: void addHandler(java.util.logging.Handler)>", index: "0.pattern.value[*]" }
+  - { method: "<java.util.logging.FileHandler: void <init>(java.lang.String)>", index: "0.value[*]" }
+  - { method: "<org.postgresql.util.ObjectFactory: java.lang.Object instantiate(java.lang.String,java.util.Properties,boolean,java.lang.String)>", index: "0.value[*]" }
+
+transfers:
+#  - { method: "<java.lang.String: java.lang.String substring(int)>", from: base, to: result, type: java.lang.String }
+#  - { method: "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", from: 0, to: base, type: java.lang.StringBuilder }
+#  - { method: "<java.lang.StringBuilder: java.lang.String toString()>", from: base, to: result, type: java.lang.String }
+#  - { method: "<java.util.logging.FileHandler: void <init>(java.lang.String)>", from: 0, to: base, type: java.util.logging.FileHandler }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
