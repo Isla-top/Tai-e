@@ -2,8 +2,10 @@ package pascal.taie.analysis.pta.plugin.taint;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pascal.taie.analysis.graph.flowgraph.*;
-import pascal.taie.analysis.pta.core.cs.element.Pointer;
+import pascal.taie.analysis.graph.flowgraph.InstanceFieldNode;
+import pascal.taie.analysis.graph.flowgraph.Node;
+import pascal.taie.analysis.graph.flowgraph.ObjectFlowGraph;
+import pascal.taie.analysis.graph.flowgraph.VarNode;
 import pascal.taie.analysis.pta.core.solver.Solver;
 import pascal.taie.analysis.pta.plugin.CompositePlugin;
 import pascal.taie.ir.exp.InstanceFieldAccess;
@@ -15,11 +17,10 @@ import pascal.taie.util.collection.Maps;
 import pascal.taie.util.collection.MultiMap;
 import pascal.taie.util.collection.Sets;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class TaintTracer extends CompositePlugin {
 
@@ -31,22 +32,8 @@ public class TaintTracer extends CompositePlugin {
 
     private MultiMap<JField, Var> fSource2Sink;
 
-//    // var -> var = a.f
-//    private MultiMap<Var, LoadField> var2LoadResult = Maps.newMultiMap();
-//
-//    // var -> a.f = var
-//    private MultiMap<Var, StoreField> var2StoreResult = Maps.newMultiMap();
-//
-//    // var -> var = a[i]
-//    private MultiMap<Var, StoreField> var2LoadArrayResult = Maps.newMultiMap();
-//
-//    // var -> a[i] = var
-//    private MultiMap<Var, StoreField> var2StoreArrayResult = Maps.newMultiMap();
-
     /**
      * var -> var1 that
-     * var = var1.f
-     * var = var1[i]
      * var1.f = var
      * var1[i] = var
      */
@@ -61,16 +48,10 @@ public class TaintTracer extends CompositePlugin {
 
     @Override
     public void onNewStmt(Stmt stmt, JMethod container) {
-        if(stmt instanceof LoadField lf){
-            if(lf.getRValue() instanceof InstanceFieldAccess ifa) {
-                var2FieldResult.put(lf.getLValue(), ifa.getBase());
-            }
-        }else if(stmt instanceof StoreField sf){
+        if(stmt instanceof StoreField sf){
             if(sf.getLValue() instanceof InstanceFieldAccess ifa){
                 var2FieldResult.put(sf.getRValue(), ifa.getBase());
             }
-        }else if(stmt instanceof LoadArray la){
-            var2FieldResult.put(la.getLValue(), la.getRValue().getBase());
         }else if(stmt instanceof StoreArray sa){
             var2FieldResult.put(sa.getRValue(), sa.getLValue().getBase());
         }
@@ -121,8 +102,10 @@ public class TaintTracer extends CompositePlugin {
             newNodesCopy.forEach(n -> {
                 ofg.getOutEdgesOf(n).forEach(e -> {
                     edges.put(e.source(), e.target());
-                    node2Layers.put(e.target(), node2Layers.get(e.source()));
-                    newNodes.add(e.target());
+                    if(!node2Layers.containsKey(e.target())){
+                        node2Layers.put(e.target(), node2Layers.get(e.source()));
+                        newNodes.add(e.target());
+                    }
                 });
 
                 if(n instanceof VarNode vn){
@@ -130,9 +113,37 @@ public class TaintTracer extends CompositePlugin {
                     processFieldNode(node2Layers, vn, edges, newNodes, ofg);
                 }
             });
-            logger.info(newNodes);
         }
-        logger.info(edges);
+//        edges.entrySet().forEach(logger::info);
+        findPath(edges, ofg.getVarNode(source), ofg.getVarNode(sink));
+    }
+
+    private void findPath(MultiMap<Node, Node> edges, Node source, Node sink){
+        MultiMap<Node, Node> reverseEdges = Maps.newMultiMap();
+        MultiMap<Node, Node> pathGraph = Maps.newMultiMap();
+        edges.entrySet().forEach(e -> reverseEdges.put(e.getValue(), e.getKey()));
+
+        List<Node> workList = new ArrayList<>();
+        workList.add(sink);
+        while(!workList.isEmpty()){
+            Node now = workList.remove(0);
+            reverseEdges.get(now).forEach(n -> {
+                pathGraph.put(now, n);
+                if(!pathGraph.containsKey(n)){
+                    workList.add(n);
+                }
+            });
+        }
+
+        logPath(pathGraph, source);
+        logger.info(source + "   " + sink + "   " +reverseEdges.get(sink));
+    }
+
+    private void logPath(MultiMap<Node, Node> pathGraph, Node now){
+        pathGraph.get(now).forEach(n -> {
+            logger.info(now + " -> " + n);
+            logPath(pathGraph, n);
+        });
     }
 
     private void processVarNode(Map<Node, Integer> node2Layers, VarNode vn, MultiMap<Node, Node> edges, Set<Node> newNodes, ObjectFlowGraph ofg){
@@ -150,38 +161,23 @@ public class TaintTracer extends CompositePlugin {
                                     InstanceFieldNode ifn = ofg.getInstanceFieldNode(cso.getObject(), jf);
                                     if(ifn == null || !node2Layers.containsKey(ifn) || ofg.getVarNode(lf.getLValue()) == null) return;
                                     edges.put(vn, ofg.getVarNode(lf.getLValue()));
-                                    node2Layers.put(ofg.getVarNode(lf.getLValue()), node2Layers.get(vn) - 1);
-                                    newNodes.add(ofg.getVarNode(lf.getLValue()));
+                                    if(!node2Layers.containsKey(ofg.getVarNode(lf.getLValue()))){
+                                        node2Layers.put(ofg.getVarNode(lf.getLValue()), node2Layers.get(vn) - 1);
+                                        newNodes.add(ofg.getVarNode(lf.getLValue()));
+                                    }
                                 });
                             });
                 });
     }
 
     private void processFieldNode(Map<Node, Integer> node2Layers, VarNode vn, MultiMap<Node, Node> edges, Set<Node> newNodes, ObjectFlowGraph ofg){
-        Set<Node> nextNodes = Sets.newHybridSet(edges.get(vn));
-        nextNodes.forEach(n -> {
-            if(n instanceof InstanceFieldNode ifn){
-                var2FieldResult.get(vn.getVar()).forEach(v -> {
-                    Node wrap = ofg.getVarNode(v);
-                    if(solver.getResult().getPointsToSet(v).contains(ifn.getBase()) && wrap != null && !node2Layers.containsKey(wrap)){
-                        edges.put(vn, wrap);
-                        if(!node2Layers.containsKey(wrap)){
-                            node2Layers.put(wrap, node2Layers.get(vn) + 1);
-                            newNodes.add(wrap);
-                        }
-                    }
-                });
-            }else if(n instanceof ArrayIndexNode ain){
-                var2FieldResult.get(vn.getVar()).forEach(v -> {
-                    Node wrap = ofg.getVarNode(v);
-                    if(solver.getResult().getPointsToSet(v).contains(ain.getBase()) && wrap != null){
-                        edges.put(vn, wrap);
-                        if(!node2Layers.containsKey(wrap)){
-                            node2Layers.put(wrap, node2Layers.get(vn) + 1);
-                            newNodes.add(wrap);
-                        }
-                    }
-                });
+        var2FieldResult.get(vn.getVar()).forEach(v -> {
+            if(ofg.getVarNode(v) != null) {
+                edges.put(vn, ofg.getVarNode(v));
+                if(!node2Layers.containsKey(ofg.getVarNode(v))){
+                    node2Layers.put(ofg.getVarNode(v), node2Layers.get(vn) + 1);
+                    newNodes.add(ofg.getVarNode(v));
+                }
             }
         });
     }
