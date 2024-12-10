@@ -128,7 +128,7 @@ public class TaintTracer extends CompositePlugin {
         while(!workList.isEmpty()){
             Node now = workList.remove(0);
             reverseEdges.get(now).forEach(n -> {
-                pathGraph.put(now, n);
+                pathGraph.put(n, now);
                 if(!pathGraph.containsKey(n)){
                     workList.add(n);
                 }
