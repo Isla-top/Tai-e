@@ -36,7 +36,7 @@ import java.util.Set;
 /**
  * Manages taint objects.
  */
-class TaintManager {
+public class TaintManager {
 
     private static final Descriptor TAINT_DESC = () -> "TaintObj";
 
@@ -64,7 +64,7 @@ class TaintManager {
     /**
      * @return true if given obj represents a taint object, otherwise false.
      */
-    boolean isTaint(Obj obj) {
+    public boolean isTaint(Obj obj) {
         return obj instanceof MockObj mockObj &&
                 mockObj.getDescriptor().equals(TAINT_DESC);
     }
@@ -73,7 +73,7 @@ class TaintManager {
      * @return the source point of given taint object.
      * @throws AnalysisException if given object is not a taint object.
      */
-    SourcePoint getSourcePoint(Obj obj) {
+    public SourcePoint getSourcePoint(Obj obj) {
         if (isTaint(obj)) {
             return (SourcePoint) obj.getAllocation();
         }

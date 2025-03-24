@@ -22,6 +22,8 @@
 
 package pascal.taie.analysis.graph.flowgraph;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pascal.taie.analysis.graph.callgraph.CallGraph;
 import pascal.taie.analysis.graph.callgraph.CallKind;
 import pascal.taie.analysis.pta.core.cs.element.ArrayIndex;
@@ -46,6 +48,9 @@ import java.util.Set;
 
 public class ObjectFlowGraph extends NodeManager
         implements Graph<Node>, Indexer<Node> {
+
+    private static final Logger logger = LogManager.getLogger(ObjectFlowGraph.class);
+
 
     private final MultiMap<Node, FlowEdge> inEdges = Maps.newMultiMap(
             new IndexMap<>(this, 4096));

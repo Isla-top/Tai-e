@@ -26,6 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pascal.taie.World;
 import pascal.taie.analysis.graph.callgraph.CallGraph;
+import pascal.taie.analysis.pta.PointerAnalysisResult;
 import pascal.taie.analysis.pta.core.cs.context.Context;
 import pascal.taie.analysis.pta.core.cs.element.CSCallSite;
 import pascal.taie.analysis.pta.core.cs.element.CSManager;
@@ -251,9 +252,18 @@ public class TaintAnalysis extends CompositePlugin {
         taintFlows.forEach(logger::info);
         solver.getResult().storeResult(getClass().getName(), taintFlows);
         TaintManager manager = context.manager();
-        Timer.runAndCount(() -> new TFGDumper().dump(
-                        new TFGBuilder(solver.getResult(), taintFlows, manager).build(),
-                        new File(World.get().getOptions().getOutputDir(), TAINT_FLOW_GRAPH_FILE)),
+
+
+//        Timer.runAndCount(() -> new TFGDumper().dump(
+//                        new TFGBuilder(solver.getResult(), taintFlows, manager).build(),
+//                        new File(World.get().getOptions().getOutputDir(), TAINT_FLOW_GRAPH_FILE)),
+//                "TFGDumper");
+        Timer.runAndCount(() -> new
+                        DumperStruct(
+                                new TFGBuilder(solver.getResult(), taintFlows, manager).build(),
+                                solver.getResult(),
+                                manager)
+                        .dump(new File(World.get().getOptions().getOutputDir(), "tfg.yml")),
                 "TFGDumper");
     }
 }

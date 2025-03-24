@@ -49,6 +49,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -69,7 +70,7 @@ class TFGBuilder {
     /**
      * Whether only track taint flow in application code.
      */
-    private final boolean onlyApp = true;
+    private final boolean onlyApp = false;
 
     /**
      * Whether only track taint flow that reaches any sink.
@@ -115,6 +116,19 @@ class TFGBuilder {
                 });
             }
         }
+        Reachability<Node> reachability = new Reachability<>(tfg);
+        Set<Node> set1 = Sets.newSet();
+        Set<Node> set2 = Sets.newSet();
+        tfg.getNodes().stream().filter(n->n.toString().equals("VarNode{<org.apache.logging.log4j.core.net.JndiManager: java.lang.Object lookup(java.lang.String)>/name}"))
+                .forEach(n->{
+                    set1.addAll(reachability.nodesCanReach(n).stream().filter(nn -> !getTaintSet(nn).isEmpty()).collect(Collectors.toSet()));
+                });
+        tfg.getNodes().stream().filter(n->n.toString().equals("VarNode{<Server: void main(java.lang.String[])>/temp$4}"))
+                .forEach(n->{
+                    set2.addAll(reachability.reachableNodesFrom(n).stream().filter(nn -> !getTaintSet(nn).isEmpty()).collect(Collectors.toSet()));
+                });
+        Set<Node> set3 = set1.stream().filter(set2::contains).collect(Collectors.toSet());
+        set3.forEach(n -> logger.info(n + "   " + set3.size()));
         node2TaintSet = null;
         return tfg;
     }
