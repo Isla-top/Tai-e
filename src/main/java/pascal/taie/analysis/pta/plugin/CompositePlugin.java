@@ -24,10 +24,7 @@ package pascal.taie.analysis.pta.plugin;
 
 import pascal.taie.analysis.graph.callgraph.Edge;
 import pascal.taie.analysis.pta.core.cs.context.Context;
-import pascal.taie.analysis.pta.core.cs.element.CSCallSite;
-import pascal.taie.analysis.pta.core.cs.element.CSMethod;
-import pascal.taie.analysis.pta.core.cs.element.CSObj;
-import pascal.taie.analysis.pta.core.cs.element.CSVar;
+import pascal.taie.analysis.pta.core.cs.element.*;
 import pascal.taie.analysis.pta.core.solver.Solver;
 import pascal.taie.analysis.pta.pts.PointsToSet;
 import pascal.taie.ir.stmt.Invoke;
@@ -62,6 +59,8 @@ public class CompositePlugin implements Plugin {
 
     private final List<Plugin> onUnresolvedCallPlugins = new ArrayList<>();
 
+    private final List<Plugin> onNewFieldPointsToSetPlugins = new ArrayList<>();
+
     public void addPlugin(Plugin... plugins) {
         for (Plugin plugin : plugins) {
             allPlugins.add(plugin);
@@ -73,6 +72,8 @@ public class CompositePlugin implements Plugin {
             addPlugin(plugin, onNewCSMethodPlugins, "onNewCSMethod", CSMethod.class);
             addPlugin(plugin, onUnresolvedCallPlugins,
                     "onUnresolvedCall", CSObj.class, Context.class, Invoke.class);
+            addPlugin(plugin, onNewFieldPointsToSetPlugins,
+                    "onNewFieldPointsToSet", InstanceField.class, PointsToSet.class);
         }
     }
 
@@ -93,7 +94,8 @@ public class CompositePlugin implements Plugin {
     public void clearPlugins() {
         Stream.of(allPlugins,
                 onNewPointsToSetPlugins, onNewCallEdgePlugins, onNewMethodPlugins,
-                onNewStmtPlugins, onNewCSMethodPlugins, onUnresolvedCallPlugins
+                onNewStmtPlugins, onNewCSMethodPlugins, onUnresolvedCallPlugins,
+                onNewFieldPointsToSetPlugins
         ).forEach(List::clear);
     }
 
@@ -145,5 +147,10 @@ public class CompositePlugin implements Plugin {
     @Override
     public void onUnresolvedCall(CSObj recv, Context context, Invoke invoke) {
         onUnresolvedCallPlugins.forEach(p -> p.onUnresolvedCall(recv, context, invoke));
+    }
+
+    @Override
+    public void onNewFieldPointsToSet(InstanceField instanceField, PointsToSet pts) {
+        onNewFieldPointsToSetPlugins.forEach(p -> p.onNewFieldPointsToSet(instanceField, pts));
     }
 }

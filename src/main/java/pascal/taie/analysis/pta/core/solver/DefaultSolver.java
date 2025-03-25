@@ -317,8 +317,10 @@ public class DefaultSolver implements Solver {
                         processArrayLoad(v, diff);
                         processCall(v, diff);
                         plugin.onNewPointsToSet(v, diff);
+                    } else if (!diff.isEmpty() && p instanceof InstanceField itf){
+                        plugin.onNewFieldPointsToSet(itf, diff);
                     }
-                } else if (entry instanceof WorkList.CallEdgeEntry eEntry) {
+                } else if (entry instanceof WorkList.CallEdgeEntry eEntry) { // hack
                     processCallEdge(eEntry.edge());
                 }
             }
