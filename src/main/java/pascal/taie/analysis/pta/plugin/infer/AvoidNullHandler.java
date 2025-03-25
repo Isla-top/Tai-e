@@ -12,15 +12,23 @@ import pascal.taie.analysis.pta.plugin.Plugin;
 import pascal.taie.analysis.pta.plugin.dcl.ServiceLoaderModel;
 import pascal.taie.analysis.pta.pts.PointsToSet;
 import pascal.taie.analysis.pta.pts.PointsToSetFactory;
+import pascal.taie.ir.exp.CastExp;
+import pascal.taie.ir.exp.Var;
+import pascal.taie.ir.stmt.Cast;
 import pascal.taie.ir.stmt.Invoke;
+import pascal.taie.ir.stmt.Stmt;
 import pascal.taie.language.classes.ClassHierarchy;
 import pascal.taie.language.classes.JClass;
+import pascal.taie.language.classes.JMethod;
 import pascal.taie.language.type.ArrayType;
+import pascal.taie.language.type.ClassType;
 import pascal.taie.language.type.PrimitiveType;
 import pascal.taie.language.type.Type;
 import pascal.taie.util.collection.Maps;
+import pascal.taie.util.collection.Sets;
 
 import java.util.Map;
+import java.util.Set;
 
 public class AvoidNullHandler implements Plugin {
 
@@ -39,6 +47,8 @@ public class AvoidNullHandler implements Plugin {
 
     private final PointsToSetFactory ptsFactory;
 
+    private Set<Var> castVars;
+
     private static final Logger logger = LogManager.getLogger(AvoidNullHandler.class);
 
     public AvoidNullHandler(Solver solver){
@@ -48,6 +58,14 @@ public class AvoidNullHandler implements Plugin {
         this.heapModel = solver.getHeapModel();
         this.ptsFactory = new PointsToSetFactory(csManager.getObjectIndexer());
         this.classObjMap = Maps.newHybridMap();
+        this.castVars = Sets.newHybridSet();
+    }
+
+    @Override
+    public void onNewStmt(Stmt stmt, JMethod container) {
+        if (stmt instanceof Cast cast) {
+           castVars.add(cast.getLValue());
+        }
     }
 
     @Override
@@ -56,12 +74,15 @@ public class AvoidNullHandler implements Plugin {
         logger.warn("New Phase:");
         csManager.getCSVars()
                 .stream()
+                .filter(v -> !v.getVar().getInvokes().isEmpty())
+                .filter(v -> castVars.contains(v.getVar()))
                 .filter(v -> v.getPointsToSet() == null || v.getPointsToSet().isEmpty())
-                .filter(v -> !(v.getType() instanceof PrimitiveType || v.getType() instanceof ArrayType))
+                .filter(v -> v.getType() instanceof ClassType)
 //                .filter(v -> !v.getType().getName().equals("java.lang.String"))
 //                .filter(v -> !v.getType().getName().equals("java.lang.Class"))
-//                .filter(v -> !v.getType().getName().equals("java.lang.Object"))
-                .filter(v -> v.getType().getName().startsWith("org") || v.getType().getName().startsWith("java.lang.reflect") || v.getType().getName().startsWith("java.lang.Class"))
+                .filter(v -> !v.getType().getName().equals("java.lang.Object"))
+//                .filter(v -> v.getType().getName().startsWith("org") || v.getType().getName().startsWith("java.lang.reflect") || v.getType().getName().startsWith("java.lang.Class")
+//                || v.getType().getName().startsWith("javax"))
                 .forEach(v -> {
                     logger.info(v + "   " + v.getType());
                     PointsToSet pts = getMockObjs(v);
