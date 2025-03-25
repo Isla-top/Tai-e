@@ -16,6 +16,7 @@ import pascal.taie.ir.exp.CastExp;
 import pascal.taie.ir.exp.Var;
 import pascal.taie.ir.stmt.Cast;
 import pascal.taie.ir.stmt.Invoke;
+import pascal.taie.ir.stmt.LoadField;
 import pascal.taie.ir.stmt.Stmt;
 import pascal.taie.language.classes.ClassHierarchy;
 import pascal.taie.language.classes.JClass;
@@ -47,7 +48,7 @@ public class AvoidNullHandler implements Plugin {
 
     private final PointsToSetFactory ptsFactory;
 
-    private Set<Var> castVars;
+    private Set<Var> castAndLoadVars;
 
     private static final Logger logger = LogManager.getLogger(AvoidNullHandler.class);
 
@@ -58,13 +59,15 @@ public class AvoidNullHandler implements Plugin {
         this.heapModel = solver.getHeapModel();
         this.ptsFactory = new PointsToSetFactory(csManager.getObjectIndexer());
         this.classObjMap = Maps.newHybridMap();
-        this.castVars = Sets.newHybridSet();
+        this.castAndLoadVars = Sets.newHybridSet();
     }
 
     @Override
     public void onNewStmt(Stmt stmt, JMethod container) {
         if (stmt instanceof Cast cast) {
-           castVars.add(cast.getLValue());
+            castAndLoadVars.add(cast.getLValue());
+        }else if(stmt instanceof LoadField lf){
+            castAndLoadVars.add(lf.getLValue());
         }
     }
 
@@ -75,7 +78,7 @@ public class AvoidNullHandler implements Plugin {
         csManager.getCSVars()
                 .stream()
                 .filter(v -> !v.getVar().getInvokes().isEmpty())
-                .filter(v -> castVars.contains(v.getVar()))
+                .filter(v -> castAndLoadVars.contains(v.getVar()))
                 .filter(v -> v.getPointsToSet() == null || v.getPointsToSet().isEmpty())
                 .filter(v -> v.getType() instanceof ClassType)
 //                .filter(v -> !v.getType().getName().equals("java.lang.String"))
