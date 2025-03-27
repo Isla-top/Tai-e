@@ -1,18 +1,18 @@
 optionsFile: null
 printHelp: false
 classPath:
-- java-benchmarks/bugs_completion/lanproxy/0.1
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/gson-2.7.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/hamcrest-core-1.3.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/junit-4.12.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/log4j-1.2.17.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/mockito-core-5.4.0.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/netty-all-4.0.36.Final.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/proxy-common-0.1.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/proxy-protocol-0.1.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/proxy-server-0.1.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/slf4j-api-1.7.5.jar
-- java-benchmarks/bugs_completion/lanproxy/0.1_new/lib/slf4j-log4j12-1.7.5.jar
+- ./bugs_completion/lanproxy/0.1
+- ./bugs_completion/lanproxy/0.1_new/lib/gson-2.7.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/hamcrest-core-1.3.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/junit-4.12.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/log4j-1.2.17.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/mockito-core-5.4.0.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/netty-all-4.0.36.Final.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/proxy-common-0.1.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/proxy-protocol-0.1.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/proxy-server-0.1.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/slf4j-api-1.7.5.jar
+- ./bugs_completion/lanproxy/0.1_new/lib/slf4j-log4j12-1.7.5.jar
 appClassPath: []
 mainClass: Server
 inputClasses: []
@@ -27,7 +27,7 @@ scope: APP
 nativeModel: true
 planFile: null
 analyses:
-  pta: cs:2-type;implicit-entries:false;reflection-inference:null;distinguish-string-constants:null;taint-config:java-benchmarks/bugs_completion/lanproxy/0.1/taint-config.yml; #dump-ci:true
+  pta: cs:2-type;implicit-entries:false;reflection-inference:null;distinguish-string-constants:null;taint-config:./bugs_completion/lanproxy/0.1/taint-config.yml; #dump-ci:true
 #  ir-dumper: ""
 onlyGenPlan: false
 keepResult:
