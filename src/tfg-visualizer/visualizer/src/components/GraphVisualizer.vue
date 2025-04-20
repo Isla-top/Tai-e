@@ -144,9 +144,24 @@ export default {
         else{
           const index = graphFunc[graphFunc.length - 1];
           graphFunc = graphFunc.slice(0, graphFunc.length - 1);
-          if(graphFunc === "remove-add-package") removeAddPackage(index);
-          else if(graphFunc === "remove-add-class") removeAddClass(index);
-          else if(graphFunc === "remove-add-method") removeAddMethod(index);
+          if(graphFunc === "remove-add-package"){
+            if(index === '1') granularity.packages = false;
+            else granularity.packages = true;
+            diagram.nodes.filter(node => (node.data.type === 'variable' || node.data.type === 'field') && node.visible)
+                         .each(node => removeAddPackage(node));
+          } 
+          else if(graphFunc === "remove-add-class"){
+            if(index === '1') granularity.classes = false;
+            else granularity.classes = true;
+            diagram.nodes.filter(node => (node.data.type === 'variable' || node.data.type === 'field') && node.visible)
+                         .each(node => removeAddClass(node));
+          }
+          else if(graphFunc === "remove-add-method"){
+            if(index === '1') granularity.methods = false;
+            else granularity.methods = true;
+            diagram.nodes.filter(node => (node.data.type === 'variable' || node.data.type === 'field') && node.visible)
+                         .each(node => removeAddMethod(node));
+          } 
         }
       }
     )
@@ -157,125 +172,119 @@ export default {
       methods: true,
     }
 
-    const removeAddPackage = (index) => {
-      if(index === '1'){
+    /** 
+     *  移除/添加某个变量/字段节点的包粒度
+     *  @param {Object} node - 节点
+    */
+    const removeAddPackage = (node) => {
+      if(!granularity.packages){
         // remove
         diagram.startTransaction("removePackages");
-        granularity.packages = false;
-        diagram.nodes.filter(node => node.data.type === 'package')
-                     .each(node => {
-                        node.memberParts.each(member => diagram.model.setDataProperty(member.data, "group", undefined));
-                        if(node.data.visible) diagram.model.setDataProperty(node.data, "visible", false);
-                     });
+        const parentPkg = diagram.findNodeForKey(node.data.realGroup[0]);
+        if(parentPkg.data.visible){
+          parentPkg.memberParts.each(member => diagram.model.setDataProperty(member.data, "group", undefined));
+          diagram.model.setDataProperty(parentPkg.data, "visible", false);
+        } 
         diagram.commitTransaction("removePackages");
       } else {
         // add
         diagram.startTransaction("addPackages");
-        granularity.packages = true;
         if(granularity.classes){
-          diagram.nodes.filter(node => node.data.type === 'class') 
-                       .each(node => {
-                          diagram.model.setDataProperty(node.data, "group", node.data.realGroup[0]);
-                          if(node.visible && !node.containingGroup.visible) {
-                            diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
-                            diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
-                          }
-                       });
+          const parentCls = diagram.findNodeForKey(node.data.realGroup[1]).containingGroup;
+          diagram.model.setDataProperty(parentCls.data, "group", parentCls.data.realGroup[0]);
+          if(!parentCls.containingGroup.visible){
+            diagram.model.setDataProperty(parentCls.containingGroup.data, "visible", true);
+            diagram.model.setDataProperty(parentCls.containingGroup.data, "isSubGraphExpanded", true);
+          }
         }else if(granularity.methods){
-          diagram.nodes.filter(node => node.data.type === 'method') 
-                       .each(node => {
-                          diagram.model.setDataProperty(node.data, "group", node.data.realGroup[0]);
-                          if(node.visible && !node.containingGroup.visible) {
-                            diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
-                            diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
-                          }
-                       });
+          if(node.data.type === 'variable'){
+            const parentMth = diagram.findNodeForKey(node.data.realGroup[2]);
+            diagram.model.setDataProperty(parentMth.data, "group", parentMth.data.realGroup[0]);
+            if(!parentMth.containingGroup.visible){
+              diagram.model.setDataProperty(parentMth.containingGroup.data, "visible", true);
+              diagram.model.setDataProperty(parentMth.containingGroup.data, "isSubGraphExpanded", true);
+            }
+          } else {
+            diagram.model.setDataProperty(node.data, "group", node.data.realGroup[0]);
+            if(!node.containingGroup.visible){
+              diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
+              diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
+            }
+          }
         }else{
-          diagram.nodes.filter(node => node.data.type === 'variable' || node.data.type === 'field') 
-                       .each(node => {
-                          diagram.model.setDataProperty(node.data, "group", node.data.realGroup[0]);
-                          if(node.visible && !node.containingGroup.visible) {
-                            diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
-                            diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
-                          }
-                       });
+          diagram.model.setDataProperty(node.data, "group", node.data.realGroup[0]);
+          if(!node.containingGroup.visible){
+            diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
+            diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
+          }
         }
         diagram.commitTransaction("addPackages");
       }
     }
 
-    const removeAddClass = (index) => {
-      if(index === '1'){
+    /** 
+     *  移除/添加某个变量/字段节点的类粒度
+     *  @param {Object} node - 节点
+    */
+    const removeAddClass = (node) => {
+      if(!granularity.classes){
         // remove
         diagram.startTransaction("removeClasses");
-        granularity.classes = false;
-        diagram.nodes.filter(node => node.data.type === 'class')
-                     .each(node => {
-                        node.memberParts.each(member => member.memberParts.each(m => diagram.model.setDataProperty(m.data, "group", node.data.group)));
-                        if(node.data.visible) diagram.model.setDataProperty(node.data, "visible", false);
-                     });
+        const parentCls = diagram.findNodeForKey(node.data.realGroup[1]).containingGroup;
+        if(parentCls.visible){
+          parentCls.memberParts.each(member => member.memberParts.each(m => diagram.model.setDataProperty(m.data, "group", parentCls.data.group)));
+          diagram.model.setDataProperty(parentCls.data, "visible", false);
+        }
         diagram.commitTransaction("removeClasses");
       } else {
         // add
         diagram.startTransaction("addClasses");
-        granularity.classes = true;
         if(granularity.packages){
-          diagram.nodes.filter(node => node.data.type === 'class') 
-                       .each(node => diagram.model.setDataProperty(node.data, "group", node.data.realGroup[0]));
+          const parentCls = diagram.findNodeForKey(node.data.realGroup[1]).containingGroup;
+          if(!parentCls.visible) diagram.model.setDataProperty(parentCls.data, "group", parentCls.data.realGroup[0]);
         }
         if(granularity.methods){
-          diagram.nodes.filter(node => node.data.type === 'method' || node.data.type === 'field') 
-                      .each(node => {
-                          diagram.model.setDataProperty(node.data, "group", node.data.realGroup[1]);
-                          if(node.visible && !node.containingGroup.containingGroup.visible) {
-                            diagram.model.setDataProperty(node.containingGroup.containingGroup.data, "visible", true);
-                            diagram.model.setDataProperty(node.containingGroup.containingGroup.data, "isSubGraphExpanded", true);
-                          }
-                      });
+          let parentNode = node; // node.data.type === 'field'的情况
+          if(node.data.type === 'variable') parentNode = node.containingGroup;
+          diagram.model.setDataProperty(parentNode.data, "group", parentNode.data.realGroup[1]);
+          if(!parentNode.containingGroup.containingGroup.visible){
+            diagram.model.setDataProperty(parentNode.containingGroup.containingGroup.data, "visible", true);
+            diagram.model.setDataProperty(parentNode.containingGroup.containingGroup.data, "isSubGraphExpanded", true);
+          }
         }else{
-          diagram.nodes.filter(node => node.data.type === 'variable' || node.data.type === 'field') 
-                      .each(node => {
-                          diagram.model.setDataProperty(node.data, "group", node.data.realGroup[1]);
-                          if(node.visible && !node.containingGroup.containingGroup.visible) {
-                            diagram.model.setDataProperty(node.containingGroup.containingGroup.data, "visible", true);
-                            diagram.model.setDataProperty(node.containingGroup.containingGroup.data, "isSubGraphExpanded", true);
-                          }
-                      });
+          diagram.model.setDataProperty(node.data, "group", node.data.realGroup[1]);
+          if(!node.containingGroup.containingGroup.visible) {
+            diagram.model.setDataProperty(node.containingGroup.containingGroup.data, "visible", true);
+            diagram.model.setDataProperty(node.containingGroup.containingGroup.data, "isSubGraphExpanded", true);
+          }
         }
         diagram.commitTransaction("addClasses");
       }
     }
 
-    const removeAddMethod = (index) => {
-      if(index === '1'){
+    /** 
+     *  移除/添加某个变量/字段节点的方法粒度
+     *  @param {Object} node - 节点
+    */
+    const removeAddMethod = (node) => {
+      if(node.data.type === 'field') return;
+      if(!granularity.methods){
         // remove
         diagram.startTransaction("removeMethods");
-        granularity.methods = false;
-        diagram.nodes.filter(node => node.data.type === 'method')
-                     .each(node => {
-                        node.memberParts.each(member => diagram.model.setDataProperty(member.data, "group", node.data.group));
-                        if(node.data.visible) diagram.model.setDataProperty(node.data, "visible", false);
-                     });
+        const parentMth = diagram.findNodeForKey(node.data.realGroup[2]);
+        parentMth.memberParts.each(member => diagram.model.setDataProperty(member.data, "group", parentMth.data.group));
+        diagram.model.setDataProperty(parentMth.data, "visible", false);
         diagram.commitTransaction("removeMethods");
       } else {
         // add
         diagram.startTransaction("addMethods");
-        granularity.methods = true;
-        if(granularity.classes){
-          diagram.nodes.filter(node => node.data.type === 'method') 
-                      .each(node => diagram.model.setDataProperty(node.data, "group", node.data.realGroup[1]));
-        }else if(granularity.packages){
-          diagram.nodes.filter(node => node.data.type === 'method') 
-                       .each(node => diagram.model.setDataProperty(node.data, "group", node.data.realGroup[0]));
+        diagram.model.setDataProperty(node.data, "group", node.data.realGroup[2]);
+        if(!node.containingGroup.visible) {
+          diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
+          diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
+          if(granularity.classes) diagram.model.setDataProperty(node.containingGroup.data, "group", node.containingGroup.data.realGroup[1]);
+          else if(granularity.packages) diagram.model.setDataProperty(node.containingGroup.data, "group", node.containingGroup.data.realGroup[0]);
         }
-        diagram.nodes.filter(node => node.data.type === 'variable') 
-                    .each(node => {
-                        diagram.model.setDataProperty(node.data, "group", node.data.realGroup[2]);
-                        if(node.visible && !node.containingGroup.visible) {
-                          diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
-                          diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
-                        }
-                    });
         diagram.commitTransaction("addMethods");
       }
     }
@@ -291,6 +300,8 @@ export default {
     // 选中的节点详情
     const selectedNode = ref(null);
     const detailsVisible = ref(false);
+
+    // GoJS全局构建符
     const $ = go.GraphObject.make;
 
     /**
@@ -322,8 +333,23 @@ export default {
       });
 
       diagram.addModelChangedListener(function(e) {
+        // 监听某个node的visible变化并lazy evaluation粒度展示
         if (e.propertyName === "visible" && (e.object.type === "variable" || e.object.type === "field")) {
-          console.log("节点变为可见:", e.object);
+          if(e.newValue === true){
+            console.log("节点变为可见:", e.object);
+            diagram.startTransaction("nodeVisibleTrue");
+            const node = diagram.findNodeForKey(e.object.key);
+            parentVisible(node, true);
+            removeAddPackage(node);
+            removeAddClass(node);
+            removeAddMethod(node);
+            diagram.commitTransaction("nodeVisibleTrue");
+          }else{
+            diagram.startTransaction("nodeVisibleFalse");
+            const node = diagram.findNodeForKey(e.object.key);
+            parentVisible(node, false);
+            diagram.commitTransaction("nodeVisibleFalse");
+          }
         }
       });
       
@@ -368,7 +394,8 @@ export default {
               e.diagram.startTransaction("expand or collapse next nodes");
               var node = obj.part;
               if (node.data.isCollapsed) {
-                node.findNodesOutOf().each(next => parentVisible(next, true));
+                // node.findNodesOutOf().each(next => parentVisible(next, true));
+                node.findNodesOutOf().each(next => diagram.model.setDataProperty(next.data, "visible", true));
                 node.findLinksOutOf().each(link => diagram.model.setDataProperty(link.data, "visible", true));
               }
               else {
@@ -376,7 +403,8 @@ export default {
                   start.findLinksOutOf().each(link => diagram.model.setDataProperty(link.data, "visible", false));
                   start.findNodesOutOf().each(next => {
                     if(next.findLinksInto().any(link => link.visible) || !next.visible) return;
-                    parentVisible(next, false);
+                    // parentVisible(next, false);
+                    diagram.model.setDataProperty(next.data, "visible", false);
                     diagram.model.setDataProperty(next.data, "isCollapsed", true);
                     collapseFrom(next);
                   })
@@ -815,15 +843,12 @@ export default {
       }
     };
     
-    // 组件挂载时初始化
     onMounted(() => {
       nextTick(() => {
-        // 确保DOM已更新
         initDiagram();
       });
     });
     
-    // 组件卸载时清理
     onUnmounted(() => {
       if (diagram) {
         diagram.div = null;
