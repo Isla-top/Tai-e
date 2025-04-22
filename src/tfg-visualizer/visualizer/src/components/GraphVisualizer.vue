@@ -50,7 +50,7 @@
       </div>
     </el-card>
     
-    <!-- 详情侧边栏 -->
+    <!-- 节点详情侧边栏 -->
     <el-drawer
       v-model="detailsVisible"
       title="节点详情"
@@ -65,27 +65,35 @@
           :column="1" 
           class="node-description">
           <el-descriptions-item label="节点类型">
-            {{ getNodeTypeLabel(selectedNode) }}
+            {{ selectedNode.type}}
           </el-descriptions-item>
           <el-descriptions-item label="节点ID">
             {{ selectedNode.id }}
           </el-descriptions-item>
           <template v-if="selectedNode.className">
-            <el-descriptions-item label="类名">
+            <el-descriptions-item label="所在类名">
               {{ selectedNode.className }}
             </el-descriptions-item>
           </template>
           <template v-if="selectedNode.methodName">
-            <el-descriptions-item label="方法名">
+            <el-descriptions-item label="所在方法名">
               {{ selectedNode.methodName }}
             </el-descriptions-item>
           </template>
-          <template v-if="selectedNode.varOrFieldName">
+          <template v-if="selectedNode.name">
             <el-descriptions-item label="变量名">
-              {{ selectedNode.varOrFieldName }}
+              {{ selectedNode.name }}
             </el-descriptions-item>
           </template>
         </el-descriptions>
+
+        <div v-if="selectedNode.taintInfos && selectedNode.taintInfos.length" class="taint-section">
+          <h4>存储污点对象信息 ({{ selectedNode.taintInfos.length }})</h4>
+          <el-table :data="selectedNode.taintInfos" stripe style="width: 100%">
+            <el-table-column prop="taintObj" label="污点对象" width="auto" />
+            <el-table-column prop="taintSource" label="污点产生源" width="auto" />
+          </el-table>
+        </div>
         
         <div v-if="selectedNode.neighbors && selectedNode.neighbors.length" class="neighbors-section">
           <h4>关联节点 ({{ selectedNode.neighbors.length }})</h4>
@@ -98,7 +106,7 @@
                 <el-button 
                   type="text" 
                   size="small" 
-                  @click="focusNode(scope.row.id)">
+                  @click="focusNode(scope.row.id, selectedNode.id)">
                   查看
                 </el-button>
               </template>
@@ -107,7 +115,7 @@
         </div>
       </div>
       <div v-else class="no-selection">
-        请在图中选择一个节点来查看详情
+        请在图中选择变量或者字段节点来查看详情
       </div>
     </el-drawer>
   </div>
@@ -116,7 +124,6 @@
 <script>
 import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { ZoomIn, ZoomOut, Refresh } from '@element-plus/icons-vue'
-// 这里使用import语法导入GoJS，而不是全局变量$
 import * as go from 'gojs'
 
 export default {
@@ -140,7 +147,7 @@ export default {
     watch(
       () => props.graphFunction,
       (graphFunc) => {
-        if(graphFunc === "shortest-path") hightShortestPath();
+        if(graphFunc === "shortest-path") getShortestPath();
         else{
           const index = graphFunc[graphFunc.length - 1];
           graphFunc = graphFunc.slice(0, graphFunc.length - 1);
@@ -289,8 +296,38 @@ export default {
       }
     }
 
-    const hightShortestPath = () => {
+    const getShortestPath = () => {
+      if(selectedSourceSink.value[0] === null || selectedSourceSink.value[1] === null) return;
+      const source = selectedSourceSink.value[0];
+      const sink = selectedSourceSink.value[1];
+      // node: 当前节点，last: 记录当前节点在路径的上一个节点
+      const paths = new Map([[source, null]]);
+      
+      const workList = [ source ];
+      while(workList.length != 0){
+        const node = workList.shift();
+        if(node.data.key === sink.data.key) break;
+        node.findNodesOutOf().each(next => {
+          if(paths.has(next)) return;
+          paths.set(next, node);
+          workList.push(next);
+        })
+      }
 
+      diagram.startTransaction("emphasisShortestPath");
+      diagram.nodes.filter(node => node.visible).each(node => {
+        diagram.model.setDataProperty(node.data, "visible", false);
+        diagram.model.setDataProperty(node.data, "isCollapsed", true);
+      });
+      let now = sink;
+      while(now != null){
+        diagram.model.setDataProperty(now.data, "visible", true);
+        diagram.model.setDataProperty(now.data, "isCollapsed", false);
+        const last = paths.get(now);
+        now.findLinksBetween(last).each(link => diagram.model.setDataProperty(link.data, "visible", true));
+        now = last;
+      }
+      diagram.commitTransaction("emphasisShortestPath");
     }
 
     // 图表引用和GoJS实例
@@ -304,11 +341,18 @@ export default {
     // GoJS全局构建符
     const $ = go.GraphObject.make;
 
+    // 选中的要追踪的source([0])与sink([1])节点
+    const selectedSourceSink = ref([null, null]);
+
+    // 节点信息存储
+    const nodeAttrs = ref(null);
+
     /**
      * 初始化GoJS图表
      */
     const initDiagram = () => {
       // 创建GoJS图表
+      const start = performance.now();
       diagram = new go.Diagram(diagramRef.value, {
         "undoManager.isEnabled": true,  // 启用撤销/重做
         "toolManager.hoverDelay": 100,  // 鼠标悬停延迟
@@ -328,6 +372,20 @@ export default {
           } else {
             selectedNode.value = null;
             detailsVisible.value = false;
+          }
+        },
+        // 改变选择的节点后触发
+        "ChangedSelection": (e) => {
+          if(e.diagram.selection.size === 2){
+            const node1 = e.diagram.selection.toArray()[0];
+            const node2 = e.diagram.selection.toArray()[1];
+            if(node1.data.isSource && node2.data.isSink){
+              selectedSourceSink.value[0] = node1;
+              selectedSourceSink.value[1] = node2;
+            }else if(node2.data.isSource && node1.data.isSink){
+              selectedSourceSink.value[0] = node2;
+              selectedSourceSink.value[1] = node1;
+            }
           }
         }
       });
@@ -437,12 +495,23 @@ export default {
         $(go.Shape, { 
           strokeWidth: 3,
           stroke: "#555"
-        }),
+        },
+        new go.Binding("stroke", "type", linkTypeToColor)),
         $(go.Shape, { 
           toArrow: "Standard",
           stroke: "#555",
           fill: "#555"
-        }),
+        },
+        new go.Binding("fill", "type", linkTypeToColor)),
+        $(go.TextBlock, {
+          margin: new go.Margin(5, 5, 12, 5),
+          font: "Bold 10px Sans-Serif",
+          stroke: "#333",
+          wrap: go.TextBlock.WrapFit,
+          editable: false,
+          alignment: go.Spot.Bottom
+        },
+        new go.Binding("text", "type")),
         new go.Binding("visible", "visible"),
       );
 
@@ -476,9 +545,15 @@ export default {
                 { padding: new go.Margin(0, 10) }),
             ),
         );
+
+      const step1 = performance.now();
+      console.log(`完成图模板创建，耗时${step1 - start}毫秒`);
       
       // 加载图数据
       loadGraphData();
+
+      const step2 = performance.now();
+      console.log(`完成图模型创建，耗时${step2 - start}毫秒`);
 
       //初始可见节点设置
       const parentVisible = (child, canVisit) => {
@@ -567,6 +642,26 @@ export default {
         default: return "white";
       }
     };
+
+    /**
+     * 根据节点类型确定颜色
+     * @param {Object} type - 边类型
+     * @returns {string} 颜色值
+     */
+    const linkTypeToColor = (type) => {
+      switch(type){
+        case 'RETURN': 
+        case 'THIS_PASSING': 
+        case 'PARAMETER_PASSING': return "#77DD77"; // 森林绿
+        case 'INSTANCE_LOAD': 
+        case 'INSTANCE_STORE': return '#B399D4'; // 浅紫
+        case 'ARRAY_LOAD':
+        case 'ARRAY_STORE': return '#3A4F8C'; // 深海蓝
+        case 'LOCAL_ASSIGN': return '#FFB347'; // 浅橙
+        case 'OTHER': return '#696969'; // 中灰
+        default: return "black";
+      }
+    }
     
     /**
      * 加载图数据
@@ -577,14 +672,18 @@ export default {
       const nodeDataArray = [];
       const linkDataArray = [];
       
+      const start = performance.now();
       // 处理图数据
       processGraphData(nodeDataArray, linkDataArray);
-      
+      const step1 = performance.now();
+      console.log(`In loadGraphData: 完成图数据处理，耗时${step1 - start}毫秒`);
+
       // 设置图表模型
       diagram.model = new go.GraphLinksModel({
         nodeDataArray: nodeDataArray,
         linkDataArray: linkDataArray
       });
+      console.log(`In loadGraphData: 完成图渲染，耗时${performance.now() - step1}毫秒`);
 
       // 执行布局
       diagram.layoutDiagram(true);
@@ -596,8 +695,8 @@ export default {
      * @param {Array} linkDataArray - 链接数组引用
      */
     const processGraphData = (nodeDataArray, linkDataArray) => {
-      const { metadata, relation, graph, sourceNodes, sinkNodes, nodeAttributes, edgeAttributeMap } = props.graphData;
-      console.log(nodeAttributes + edgeAttributeMap);
+      const { metadata, relation, sourceNodes, sinkNodes, nodeAttributes, edgeAttributeMap } = props.graphData;
+      nodeAttrs.value = nodeAttributes;
       if (metadata && metadata.packages && relation.packageToClasses) {
         metadata.packages.forEach((packageName, index) => {
           // 添加包节点
@@ -718,19 +817,36 @@ export default {
       }
       
       // 处理图边关系
-      if (graph) {
-        for (const [from, toArray] of Object.entries(graph)) {
-          toArray.forEach(to => {
+      if (edgeAttributeMap) {
+        for (const [from, toMap] of Object.entries(edgeAttributeMap)) {
+          for(const [to, attribute] of Object.entries(toMap)) {
             // 添加节点间的链接
             linkDataArray.push({
               from: `n_${from}`,
               to: `n_${to}`,
               relationship: "connects",
               visible: false,
+              type: attribute.type,
+              callSite: attribute.callSiteInfo
             });
-          });
+          }
         }
       }
+
+      // // 处理图边关系
+      // if (graph) {
+      //   for (const [from, toArray] of Object.entries(graph)) {
+      //     toArray.forEach(to => {
+      //       // 添加节点间的链接
+      //       linkDataArray.push({
+      //         from: `n_${from}`,
+      //         to: `n_${to}`,
+      //         relationship: "connects",
+      //         visible: false,
+      //       });
+      //     });
+      //   }
+      // }
     };
     
     /**
@@ -754,31 +870,16 @@ export default {
     };
     
     /**
-     * 获取节点类型的中文描述
-     * @param {Object} node - 节点数据
-     * @returns {string} 类型描述
-     */
-    const getNodeTypeLabel = (node) => {
-      const typeMap = {
-        'package': '包',
-        'class': '类',
-        'method': '方法',
-        'var': '变量/字段',
-        'unknown': '未知'
-      };
-      return typeMap[node.type] || '未知';
-    };
-    
-    /**
      * 获取节点详细数据
      * @param {go.Node} goNode - GoJS节点对象
      * @returns {Object} 扩展的节点数据
      */
     const getNodeData = (goNode) => {
-      if (!goNode) return null;
+      if (!goNode || !(goNode.data.type === 'variable' || goNode.data.type === 'field')) return null;
       
-      const data = goNode.data;
+      const attr = nodeAttrs.value[parseInt(goNode.data.key.split("_")[1])];
       const neighbors = [];
+      const taintInfos = [];
       
       // 获取相关的节点
       goNode.findLinksConnected().each(link => {
@@ -786,22 +887,31 @@ export default {
         if (otherNode) {
           neighbors.push({
             id: otherNode.data.key,
-            type: getNodeTypeLabel(otherNode.data),
+            type: nodeAttrs.value[parseInt(otherNode.data.key.split("_")[1])].type,
             name: nodeInfoToLabel(otherNode.data)
           });
         }
       });
+
+      // 污点对象信息
+      const length = attr.taintObjs.length;
+      for(let i = 0; i < length; i++){
+        taintInfos.push({
+          taintObj: attr.taintObjs[i],
+          taintSource: attr.taintSources[i]
+        })
+      }
       
       return {
-        id: data.key,
-        name: data.name,
-        type: data.type,
-        className: data.className,
-        methodName: data.methodName,
-        varOrFieldName: data.varOrFieldName,
-        isSource: data.isSource,
-        isSink: data.isSink,
-        neighbors: neighbors
+        id: goNode.data.key,
+        name: attr.varOrFieldName,
+        type: attr.type,
+        className: attr.className,
+        methodName: attr.methodName,
+        isSource: goNode.data.isSource,
+        isSink: goNode.data.isSink,
+        neighbors: neighbors,
+        taintInfos: taintInfos,
       };
     };
     
@@ -831,12 +941,21 @@ export default {
     
     /**
      * 聚焦到特定节点
-     * @param {string} nodeId - 节点ID
+     * @param {string} nodeId - 邻接节点ID
+     * @param {string} selectedNodeId - 当前节点ID
      */
-    const focusNode = (nodeId) => {
+    const focusNode = (nodeId, selectedNodeId) => {
       if (diagram) {
         const node = diagram.findNodeForKey(nodeId);
+        const selectedNode = diagram.findNodeForKey(selectedNodeId);
         if (node) {
+          if(!node.visible) {
+            diagram.startTransaction("focusNode");
+            diagram.model.setDataProperty(node.data, "visible", true);
+            diagram.model.setDataProperty(node.data, "isCollapsed", false);
+            node.findLinksBetween(selectedNode).each(link => diagram.model.setDataProperty(link.data, "visible", true));
+            diagram.commitTransaction("focusNode");
+          }
           diagram.select(node);
           diagram.commandHandler.scrollToPart(node);
         }
@@ -861,7 +980,6 @@ export default {
       selectedNode,
       detailsVisible,
       getNodeTitle,
-      getNodeTypeLabel,
       zoomIn,
       zoomOut,
       resetZoom,
