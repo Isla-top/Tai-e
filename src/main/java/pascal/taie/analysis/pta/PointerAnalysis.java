@@ -47,8 +47,8 @@ import pascal.taie.analysis.pta.plugin.invokedynamic.Java9StringConcatHandler;
 import pascal.taie.analysis.pta.plugin.invokedynamic.LambdaAnalysis;
 import pascal.taie.analysis.pta.plugin.natives.NativeModeller;
 import pascal.taie.analysis.pta.plugin.reflection.ReflectionAnalysis;
+import pascal.taie.analysis.pta.plugin.taint.EntryCollector;
 import pascal.taie.analysis.pta.plugin.taint.TaintAnalysis;
-import pascal.taie.analysis.pta.plugin.taint.TaintTracer;
 import pascal.taie.analysis.pta.toolkit.CollectionMethods;
 import pascal.taie.analysis.pta.toolkit.mahjong.Mahjong;
 import pascal.taie.analysis.pta.toolkit.scaler.Scaler;
@@ -132,9 +132,8 @@ public class PointerAnalysis extends ProgramAnalysis<PointerAnalysisResult> {
                 new ClassInitializer(),
                 new ThreadHandler(),
                 new NativeModeller(),
-                new ExceptionAnalysis(),
+                new ExceptionAnalysis()
 //                new ServiceLoaderModel(solver),
-                new AvoidNullHandler(solver)
         );
         int javaVersion = World.get().getOptions().getJavaVersion();
         if (javaVersion < 9) {
@@ -157,7 +156,9 @@ public class PointerAnalysis extends ProgramAnalysis<PointerAnalysisResult> {
         }
         if (options.getString("taint-config") != null) {
             plugin.addPlugin(new TaintAnalysis());
-            plugin.addPlugin(new TaintTracer());
+//            plugin.addPlugin(new TaintTracer());
+            plugin.addPlugin(new EntryCollector(solver));
+            plugin.addPlugin(new AvoidNullHandler(solver));
         }
         plugin.addPlugin(new ResultProcessor());
         // add plugins specified in options

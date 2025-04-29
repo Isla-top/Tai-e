@@ -1,0 +1,11 @@
+sources:
+#  - { kind: call, method: "<Server: java.lang.String getInput()>", index: result }
+  - { kind: call, method: "<Server: char taint()>", index: result }
+
+sinks:
+  - { method: "<org.springframework.expression.spel.standard.SpelExpression: java.lang.Object getValue(org.springframework.expression.EvaluationContext,java.lang.Object,java.lang.Class)>", index: "base.expression.value[*]" }
+
+transfers:
+#  - { method: "<org.springframework.messaging.support.GenericMessage: org.springframework.messaging.MessageHeaders getHeaders()>", from: base, to: result }
+#  - { method: "<org.springframework.messaging.MessageHeaders: java.lang.Object get(java.lang.Object)>", from: base, to: result, type: java.lang.String }
+#  - { method: "<org.springframework.expression.common.TemplateAwareExpressionParser: org.springframework.expression.Expression parseExpression(java.lang.String)>", from: 0, to: result }

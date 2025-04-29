@@ -79,6 +79,8 @@ class SourceHandler extends OnFlyHandler {
 
     private final MultiMap<Var, SourceInfo> sourceInfos = Maps.newMultiMap();
 
+    private final MultiMap<InstanceField, SourceInfo> fieldSourceInfos = Maps.newMultiMap();
+
     /**
      * Whether this handler needs to handle field sources.
      */
@@ -153,7 +155,7 @@ class SourceHandler extends OnFlyHandler {
         IndexRef indexRef = info.indexRef();
         Obj taint = info.taint();
         switch (indexRef.kind()) {
-            case ARRAY -> baseObjs.objects()
+            case ARRAY, ARRAY_FIELD, ARRAY_FIELD_FIELD -> baseObjs.objects()
                     .map(csManager::getArrayIndex)
                     .forEach(arrayIndex -> solver.addPointsTo(arrayIndex, taint));
             case FIELD -> {
@@ -163,32 +165,24 @@ class SourceHandler extends OnFlyHandler {
                         .forEach(oDotF ->
                                 solver.addPointsTo(oDotF, taint));
             }
-            case ARRAY_FIELD -> {
-                JField f = indexRef.field();
-                baseObjs.objects()
-                        .map(o -> csManager.getInstanceField(o, f))
-                        .flatMap(InstanceField::objects)
-                        .map(csManager::getArrayIndex)
-                        .forEach(arrayIndex -> solver.addPointsTo(arrayIndex, taint));
-            }
-            case ARRAY_FIELD_FIELD -> {
-                JField f = indexRef.field();
 
-                baseObjs.objects()
-                        .map(o -> csManager.getInstanceField(o, f))
-                        .flatMap(InstanceField::objects)
-                        .map(o -> csManager.getInstanceField(o, indexRef.value()))
-                        .flatMap(InstanceField::objects)
-                        .map(csManager::getArrayIndex)
-                        .forEach(arrayIndex -> solver.addPointsTo(arrayIndex, taint));
-            }
         }
     }
 
     @Override
     public void onNewPointsToSet(CSVar csVar, PointsToSet pts) {
+//        sourceInfos.get(csVar.getVar())
+//                .forEach(info -> addArrayFieldTaint(pts, info));
         sourceInfos.get(csVar.getVar())
-                .forEach(info -> addArrayFieldTaint(pts, info));
+                .forEach(info ->{
+                    switch (info.indexRef().kind()){
+                        case VAR, FIELD, ARRAY -> addArrayFieldTaint(pts, info);
+                        case ARRAY_FIELD, ARRAY_FIELD_FIELD ->
+                            pts.forEach(cso -> fieldSourceInfos.put(
+                                    csManager.getInstanceField(cso, info.indexRef().field()),
+                                    info));
+                    }
+                });
     }
 
     @Override
@@ -238,7 +232,7 @@ class SourceHandler extends OnFlyHandler {
                 Obj taint = manager.makeTaint(sourcePoint, source.type());
                 switch (indexRef.kind()) {
                     case VAR -> solver.addVarPointsTo(context, param, taint);
-                    case ARRAY, FIELD -> sourceInfos.put(
+                    case ARRAY, FIELD, ARRAY_FIELD, ARRAY_FIELD_FIELD -> sourceInfos.put(
                             param, new SourceInfo(indexRef, taint));
                 }
             });
@@ -280,5 +274,20 @@ class SourceHandler extends OnFlyHandler {
                         processCallSource(context, callSite, source));
             });
         }
+    }
+
+    @Override
+    public void onNewFieldPointsToSet(InstanceField instanceField, PointsToSet pts) {
+        fieldSourceInfos.get(instanceField).
+                forEach(info -> {
+                    if(instanceField.getField().equals(info.indexRef().value())){
+                        addArrayFieldTaint(pts, info);
+                    } else {
+                        pts.forEach(cso -> fieldSourceInfos.put(
+                                csManager.getInstanceField(cso, info.indexRef().value()),
+                                info)
+                        );
+                    }
+                });
     }
 }
