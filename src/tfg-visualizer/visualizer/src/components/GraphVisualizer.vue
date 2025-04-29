@@ -125,6 +125,7 @@
 import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { ZoomIn, ZoomOut, Refresh } from '@element-plus/icons-vue'
 import * as go from 'gojs'
+import Graph from 'node-dijkstra';
 
 export default {
   name: 'GraphVisualizer',
@@ -148,6 +149,7 @@ export default {
       () => props.graphFunction,
       (graphFunc) => {
         if(graphFunc === "shortest-path") getShortestPath();
+        else if(graphFunc === "frequency-node-path") getFrequencyNodePath();
         else{
           const index = graphFunc[graphFunc.length - 1];
           graphFunc = graphFunc.slice(0, graphFunc.length - 1);
@@ -300,7 +302,7 @@ export default {
       if(selectedSourceSink.value[0] === null || selectedSourceSink.value[1] === null) return;
       const source = selectedSourceSink.value[0];
       const sink = selectedSourceSink.value[1];
-      // node: 当前节点，last: 记录当前节点在路径的上一个节点
+      // paths.entry[0]: 当前节点，paths.entry[1]: 记录当前节点在路径的上一个节点
       const paths = new Map([[source, null]]);
       
       const workList = [ source ];
@@ -330,6 +332,38 @@ export default {
       diagram.commitTransaction("emphasisShortestPath");
     }
 
+    const getFrequencyNodePath = () => {
+      if(selectedSourceSink.value[0] === null || selectedSourceSink.value[1] === null) return;
+      const source = selectedSourceSink.value[0];
+      const sink = selectedSourceSink.value[1];
+      // paths.entry[0]: 当前节点，paths.entry[1]: 记录当前节点在路径的下一个节点
+      
+      const route = new Graph();
+      diagram.nodes.each(node => {
+        const tos = {};
+        node.findNodesOutOf().each(n => tos[n.data.key] = 1 / (n.findLinksInto().count + 1));
+        route.addNode(node.data.key, tos);
+      })
+      diagram.startTransaction("emphasisFrequencyPath");
+      diagram.nodes.filter(node => node.visible).each(node => {
+        diagram.model.setDataProperty(node.data, "visible", false);
+        diagram.model.setDataProperty(node.data, "isCollapsed", true);
+      });
+      const paths = route.path(source.data.key, sink.data.key);
+      for(let i = 0; i < paths.length - 1; i = i + 1){
+        const from = diagram.findNodeForKey(paths[i]);
+        const to = diagram.findNodeForKey(paths[i + 1]);
+        if(!from.data.visible){
+          diagram.model.setDataProperty(from.data, "visible", true);
+          diagram.model.setDataProperty(from.data, "isCollapsed", false);
+        }
+        diagram.model.setDataProperty(to.data, "visible", true);
+        diagram.model.setDataProperty(to.data, "isCollapsed", false);
+        from.findLinksBetween(to).each(link => diagram.model.setDataProperty(link.data, "visible", true));
+      }
+      diagram.commitTransaction("emphasisFrequencyPath");
+    }
+
     // 图表引用和GoJS实例
     const diagramRef = ref(null);
     let diagram = null;
@@ -357,6 +391,7 @@ export default {
         "undoManager.isEnabled": true,  // 启用撤销/重做
         "toolManager.hoverDelay": 100,  // 鼠标悬停延迟
         "toolManager.toolTipDuration": 10000, // 工具提示显示时间
+        "animationManager.isEnabled": false,
         padding: 20,
         layout: new go.ForceDirectedLayout({
           defaultSpringLength: 50,
@@ -677,7 +712,6 @@ export default {
       processGraphData(nodeDataArray, linkDataArray);
       const step1 = performance.now();
       console.log(`In loadGraphData: 完成图数据处理，耗时${step1 - start}毫秒`);
-
       // 设置图表模型
       diagram.model = new go.GraphLinksModel({
         nodeDataArray: nodeDataArray,

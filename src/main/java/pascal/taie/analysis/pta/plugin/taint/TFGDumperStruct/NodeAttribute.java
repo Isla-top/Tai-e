@@ -23,6 +23,8 @@ public class NodeAttribute {
 
     public final List<String> taintSources;
 
+    public final boolean isApp;
+
     public NodeAttribute(Node node, PointerAnalysisResult pta, TaintManager manager, MetaData meta){
         this.index = meta.indexOfVarAndField(node.toString());
         this.taintObjs = new ArrayList<>();
@@ -32,6 +34,7 @@ public class NodeAttribute {
             this.methodName = vn.getVar().getMethod().getSubsignature().toString();
             this.varOrFieldName = vn.getVar().getName();
             this.type = "VarNode";
+            this.isApp = vn.getVar().getMethod().isApplication();
             pta.getPointsToSet(vn.getVar()).stream()
                     .filter(manager::isTaint)
                     .forEach(taint -> {
@@ -43,7 +46,8 @@ public class NodeAttribute {
             this.methodName = "";
             this.varOrFieldName = ifn.getField().getName();
             this.type = "InstanceFieldNode";
-            pta.getPointsToSet(ifn.getField()).stream()
+            this.isApp = ifn.getField().isApplication();
+            pta.getPointsToSet(ifn.getBase(), ifn.getField()).stream()
                     .filter(manager::isTaint)
                     .forEach(taint -> {
                         taintObjs.add(taint.toString());
@@ -54,6 +58,7 @@ public class NodeAttribute {
             this.methodName = "";
             this.varOrFieldName = sfn.getField().getName();
             this.type = "StaticFieldNode";
+            this.isApp = sfn.getField().isApplication();
             pta.getPointsToSet(sfn.getField()).stream()
                     .filter(manager::isTaint)
                     .forEach(taint -> {
@@ -70,6 +75,7 @@ public class NodeAttribute {
             }
             this.varOrFieldName = ain.getBase().toString();
             this.type = "ArrayIndexNode";
+            this.isApp = true; // temporary setting
             pta.getPointsToSet(ain.getBase()).stream()
                     .filter(manager::isTaint)
                     .forEach(taint -> {

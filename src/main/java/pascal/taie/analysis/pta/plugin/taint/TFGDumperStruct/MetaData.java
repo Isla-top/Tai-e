@@ -24,9 +24,9 @@ public class MetaData {
 
     public final List<String> varsAndFields;
 
-    public MetaData(Set<Node> nodes, List<JMethod> methodList, List<JClass> classList){
+    public MetaData(List<Node> nodes, List<JMethod> methodList, List<JClass> classList){
         /* todo: everything can be shortened */
-        this.varsAndFields = nodes.stream().map(Objects::toString).sorted().toList();
+        this.varsAndFields = nodes.stream().map(Objects::toString).toList();
 
         this.methods = methodList.stream().map(ClassMember::toString).distinct().sorted().toList();
 
@@ -68,4 +68,7 @@ public class MetaData {
         return (long) this.packages.indexOf(className.substring(0, index));
     }
 
+    public List<String> getVarsAndFields(){
+        return this.varsAndFields;
+    }
 }

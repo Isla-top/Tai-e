@@ -51,6 +51,7 @@
         <el-sub-menu index="path-recommend">
           <template #title>路径推荐</template>
           <el-menu-item index="shortest-path">{{ functionButtons.shortestPath }}</el-menu-item>
+          <el-menu-item index="frequency-node-path">{{ functionButtons.highFrequencyPath }}</el-menu-item>
         </el-sub-menu>
       </el-sub-menu>
       
@@ -143,7 +144,8 @@ export default {
       removeAddPackages: {items: ["移除包粒度", "添加包粒度"], index: 0},
       removeAddClasses: {items: ["移除类粒度", "添加类粒度"], index: 0},
       removeAddMethods: {items: ["移除方法粒度", "添加方法粒度"], index: 0},
-      shortestPath: "最短路",
+      shortestPath: "最短路径",
+      highFrequencyPath: "高频节点路径",
     });
     
     /**

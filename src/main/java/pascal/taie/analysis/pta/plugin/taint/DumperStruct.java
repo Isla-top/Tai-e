@@ -60,12 +60,17 @@ public class DumperStruct {
 
         List<JMethod> methodList = allMethodsFromNodes(nodes);
         List<JClass> classList = allClassFromNodes(nodes, methodList);
-        this.metadata = new MetaData(nodes, methodList, classList);
+        List<Node> nodeList = nodes.stream().toList();
+        this.metadata = new MetaData(nodeList, methodList, classList);
 
         this.relation = new Relation(nodes, metadata);
 
         this.nodeAttributes = new ArrayList<>();
-        nodes.forEach(n -> this.nodeAttributes.add(new NodeAttribute(n, pta, manager, metadata)));
+        nodeList.forEach(n -> this.nodeAttributes.add(new NodeAttribute(n, pta, manager, metadata)));
+//        logger.info("total:  " + nodes.stream().filter(n -> n instanceof InstanceFieldNode).collect(Collectors.toSet()).size());
+//        nodes.stream().filter(n -> n instanceof InstanceFieldNode).forEach(n -> {
+//            logger.info(tfg.getPredsOf(n).size() + "   " + tfg.getSuccsOf(n).size());
+//        });
 
         this.edgeAttributeMap = Maps.newHybridMap();
         this.graph = Maps.newHybridMap();
@@ -179,7 +184,7 @@ public class DumperStruct {
                                     if(var2Node.containsKey(rv)){
                                         Long key2 = metadata.indexOfVarAndField(var2Node.get(rv).toString());
 
-                                        EdgeAttribute attribute = edgeAttributeMap.get(key1).get(key2);
+                                        EdgeAttribute attribute = edgeAttributeMap.get(key2).get(key1);
                                         if(attribute != null){
                                             attribute.setCallSiteInfo(e.getCallSite().toString());
                                         }
