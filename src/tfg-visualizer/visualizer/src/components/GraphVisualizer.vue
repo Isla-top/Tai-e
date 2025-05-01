@@ -148,6 +148,7 @@ export default {
     watch(
       () => props.graphFunction,
       (graphFunc) => {
+        const now = performance.now();
         if(graphFunc === "shortest-path") getShortestPath();
         else if(graphFunc === "frequency-node-path") getFrequencyNodePath();
         else{
@@ -172,6 +173,7 @@ export default {
                          .each(node => removeAddMethod(node));
           } 
         }
+        console.log(graphFunc + "功能耗时:" + (performance.now() - now));
       }
     )
 
@@ -330,6 +332,7 @@ export default {
         now = last;
       }
       diagram.commitTransaction("emphasisShortestPath");
+      console.log("finish shortest path");
     }
 
     const getFrequencyNodePath = () => {
@@ -587,9 +590,6 @@ export default {
       // 加载图数据
       loadGraphData();
 
-      const step2 = performance.now();
-      console.log(`完成图模型创建，耗时${step2 - start}毫秒`);
-
       //初始可见节点设置
       const parentVisible = (child, canVisit) => {
                 diagram.model.setDataProperty(child.data, "visible", canVisit);
@@ -602,6 +602,9 @@ export default {
       diagram.startTransaction("initial source sink nodes visible");
         diagram.nodes.filter(node => node.visible).each(node => parentVisible(node, true));
       diagram.commitTransaction("initial source sink nodes visible");
+      
+      const step2 = performance.now();
+      console.log(`完成图模型创建，耗时${step2 - start}毫秒`);
     };
     
     /**
