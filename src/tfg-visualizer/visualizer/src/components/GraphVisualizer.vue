@@ -157,20 +157,26 @@ export default {
           if(graphFunc === "remove-add-package"){
             if(index === '1') granularity.packages = false;
             else granularity.packages = true;
+            diagram.startTransaction("remove-add-packages");
             diagram.nodes.filter(node => (node.data.type === 'variable' || node.data.type === 'field') && node.visible)
                          .each(node => removeAddPackage(node));
+            diagram.commitTransaction("remove-add-packages");
           } 
           else if(graphFunc === "remove-add-class"){
             if(index === '1') granularity.classes = false;
             else granularity.classes = true;
+            diagram.startTransaction("remove-add-classes");
             diagram.nodes.filter(node => (node.data.type === 'variable' || node.data.type === 'field') && node.visible)
                          .each(node => removeAddClass(node));
+            diagram.commitTransaction("remove-add-classes");
           }
           else if(graphFunc === "remove-add-method"){
             if(index === '1') granularity.methods = false;
             else granularity.methods = true;
+            diagram.startTransaction("remove-add-methods");
             diagram.nodes.filter(node => (node.data.type === 'variable' || node.data.type === 'field') && node.visible)
                          .each(node => removeAddMethod(node));
+            diagram.commitTransaction("remove-add-methods");
           } 
         }
         console.log(graphFunc + "功能耗时:" + (performance.now() - now));
@@ -190,16 +196,16 @@ export default {
     const removeAddPackage = (node) => {
       if(!granularity.packages){
         // remove
-        diagram.startTransaction("removePackages");
+        // diagram.startTransaction("removePackages");
         const parentPkg = diagram.findNodeForKey(node.data.realGroup[0]);
         if(parentPkg.data.visible){
           parentPkg.memberParts.each(member => diagram.model.setDataProperty(member.data, "group", undefined));
           diagram.model.setDataProperty(parentPkg.data, "visible", false);
         } 
-        diagram.commitTransaction("removePackages");
+        // diagram.commitTransaction("removePackages");
       } else {
         // add
-        diagram.startTransaction("addPackages");
+        // diagram.startTransaction("addPackages");
         if(granularity.classes){
           const parentCls = diagram.findNodeForKey(node.data.realGroup[1]).containingGroup;
           diagram.model.setDataProperty(parentCls.data, "group", parentCls.data.realGroup[0]);
@@ -229,7 +235,7 @@ export default {
             diagram.model.setDataProperty(node.containingGroup.data, "isSubGraphExpanded", true);
           }
         }
-        diagram.commitTransaction("addPackages");
+        // diagram.commitTransaction("addPackages");
       }
     }
 
@@ -240,16 +246,16 @@ export default {
     const removeAddClass = (node) => {
       if(!granularity.classes){
         // remove
-        diagram.startTransaction("removeClasses");
+        // diagram.startTransaction("removeClasses");
         const parentCls = diagram.findNodeForKey(node.data.realGroup[1]).containingGroup;
         if(parentCls.visible){
           parentCls.memberParts.each(member => member.memberParts.each(m => diagram.model.setDataProperty(m.data, "group", parentCls.data.group)));
           diagram.model.setDataProperty(parentCls.data, "visible", false);
         }
-        diagram.commitTransaction("removeClasses");
+        // diagram.commitTransaction("removeClasses");
       } else {
         // add
-        diagram.startTransaction("addClasses");
+        // diagram.startTransaction("addClasses");
         if(granularity.packages){
           const parentCls = diagram.findNodeForKey(node.data.realGroup[1]).containingGroup;
           if(!parentCls.visible) diagram.model.setDataProperty(parentCls.data, "group", parentCls.data.realGroup[0]);
@@ -269,7 +275,7 @@ export default {
             diagram.model.setDataProperty(node.containingGroup.containingGroup.data, "isSubGraphExpanded", true);
           }
         }
-        diagram.commitTransaction("addClasses");
+        // diagram.commitTransaction("addClasses");
       }
     }
 
@@ -281,14 +287,14 @@ export default {
       if(node.data.type === 'field') return;
       if(!granularity.methods){
         // remove
-        diagram.startTransaction("removeMethods");
+        // diagram.startTransaction("removeMethods");
         const parentMth = diagram.findNodeForKey(node.data.realGroup[2]);
         parentMth.memberParts.each(member => diagram.model.setDataProperty(member.data, "group", parentMth.data.group));
         diagram.model.setDataProperty(parentMth.data, "visible", false);
-        diagram.commitTransaction("removeMethods");
+        // diagram.commitTransaction("removeMethods");
       } else {
         // add
-        diagram.startTransaction("addMethods");
+        // diagram.startTransaction("addMethods");
         diagram.model.setDataProperty(node.data, "group", node.data.realGroup[2]);
         if(!node.containingGroup.visible) {
           diagram.model.setDataProperty(node.containingGroup.data, "visible", true);
@@ -296,7 +302,7 @@ export default {
           if(granularity.classes) diagram.model.setDataProperty(node.containingGroup.data, "group", node.containingGroup.data.realGroup[1]);
           else if(granularity.packages) diagram.model.setDataProperty(node.containingGroup.data, "group", node.containingGroup.data.realGroup[0]);
         }
-        diagram.commitTransaction("addMethods");
+        // diagram.commitTransaction("addMethods");
       }
     }
 
